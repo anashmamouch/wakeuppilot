@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ProfilesActivity">
+
+    <include
+        android:id="@+id/tool_bar"
+        layout="@layout/tool_bar"
+        ></include>
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="fill_parent">
+        <ListView
+            android:id="@+id/listView_profiles"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dip"
+            android:layout_weight="1"
+            android:layout_below="@+id/listView_profiles"
+            android:gravity="center|bottom"
+            android:orientation="vertical" >
+
+            <Button
+                android:id="@+id/nouveau_profile"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Créer un nouveau profile"
+                android:textSize="14dp"
+                android:textColor="#fff"
+                android:textAllCaps="false"
+                android:background="@color/ColorPrimaryDark"
+
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp"
+                android:layout_marginBottom="24dp"/>
+
+        </LinearLayout>
+    </RelativeLayout>
+</LinearLayout>
