@@ -5,18 +5,22 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -30,6 +34,10 @@ public class ProfilesActivity extends AppCompatActivity {
     private DatabaseHandler dbHelper;
 
     private ListView listView;
+
+    private List<User> users;
+    private String[] names;
+    private String[] ages;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,9 +68,9 @@ public class ProfilesActivity extends AppCompatActivity {
 
         dbHelper = new DatabaseHandler(this);
 
-        List<User> users = dbHelper.findAllUsers();
-        String[] names = new String[users.size()];
-        String[] ages = new String[users.size()];
+        users = dbHelper.findAllUsers();
+        names = new String[users.size()];
+        ages = new String[users.size()];
 
         for(int i=0; i<users.size(); i++){
             names[i] = users.get(i).getUsername();
@@ -70,6 +78,19 @@ public class ProfilesActivity extends AppCompatActivity {
         }
 
         listView.setAdapter(new ListProfilesAdapter(names, ages));
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+               // Toast.makeText(getApplicationContext(), names[position], Toast.LENGTH_LONG).show();
+
+                Intent intent = new Intent(getApplicationContext(), TestNewActivity.class);
+                Log.d("BENZINO", "creating the intent");
+                intent.putExtra("KEY", users.get(position));
+                Log.d("BENZINO", "starting the intent");
+                startActivity(intent);
+            }
+        });
 
     }
 

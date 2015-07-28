@@ -36,6 +36,12 @@
             android:name=".ProfilesActivity"
             android:label="@string/app_name" >
         </activity>
+
+        <!-- New Test activity -->
+        <activity
+            android:name=".TestNewActivity"
+            android:label="@string/app_name" >
+        </activity>
     </application>
 
 </manifest>

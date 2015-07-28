@@ -1,5 +1,6 @@
 package com.example.anas.firstapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -12,6 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * Created by Anas on 26/7/15.
@@ -35,6 +37,8 @@ public class NewProfileActivity extends AppCompatActivity {
 
         //Create a database where to store the data
         final DatabaseHandler db = new DatabaseHandler(this);
+
+        
 
         //Attaching the layout elements to the java object
         toolbar = (Toolbar) findViewById(R.id.tool_bar);
@@ -66,10 +70,23 @@ public class NewProfileActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 username = pseudonyme.getText().toString();
+                age = spinnerAge.getSelectedItem().toString();
+                genre = spinnerGenre.getSelectedItem().toString();
 
-                Log.d("BENZINO", "Inserting ..");
-                Log.d("BENZINO", "USERNAME:"+ username);
-                db.createUser(new User(username, age, genre));
+                if(username.length() == 0) {
+                    Toast.makeText(getApplicationContext(), "Vous devez entrer un pseudonyme", Toast.LENGTH_LONG).show();
+                }else {
+                    Log.d("BENZINO", "Inserting-----------------------------------");
+
+                    Log.d("BENZINO", "USERNAME:" + username);
+                    Log.d("BENZINO", "AGE:" + age);
+                    Log.d("BENZINO", "GENRE:" + genre);
+                    db.createUser(new User(username, age, genre));
+
+                    //go to the list of profiles page
+                    Intent intent = new Intent(getApplicationContext(), ProfilesActivity.class);
+                    startActivity(intent);
+                }
             }
         });
 
