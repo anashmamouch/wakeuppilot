@@ -25,6 +25,7 @@ public class NewProfileActivity extends AppCompatActivity {
     private Spinner spinnerAge;
     private Spinner spinnerGenre;
     private Button creer;
+    private Button inscrit;
 
     private String username;
     private String age;
@@ -47,6 +48,7 @@ public class NewProfileActivity extends AppCompatActivity {
         spinnerAge = (Spinner) findViewById(R.id.spinner_age);
         spinnerGenre = (Spinner) findViewById(R.id.spinner_genre);
         creer = (Button) findViewById(R.id.creer);
+        inscrit = (Button)findViewById(R.id.inscrit);
 
         // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter<CharSequence> adapterAge = ArrayAdapter.createFromResource(this,
@@ -87,6 +89,14 @@ public class NewProfileActivity extends AppCompatActivity {
                     Intent intent = new Intent(getApplicationContext(), ProfilesActivity.class);
                     startActivity(intent);
                 }
+            }
+        });
+
+        inscrit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), ProfilesActivity.class);
+                startActivity(intent);
             }
         });
 

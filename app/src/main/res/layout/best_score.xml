@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".HistoryResultsActivity">
+
+    <include
+        android:id="@+id/tool_bar"
+        layout="@layout/tool_bar"
+        ></include>
+
+
+    <TextView
+        android:id = "@+id/username_history_results"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:textSize="34sp"
+        android:textStyle="bold"
+        android:gravity="center"/>
+
+    <ListView
+        android:id="@+id/list_best_score"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:drawSelectorOnTop="true"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:gravity="center|bottom"
+        android:orientation="vertical" >
+
+        <Button
+            android:id="@+id/retour_profile"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Retour au profile"
+            android:textSize="14dp"
+            android:textColor="#fff"
+            android:textAllCaps="false"
+            android:background="@color/ColorPrimaryDark"
+
+            android:layout_marginLeft="24dp"
+            android:layout_marginRight="24dp"
+            android:layout_marginBottom="24dp"/>
+
+    </LinearLayout>
+
+
+</LinearLayout>

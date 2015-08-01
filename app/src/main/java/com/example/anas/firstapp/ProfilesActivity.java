@@ -36,8 +36,12 @@ public class ProfilesActivity extends AppCompatActivity {
     private ListView listView;
 
     private List<User> users;
+    private List<Test> tests;
+
     private String[] names;
     private String[] ages;
+
+    private User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,12 +87,26 @@ public class ProfilesActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                // Toast.makeText(getApplicationContext(), names[position], Toast.LENGTH_LONG).show();
+                user = users.get(position);
 
-                Intent intent = new Intent(getApplicationContext(), TestNewActivity.class);
-                Log.d("BENZINO", "creating the intent");
-                intent.putExtra("KEY", users.get(position));
-                Log.d("BENZINO", "starting the intent");
-                startActivity(intent);
+                tests = dbHelper.findTestByUser(user.getId());
+
+                //If the user already passed the test
+                if(!tests.isEmpty()){
+                    Intent intent = new Intent(getApplicationContext(), TestNewActivity.class);
+                    Log.d("BENZINO", "creating the intent for the TESTNEWACTIVITY ");
+                    intent.putExtra("KEY", user);
+                    Log.d("BENZINO", "starting the intent for the TESTNEWACTIVITY ");
+                    startActivity(intent);
+                }else{
+                    Intent intent = new Intent(getApplicationContext(), TestFirstActivity.class);
+                    Log.d("BENZINO", "creating the intent for the TESTFIRSTACTIVITY");
+                    intent.putExtra("KEY", user);
+                    Log.d("BENZINO", "starting the intent for the TESTFIRSTACTIVITY");
+                    startActivity(intent);
+                }
+
+
             }
         });
 

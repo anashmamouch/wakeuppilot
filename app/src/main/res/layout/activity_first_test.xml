@@ -5,73 +5,49 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".NewProfileActivity">
+    tools:context=".WelcomeActivity">
 
     <include
         android:id="@+id/tool_bar"
         layout="@layout/tool_bar"
         ></include>
 
-    <EditText
-        android:id= "@+id/pseudonyme"
+    <TextView
+        android:id="@+id/text_niveau_reference"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_margin="32dp"
+        android:gravity="center_horizontal"
         android:textSize="18dp"
-        android:hint="Pseudonyme..."/>
+        android:textAlignment="center"
+        android:text= "@string/first_time"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="32dp"
+        android:textStyle="italic"
+        />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="32dp"
-        android:layout_marginRight="32dp"
-        android:layout_marginBottom="32dp"
-        android:gravity="center_vertical"
-        android:orientation="horizontal" >
+        android:orientation="horizontal"
+        android:gravity="center"
 
+        >
+
+        <TextView
+            android:id="@+id/success_rate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="24dp"
+            android:text="--%"
+            android:layout_marginRight="10dp"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
-            android:textSize="18dp"
-            android:layout_weight=".7"
-            android:text="AGE"/>
-
-
-        <Spinner
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-
-            android:id="@+id/spinner_age"
-
-
-            android:layout_weight=".3" />
+            android:textSize="24dp"
+            android:text="Taux de réussite"/>
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="32dp"
-        android:layout_marginRight="32dp"
-        android:gravity="center_vertical"
-        android:orientation="horizontal" >
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight=".7"
-            android:textSize="18dp"
-            android:text="GENRE"/>
-
-        <Spinner
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-
-            android:id="@+id/spinner_genre"
-
-            android:layout_weight=".3" />
-    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -80,14 +56,11 @@
         android:gravity="center|bottom"
         android:orientation="vertical" >
 
-
-
-
         <Button
-            android:id="@+id/creer"
+            android:id="@+id/niveau_reference"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="Créer"
+            android:text="Etablir le niveau de reference"
             android:textSize="14dp"
             android:textColor="#fff"
             android:textAllCaps="false"
@@ -95,12 +68,27 @@
 
             android:layout_marginLeft="24dp"
             android:layout_marginRight="24dp"
-            android:layout_marginBottom="18dp"/>
+            android:layout_marginBottom="16dp"/>
+
         <Button
-            android:id="@+id/inscrit"
+            android:id="@+id/aide_test"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="Déjà inscrit"
+            android:text="Aide pour le test"
+            android:textSize="14dp"
+            android:textColor="#fff"
+            android:textAllCaps="false"
+            android:background="@color/ColorPrimaryDark"
+
+            android:layout_marginLeft="24dp"
+            android:layout_marginRight="24dp"
+            android:layout_marginBottom="16dp"/>
+
+        <Button
+            android:id="@+id/historique_resultats"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Historique des résultats"
             android:textSize="14dp"
             android:textColor="#fff"
             android:textAllCaps="false"
@@ -109,6 +97,7 @@
             android:layout_marginLeft="24dp"
             android:layout_marginRight="24dp"
             android:layout_marginBottom="24dp"/>
+
 
     </LinearLayout>
 

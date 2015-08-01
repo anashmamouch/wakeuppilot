@@ -66,4 +66,15 @@ public class User implements Serializable{
     public void setCreatedAt(String createdAt) {
         this.createdAt = createdAt;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", age='" + age + '\'' +
+                ", genre='" + genre + '\'' +
+                ", createdAt='" + createdAt + '\'' +
+                '}';
+    }
 }

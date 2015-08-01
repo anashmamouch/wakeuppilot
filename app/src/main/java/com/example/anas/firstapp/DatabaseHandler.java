@@ -18,7 +18,7 @@ import java.util.Locale;
 public class DatabaseHandler extends SQLiteOpenHelper {
 
     //Database Version
-    private static final int DATABASE_VERSION = 3;
+    private static final int DATABASE_VERSION = 4;
 
     //Database Name
     private static final String DATABASE_NAME = "wakeup";
@@ -53,14 +53,19 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         String CREATE_USERS_TABLE = "CREATE TABLE " + TABLE_USERS + "("
-                + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + KEY_USERNAME + " TEXT,"
-                + KEY_AGE + " TEXT, " + KEY_GENRE + " TEXT, "
+                + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+                + KEY_USERNAME + " TEXT,"
+                + KEY_AGE + " TEXT, "
+                + KEY_GENRE + " TEXT, "
                 + KEY_CREATED_AT + " DATETIME" + ")";
 
         String CREATE_TESTS_TABLE = "CREATE TABLE " + TABLE_TESTS + "("
-                + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," + KEY_BALL_TOUCHED + " INTEGER,"
-                + KEY_TOTAL_TOUCHES + " INTEGER, " + KEY_FIRST_TIME + " BOOLEAN, "
-                + KEY_USER_ID + " INTEGER, " + KEY_CREATED_AT + " DATETIME"
+                + KEY_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+                + KEY_BALL_TOUCHED + " INTEGER,"
+                + KEY_TOTAL_TOUCHES + " INTEGER, "
+                + KEY_FIRST_TIME + " BOOLEAN, "
+                + KEY_USER_ID + " INTEGER, "
+                + KEY_CREATED_AT + " DATETIME, "
                 + "FOREIGN KEY (" + KEY_USER_ID + ") REFERENCES " + TABLE_USERS
                 +"(" + KEY_ID + ") ON DELETE CASCADE"+")";
 
@@ -206,7 +211,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
     //Create a test according to a user
-    public void createTest(Test test, int user_id){
+    public void createTest(Test test){
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
 
@@ -217,7 +222,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         //Test first time
         values.put(KEY_FIRST_TIME, test.getFirstTime());
         //Test user id
-        values.put(KEY_USER_ID, user_id);
+        values.put(KEY_USER_ID, test.getUserId());
         //Test created at
         values.put(KEY_CREATED_AT, getDateTime());
 
@@ -227,6 +232,122 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         //Close database connection
         db.close();
     }
+
+    //Find all tests
+    public List<Test> findAllTests(){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        List<Test> tests = new ArrayList<Test>();
+
+        String query = "SELECT * FROM "
+                        + TABLE_TESTS;
+
+        Cursor cursor = db.rawQuery(query, null);
+
+        //Looping through the table and add all the tests
+        if(cursor.moveToFirst()){
+            do{
+                Test test = new Test();
+                test.setId(Integer.parseInt(cursor.getString(0)));
+                test.setBallTouched(Integer.parseInt(cursor.getString(1)));
+                test.setTotalTouches(Integer.parseInt(cursor.getString(2)));
+                //test.setFirstTime(Boolean.parseBoolean(cursor.getString(3)));
+                if(cursor.getInt(3) == 1)
+                    test.setFirstTime(true);
+                else
+                    test.setFirstTime(false);
+                test.setUserId(Integer.parseInt(cursor.getString(4)));
+                test.setCreatedAt(cursor.getString(5));
+
+                //Adding test to the list
+                tests.add(test);
+            }while(cursor.moveToNext());
+        }
+        db.close();
+        return tests;
+    }
+
+    //Find all @tests of a specific @user
+    public List<Test> findTestByUser(int userId){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        List<Test> tests = new ArrayList<Test>();
+
+        String query = "SELECT * FROM "
+                        + TABLE_TESTS
+                        + " WHERE "
+                        + KEY_USER_ID
+                        +" = "+ userId
+                        +" ORDER BY "
+                        + KEY_CREATED_AT
+                        +" DESC";
+
+        Cursor cursor = db.rawQuery(query, null);
+
+        //Looping through the table and add tests according to the user selected
+        if (cursor.moveToFirst()){
+            do{
+                Test test = new Test();
+                test.setId(Integer.parseInt(cursor.getString(0)));
+                test.setBallTouched(Integer.parseInt(cursor.getString(1)));
+                test.setTotalTouches(Integer.parseInt(cursor.getString(2)));
+                if(cursor.getInt(3) == 1)
+                    test.setFirstTime(true);
+                else
+                    test.setFirstTime(false);
+                test.setUserId(Integer.parseInt(cursor.getString(4)));
+                test.setCreatedAt(cursor.getString(5));
+
+                //Adding test to the list
+                tests.add(test);
+            }while(cursor.moveToNext());
+        }
+        db.close();
+        return tests;
+    }
+
+    //Test Niveau de reference
+    public Test niveauReferenceByUser(int userId){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        Test test = new Test();
+
+        String query = "SELECT * FROM "
+                        + TABLE_TESTS
+                        + " WHERE "
+                        + KEY_USER_ID
+                        +" = "+ userId
+                        +" AND "
+                        + KEY_FIRST_TIME
+                        +" = 1";
+        Cursor cursor = db.rawQuery(query, null);
+
+        test.setId(Integer.parseInt(cursor.getString(0)));
+        test.setBallTouched(Integer.parseInt(cursor.getString(1)));
+        test.setTotalTouches(Integer.parseInt(cursor.getString(2)));
+        //test.setFirstTime(Boolean.parseBoolean(cursor.getString(3)));
+        if(cursor.getInt(3) == 1)
+            test.setFirstTime(true);
+        else
+            test.setFirstTime(false);
+        test.setUserId(Integer.parseInt(cursor.getString(4)));
+        test.setCreatedAt(cursor.getString(5));
+
+        db.close();
+        return  test;
+    }
+
+    //Getting  tests count
+    public int getTestsCount(){
+        String query = "SELECT * FROM "+TABLE_TESTS;
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(query, null);
+        cursor.close();
+
+        //return count
+        return cursor.getCount();
+    }
+
     //Created_at value current datetime
     private String getDateTime() {
         SimpleDateFormat dateFormat = new SimpleDateFormat(

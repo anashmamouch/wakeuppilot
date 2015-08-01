@@ -26,7 +26,7 @@ public class Test implements Serializable {
         this.createdAt = createdAt;
     }
 
-    public Test(int ballTouched, int totalTouches, boolean firstTime, int userId, String createdAt) {
+    public Test(int ballTouched, int totalTouches, boolean firstTime, int userId) {
         this.ballTouched = ballTouched;
         this.totalTouches = totalTouches;
         this.firstTime = firstTime;
@@ -80,6 +80,18 @@ public class Test implements Serializable {
 
     public void setCreatedAt(String createdAt) {
         this.createdAt = createdAt;
+    }
+
+    @Override
+    public String toString() {
+        return "Test{" +
+                "id=" + id +
+                ", ballTouched=" + ballTouched +
+                ", totalTouches=" + totalTouches +
+                ", firstTime=" + firstTime +
+                ", userId=" + userId +
+                ", createdAt='" + createdAt + '\'' +
+                '}';
     }
 }
 

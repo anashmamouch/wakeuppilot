@@ -23,6 +23,27 @@
         android:textStyle="bold"
         />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        >
+
+        <TextView
+            android:id="@+id/success_rate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="24dp"
+            android:text="--"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="24dp"
+            android:text="% Taux de réussite"/>
+    </LinearLayout>
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -43,7 +64,38 @@
 
             android:layout_marginLeft="24dp"
             android:layout_marginRight="24dp"
+            android:layout_marginBottom="16dp"/>
+
+        <Button
+            android:id="@+id/retour_list_profiles"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Retour a la liste de profiles"
+            android:textSize="14dp"
+            android:textColor="#fff"
+            android:textAllCaps="false"
+            android:background="@color/ColorPrimaryDark"
+
+            android:layout_marginLeft="24dp"
+            android:layout_marginRight="24dp"
+            android:layout_marginBottom="16dp"/>
+
+
+
+        <Button
+            android:id="@+id/historique_resultats"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="Historique des résultats"
+            android:textSize="14dp"
+            android:textColor="#fff"
+            android:textAllCaps="false"
+            android:background="@color/ColorPrimaryDark"
+
+            android:layout_marginLeft="24dp"
+            android:layout_marginRight="24dp"
             android:layout_marginBottom="24dp"/>
+
 
     </LinearLayout>
 

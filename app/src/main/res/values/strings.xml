@@ -3,10 +3,19 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
-    <string name="profile_welcome"> Pour commencer le test\nCréer un nouveau profile</string>
+    <string name="profile_welcome"> "Pour commencer le test\nCréer un nouveau profile"</string>
+    <string name="intro_niveau_reference"> "Définissez votre niveau de référence pour calibrer l'application\nLe niveau de référence correspond à votre niveau d'éveil optimal"</string>
+    <string name="duree_niveau_reference"> "Durée du test: 30 secondes"</string>
+    <string name="list_niveau_reference"> "&#8226; Reposé\n&#8226; Installé dans un endroit calme\n&#8226; Evitez de l'effectuer après un repas\n"</string>
+    <string name="tutorial"> "Cliquez vite sur la balle rouge dès qu'elle apparait sur l'écran vous n'avez que 30 secondes."</string>
+    <string name="intro_after_reference"> "Niveau de référence enregistré"</string>
+    <string name="after_reference"> "Vous pouvez maintenant évaluer votre niveau\nd'éveil avant de prendre le volant."</string>
+
+    <string name="first_time"> "C'est la première fois que vous lancez l'application,\nvous devez établir votre niveau de référence:"</string>
     <string name="description_welcome">
         "Cette application vous permet de tester votre niveau d'éveil\navant de prendre le volant. Pour cela, vous devez auparavant\ndéfinir votre niveau de référence qui correspond à votre\nniveau d'éveil optimal dans le cadre d'un premier test."
     </string>
+
     <string-array name="age_array">
         <item>- 40 ans</item>
         <item>40 - 60 ans </item>
