@@ -430,10 +430,10 @@ public class AnimationView extends SurfaceView implements SurfaceHolder.Callback
                         public void onClick(DialogInterface dialog, int which) {
                             // go back to the profile page
                             Intent intent = new Intent(getContext(), TestNewActivity.class);
+                            intent.putExtra("KEY", user);
                             getContext().startActivity(intent);
-
+                            loop.interrupt();
                             dialog.dismiss();
-
                         }
                     })
                     .setIcon(android.R.drawable.ic_dialog_alert)
