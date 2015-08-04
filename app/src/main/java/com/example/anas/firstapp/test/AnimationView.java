@@ -1,5 +1,6 @@
 package com.example.anas.firstapp.test;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -235,7 +236,7 @@ public class AnimationView extends SurfaceView implements SurfaceHolder.Callback
 
     public void incrementTouch(){
         touch++;
-        rate = (float)((touched/touch)*100);
+        rate = (touched/(float)touch)*100f;
     }
 
     /**
@@ -316,14 +317,16 @@ public class AnimationView extends SurfaceView implements SurfaceHolder.Callback
         loop.isRunning(true);
         loop.start();
 
+        Log.d("ANAS", "++++++++++++++SURFACE CREATED    LOOP: "  +  loop.getState());
+
     }
 
-    public void alertDialog(final User user){
+    public void alertDialog(final User user, final Context context){
             /*
          * Alert Dialog
          * */
 
-        if(time  == 10 && touched > 3){
+        if(time  == 30 && touched > 5){
             /*
              * Inflate the XML view. activity_main is in
              * res/layout/form_elements.xml
@@ -336,10 +339,10 @@ public class AnimationView extends SurfaceView implements SurfaceHolder.Callback
             //usernameEditText = (EditText) inputView.findViewById(R.id.inputEditText);
 
             //Create a database where to store the data
-            final DatabaseHandler db = new DatabaseHandler(getContext());
+            final DatabaseHandler db = new DatabaseHandler(context);
             final List<Test>  tests = db.findTestByUser(user.getId());;
 
-            AlertDialog alert = new AlertDialog.Builder(getContext())
+            final AlertDialog alert = new AlertDialog.Builder(context)
                     .setTitle("Time is up!")
                     .setMessage("Vous avez touchez la balle " + touched + " fois")
                     .setPositiveButton("Refaire le test", new DialogInterface.OnClickListener() {
@@ -372,9 +375,10 @@ public class AnimationView extends SurfaceView implements SurfaceHolder.Callback
 
                                     Log.d("ANAS", "INSIDE DIALOG: FIRST TIME" + testsCreated.get(0).getFirstTime());
                                     //go to the list of best scores page
-                                    Intent intent = new Intent(getContext(), AfterReferenceActivity.class);
+                                    Intent intent = new Intent(context, AfterReferenceActivity.class);
                                     intent.putExtra("KEY", user);
-                                    getContext().startActivity(intent);
+                                    context.startActivity(intent);
+                                    //((Activity) context).finish();
                                     //Interupting the Game Loop
                                     loop.interrupt();
                                     //Dismisses the dialog box
@@ -385,9 +389,10 @@ public class AnimationView extends SurfaceView implements SurfaceHolder.Callback
                                     db.createTest(new Test(touched, touch, false, user.getId()));
 
                                     //go to the list of best scores page
-                                    Intent intent = new Intent(getContext(), HistoryResultsActivity.class);
+                                    Intent intent = new Intent(context, HistoryResultsActivity.class);
                                     intent.putExtra("KEY", user);
-                                    getContext().startActivity(intent);
+                                    context.startActivity(intent);
+                                    //((Activity) context).finish();
                                     //Interupting the Game Loop
                                     loop.interrupt();
                                     //Dismisses the dialog box
@@ -402,17 +407,15 @@ public class AnimationView extends SurfaceView implements SurfaceHolder.Callback
 
             alert.setCanceledOnTouchOutside(false);
 
-
-
         }
 
     /*
      * Finish Alert Dialog
      * */
         //if the user touched the ball less than 3 times
-        if (time ==10 && touched <= 3){
+        if (time ==30 && touched <= 5){
 
-            AlertDialog alert = new AlertDialog.Builder(getContext())
+            AlertDialog alert = new AlertDialog.Builder(context)
                     .setTitle("Time is up!")
                     .setMessage(" Vous n'avez pas dépasser le score minimum \n Voulez-vous ")
                     .setPositiveButton("Refaire le test", new DialogInterface.OnClickListener() {
@@ -429,9 +432,10 @@ public class AnimationView extends SurfaceView implements SurfaceHolder.Callback
                     .setNegativeButton("Retourner au profile", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
                             // go back to the profile page
-                            Intent intent = new Intent(getContext(), TestNewActivity.class);
+                            Intent intent = new Intent(context, TestNewActivity.class);
                             intent.putExtra("KEY", user);
-                            getContext().startActivity(intent);
+                            context.startActivity(intent);
+                            //((Activity) context).finish();
                             loop.interrupt();
                             dialog.dismiss();
                         }
@@ -444,8 +448,6 @@ public class AnimationView extends SurfaceView implements SurfaceHolder.Callback
         }
     }
 
-
-
     @Override
     public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
 
@@ -453,6 +455,21 @@ public class AnimationView extends SurfaceView implements SurfaceHolder.Callback
 
     @Override
     public void surfaceDestroyed(SurfaceHolder holder) {
+        // simply copied from sample application LunarLander:
+        // we have to tell thread to shut down & wait for it to finish, or else
+        // it might touch the Surface after we return and explode
+
+        boolean retry = true;
+        loop.isRunning(false);
+        while (retry) {
+            try {
+                loop.join();
+                retry = false;
+            } catch (InterruptedException e) {
+                // we will try it again and again...
+            }
+        }
+
 
     }
 }

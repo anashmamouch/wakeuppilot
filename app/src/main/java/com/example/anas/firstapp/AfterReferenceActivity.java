@@ -29,7 +29,15 @@ public class AfterReferenceActivity extends AppCompatActivity {
 
     private List<Test> tests;
 
-
+    /*TODO OnBackPressed */
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(getApplicationContext(), ProfilesActivity.class);
+        //intent.putExtra("KEY", user);
+        startActivity(intent);
+        finish();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +75,7 @@ public class AfterReferenceActivity extends AppCompatActivity {
                 intent.putExtra("TESTS", (Serializable) tests);
                 Log.d("BENZINO", "starting the intent");
                 startActivity(intent);
+                finish();
             }
         });
 

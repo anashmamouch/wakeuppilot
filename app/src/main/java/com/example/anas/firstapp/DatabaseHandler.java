@@ -275,7 +275,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
         String query = "SELECT * FROM "
                         + TABLE_TESTS
-                        + " WHERE "
+                        +" WHERE "
                         + KEY_USER_ID
                         +" = "+ userId
                         +" ORDER BY "

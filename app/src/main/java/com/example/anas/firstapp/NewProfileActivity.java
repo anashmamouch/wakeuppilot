@@ -88,6 +88,7 @@ public class NewProfileActivity extends AppCompatActivity {
                     //go to the list of profiles page
                     Intent intent = new Intent(getApplicationContext(), ProfilesActivity.class);
                     startActivity(intent);
+                    finish();
                 }
             }
         });
@@ -97,6 +98,7 @@ public class NewProfileActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), ProfilesActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
 

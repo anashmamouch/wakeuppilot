@@ -66,6 +66,7 @@ public class ProfilesActivity extends AppCompatActivity {
                 //go to the new profile page
                 Intent intent = new Intent(getApplicationContext(), NewProfileActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -98,12 +99,14 @@ public class ProfilesActivity extends AppCompatActivity {
                     intent.putExtra("KEY", user);
                     Log.d("BENZINO", "starting the intent for the TESTNEWACTIVITY ");
                     startActivity(intent);
+                    finish();
                 }else{
                     Intent intent = new Intent(getApplicationContext(), TestFirstActivity.class);
                     Log.d("BENZINO", "creating the intent for the TESTFIRSTACTIVITY");
                     intent.putExtra("KEY", user);
                     Log.d("BENZINO", "starting the intent for the TESTFIRSTACTIVITY");
                     startActivity(intent);
+                    finish();
                 }
 
 

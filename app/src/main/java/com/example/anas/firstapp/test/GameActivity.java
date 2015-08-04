@@ -1,6 +1,7 @@
 package com.example.anas.firstapp.test;
 
 import android.app.Activity;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -31,6 +32,8 @@ public class GameActivity extends Activity{
      */
 
     private Thread thread;
+
+    /*TODO OnBackPressed */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,13 +41,30 @@ public class GameActivity extends Activity{
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-        view = new AnimationView(this);
+
+
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                view = new AnimationView(getApplicationContext());
+                setContentView(view);
+                Log.d("ANAS", "****************************************INSIDE THE RUNONUITHREAD VIEW");
+
+
+            }
+        });
+
+
+        //view = new AnimationView(getApplicationContext());
+
         user = (User) getIntent().getSerializableExtra("KEY");
+
 
         thread = new Thread() {
 
             @Override
             public void run() {
+                Log.d("ANAS", "****************************************STARTING TIME THREAD");
                 try {
                     while (!isInterrupted()) {
                         Thread.sleep(1000);
@@ -52,22 +72,24 @@ public class GameActivity extends Activity{
                             @Override
                             public void run() {
                                 view.incrementTime(1);
+                                //Log.d("ANAS", "****************************************INSIDE THE TIME RUN VIEW");
+
                                 if(view.getTime() %10 == 0){
                                     Log.d("ANAS", "TIME: " + view.getTime() + " seconds...");
                                     Log.d("ANAS", "--------Ball Touched: " + view.getTouched() + "times-------");
                                 }
 
-                                view.alertDialog(user);
+                                view.alertDialog(user, GameActivity.this);
                             }
                         });
+
                     }
                 } catch (InterruptedException e) {
                 }
             }
         };
 
-        thread.start();
-
+        Log.d("ANAS", "VISIBILITY " + view.getVisibility());
 
         view.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -121,26 +143,52 @@ public class GameActivity extends Activity{
                         Log.d("ANAS", "------------------->>DEFAULT");
 
                 }
-                view.invalidate();
+
+                //view.invalidate();
                 return true;
             }
 
-
         });
-        setContentView(view);
+
+        //view.surfaceCreated(view.getHolder());
+        thread.start();
     }
 
     @Override
     protected void onPause() {
-        super.onPause();
+
         thread.interrupt();
         view.getLoop();
 
         view.surfaceDestroyed(view.getHolder());
-        Log.d("ANAS", "IS THE LOOP ALIVE" + view.getLoop().isAlive());
-        Log.d("ANAS", "IS THE TIME ALIVE" + thread.isAlive());
+
+        super.onPause();
+        //setContentView(null);
+        finish();
+
+        Log.d("ANAS", "IS THE LOOP ALIVE  " + view.getLoop().isAlive());
+        Log.d("ANAS", "IS THE TIME ALIVE  " + thread.isAlive());
         Log.d("ANAS", "THREAD STATUS: " + thread.getState());
         Log.d("ANAS", "LOOP STATUS: " + view.getLoop().getState());
+
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        thread.interrupt();
+        view.surfaceDestroyed(view.getHolder());
+        finish();
+
+    }
+
+    private class DisplayTask extends AsyncTask<Void, Void, Void>{
+
+        @Override
+        protected Void doInBackground(Void... params) {
+
+            return null;
+        }
 
     }
 }

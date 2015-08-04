@@ -2,6 +2,7 @@ package com.example.anas.firstapp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -14,6 +15,7 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.anas.firstapp.test.GameActivity;
 
@@ -36,12 +38,32 @@ public class HistoryResultsActivity extends AppCompatActivity {
 
     private ListView listView;
 
+    private boolean doubleBackToExitPressedOnce = false;
 
 
     private String[] dates;
     private String[] scores;
 
     /*TODO: OnBackPressed for HistoryResults*/
+    @Override
+    public void onBackPressed() {
+        if (doubleBackToExitPressedOnce) {
+            super.onBackPressed();
+            return;
+        }
+
+        this.doubleBackToExitPressedOnce = true;
+        Toast.makeText(this, "Please click BACK again to exit", Toast.LENGTH_SHORT).show();
+
+        new Handler().postDelayed(new Runnable() {
+
+            @Override
+            public void run() {
+                doubleBackToExitPressedOnce=false;
+            }
+        }, 2000);
+    }
+    /**
     @Override
     public void onBackPressed() {
         super.onBackPressed();
@@ -53,11 +75,11 @@ public class HistoryResultsActivity extends AppCompatActivity {
 
         Log.d("ANAS", tests.toString());
 
-        /**
-        Intent intent = new Intent(getApplicationContext(), GameActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        getApplicationContext().startActivity(intent);
-         **/
+
+        //Intent intent = new Intent(getApplicationContext(), GameActivity.class);
+        //intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        //getApplicationContext().startActivity(intent);
+
         if(!tests.isEmpty()){
             //go to the new profile page
             Intent intent = new Intent(getApplicationContext(), TestNewActivity.class);
@@ -72,6 +94,7 @@ public class HistoryResultsActivity extends AppCompatActivity {
 
         }
     }
+    **/
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -121,12 +144,14 @@ public class HistoryResultsActivity extends AppCompatActivity {
                     Intent intent = new Intent(getApplicationContext(), TestNewActivity.class);
                     intent.putExtra("KEY", user);
                     startActivity(intent);
+                    finish();
 
                 }else {
                     //go to the new reference page
                     Intent intent = new Intent(getApplicationContext(), TestFirstActivity.class);
                     intent.putExtra("KEY", user);
                     startActivity(intent);
+                    finish();
 
                 }
 

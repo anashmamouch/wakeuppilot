@@ -2,6 +2,7 @@ package com.example.anas.firstapp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -55,22 +56,64 @@ public class TestNewActivity extends AppCompatActivity{
         tests = dbHelper.findTestByUser(user.getId());
 
         int total = tests.size();
-        int last = total - 1;
 
+        scoreReference = tests.get((total - 1)).getBallTouched();
+        
+        success(scoreReference, total);
 
-        Log.d("BENZINO", "testSIZE after REFERENCE "+ total);
-        //Log.d("BENZINO", "tests after REFERENCE "tests.get);
+        successRate.setText("" + success(scoreReference, total));
 
-        scoreReference = tests.get(last).getBallTouched();
+        title.setText(user.getUsername());
 
-        Log.d("BENZINO", "scoreReference |||||||| >>>>>>>>>>>> "+ scoreReference);
+        test.setText(user.getUsername() + "\n" + user.getAge() + "\n" + user.getGenre());
+        //Setting the toolbar as the ActionBar
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle(" ");
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
-        //scoreReference = 1;
+        passerTest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
-        //final int scoreReference;
+                //go to the test
+                Intent intent = new Intent(getApplicationContext(), GameActivity.class);
+                Log.d("BENZINO", "creating the intent");
+                intent.putExtra("KEY", user);
+                Log.d("BENZINO", "starting the intent");
+                startActivity(intent);
+                finish();
 
+            }
+        });
+
+        listProfiles.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), ProfilesActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        historiqueResultats.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //go to the History Results page
+                Intent intent = new Intent(getApplicationContext(), HistoryResultsActivity.class);
+                Log.d("BENZINO", "creating the intent");
+                intent.putExtra("KEY", user);
+                Log.d("BENZINO", "starting the intent");
+                startActivity(intent);
+                finish();
+            }
+        });
+
+    }
+
+    public  float success(int scoreReference, int total){
         int[] scores;
 
+        int last = total - 1;
         float sum;
         float somme = 0;
 
@@ -84,7 +127,7 @@ public class TestNewActivity extends AppCompatActivity{
 
                 //Log.d("ANAS", "somme pour test"sum);
                 //if(scoreReference !=0)
-                    somme += sum/(float)scoreReference;
+                somme += sum/(float)scoreReference;
 
                 Log.d("BENZINO", "inside for loop tests :::::::::::>> SOMME "+ somme);
             }
@@ -101,50 +144,7 @@ public class TestNewActivity extends AppCompatActivity{
         //Log.d("BENZINO", "SCORE REFERENCE :::::::::::>>>>>>>>>>> "+ somme);
         Log.d("BENZINO", "SOMME :::::::::::>>>>>>>>>>> "+ somme);
 
-        successRate.setText("" + (somme * 100));
-
-        title.setText(user.getUsername());
-
-        test.setText(user.getUsername() + "\n" + user.getAge() + "\n" + user.getGenre());
-        //Setting the toolbar as the ActionBar
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle(" ");
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
-
-        passerTest.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //go to the test
-                Intent intent = new Intent(getApplicationContext(), GameActivity.class);
-                Log.d("BENZINO", "creating the intent");
-                intent.putExtra("KEY", user);
-                Log.d("BENZINO", "starting the intent");
-                startActivity(intent);
-            }
-        });
-
-        listProfiles.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), ProfilesActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        historiqueResultats.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //go to the History Results page
-                Intent intent = new Intent(getApplicationContext(), HistoryResultsActivity.class);
-                Log.d("BENZINO", "creating the intent");
-                intent.putExtra("KEY", user);
-                Log.d("BENZINO", "starting the intent");
-                startActivity(intent);
-            }
-        });
-
-
-
+        return somme*100;
     }
 
     @Override

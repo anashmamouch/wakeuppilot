@@ -57,6 +57,7 @@ public class TutorialActivity extends AppCompatActivity {
                 intent.putExtra("KEY", user);
                 Log.d("BENZINO", "starting the intent");
                 startActivity(intent);
+                finish();
             }
         });
 

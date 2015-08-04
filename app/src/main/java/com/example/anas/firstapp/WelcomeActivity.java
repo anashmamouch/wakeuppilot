@@ -40,6 +40,7 @@ public class WelcomeActivity extends AppCompatActivity {
                 //go to the new profile page
                 Intent intent = new Intent(getApplicationContext(), NewProfileActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
 

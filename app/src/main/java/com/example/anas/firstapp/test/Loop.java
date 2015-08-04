@@ -1,6 +1,7 @@
 package com.example.anas.firstapp.test;
 
 import android.graphics.Canvas;
+import android.util.Log;
 import android.view.SurfaceHolder;
 
 /**
@@ -54,20 +55,37 @@ public class Loop extends Thread {
     public void run() {
         Canvas canvas;
         while(!isInterrupted()){
+
             long cTime = System.currentTimeMillis();
-            if((cTime - time) <= (1000/fps)){
-                canvas = null;
-                try{
-                    canvas = holder.lockCanvas(null);
-                    view.updatePhysics();
-                    //view.alertDialog();
-                    view.onDraw(canvas);
-                }finally{
-                    if(canvas !=null)
-                        holder.unlockCanvasAndPost(canvas);
+            Log.d("ANAS", "cTime~~~~~~~~~~~~~~~~~~~~~  "+ cTime);
+            Log.d("ANAS", "cTime - time =   "+ (cTime - time));
+            //if((cTime - time) <= (1000/fps)){
+
+            if(true){
+                    canvas = null;
+                    try{
+                        canvas = holder.lockCanvas(null);
+                        synchronized (holder){
+                            view.updatePhysics();
+                            //view.alertDialog();
+                            view.onDraw(canvas);
+
+                            view.postInvalidate();
+                            //Log.d("ANAS", "****************SYNCHRONIZED POST INVALIDATE");
+                        }
+                        //view.postInvalidate();
+                    }finally{
+                        if(canvas !=null) {
+
+                            holder.unlockCanvasAndPost(canvas);
+                            //Log.d("ANAS", "=============== UNLOCKCANVAS");
+                        }
+
+                    }
                 }
+                time = cTime;
             }
-            time = cTime;
+
         }
     }
-}
+
