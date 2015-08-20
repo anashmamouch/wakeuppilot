@@ -28,6 +28,9 @@
     <string name="jai_compris_button">"J'ai compris"</string>
     <string name="retour_profile">Retour au profile</string>
 
+    <!--Toast strings -->
+    <string name="toast_entrer_pseudonyme">"Vous devez entrer un pseudonyme"</string>
+
     <!--Toolbar strings -->
     <string name="toolbar_bienvenue">BIENVENUE</string>
     <string name="toolbar_tutoriel">TUTORIEL</string>
@@ -36,7 +39,14 @@
     <string name="toolbar_historique_resultats">HISTORIQUE DES RESULTATS</string>
     <string name="toolbar_niveau_reference">NIVEAU DE REFERENCE</string>
 
-
+    <!--Alert Dialog strings-->
+    <string name="dialog_title">Temps écoulé</string>
+    <string name="dialog_touchez_balle">Vous avez touchez la balle</string>
+    <string name="dialog_fois">fois</string>
+    <string name="dialog_refaire_test">Refaire le test</string>
+    <string name="dialog_retourner_profile">Retourner au profile</string>
+    <string name="dialog_enregistrer_score">Enregistrer votre score</string>
+    <string name="dialog_score_minimum">"Vous n'avez pas dépasser le score minimum \n Voulez-vous "</string>
 
     <string name="first_time"> "C'est la première fois que vous lancez l'application,\nvous devez établir votre niveau de référence:"</string>
     <string name="description_welcome">

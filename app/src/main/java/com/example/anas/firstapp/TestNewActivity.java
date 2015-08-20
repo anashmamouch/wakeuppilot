@@ -1,6 +1,7 @@
 package com.example.anas.firstapp;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
@@ -13,6 +14,9 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.anas.firstapp.test.GameActivity;
+import com.hookedonplay.decoviewlib.DecoView;
+import com.hookedonplay.decoviewlib.charts.SeriesItem;
+import com.hookedonplay.decoviewlib.events.DecoEvent;
 
 import org.w3c.dom.Text;
 
@@ -35,6 +39,9 @@ public class TestNewActivity extends AppCompatActivity{
     private DatabaseHandler dbHelper;
     private int scoreReference;
 
+    private DecoView decoView;
+    private TextView textPercentage;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,10 +51,10 @@ public class TestNewActivity extends AppCompatActivity{
         toolbar = (Toolbar) findViewById(R.id.tool_bar);
         title = (TextView) findViewById(R.id.toolbar_title);
         passerTest = (Button) findViewById(R.id.passer_test);
-        test = (TextView) findViewById(R.id.test_textview);
+        //test = (TextView) findViewById(R.id.test_textview);
         historiqueResultats = (Button) findViewById(R.id.historique_resultats);
         listProfiles = (Button)findViewById(R.id.retour_list_profiles);
-        successRate = (TextView) findViewById(R.id.success_rate);
+        //successRate = (TextView) findViewById(R.id.success_rate);
 
         user = (User) getIntent().getSerializableExtra("KEY");
 
@@ -61,11 +68,68 @@ public class TestNewActivity extends AppCompatActivity{
         
         success(scoreReference, total);
 
-        successRate.setText("" + success(scoreReference, total));
+        //successRate.setText("" + success(scoreReference, total));
 
-        title.setText(user.getUsername());
+        title.setText(user.getUsername() + "("+user.getAge()+")");
 
-        test.setText(user.getUsername() + "\n" + user.getAge() + "\n" + user.getGenre());
+        /**Starting DecoView
+         *
+         *
+         */
+
+        decoView = (DecoView) findViewById(R.id.dynamicArcView);
+
+        //Add the background arc
+        SeriesItem seriesItem = new SeriesItem.Builder(Color.parseColor("#FFE2E2E2"))
+                .setRange(0, 50, 0)
+                .build();
+
+        int backIndex  = decoView.addSeries(seriesItem);
+
+        final SeriesItem seriesItem1 = new SeriesItem.Builder(Color.parseColor("#FFFF8800"))
+                .setRange(0,100, 0)
+                .build();
+
+        int series1Index = decoView.addSeries(seriesItem1);
+
+        //Adding a listener to monitor the value changes
+        textPercentage = (TextView) findViewById(R.id.textPercentage);
+        seriesItem1.addArcSeriesItemListener(new SeriesItem.SeriesItemListener() {
+            @Override
+            public void onSeriesItemAnimationProgress(float percentComplete, float currentPosition) {
+                float percentFilled = ((currentPosition - seriesItem1.getMinValue()) / (seriesItem1.getMaxValue() - seriesItem1.getMinValue()));
+                //float percentFilled =  0.74f;
+                textPercentage.setText(String.format("%.0f%%", percentFilled * 100f));
+            }
+
+            @Override
+            public void onSeriesItemDisplayProgress(float percentComplete) {
+
+            }
+        });
+
+        decoView.addEvent(new DecoEvent.Builder(50)
+                .setIndex(backIndex)
+
+                .build());
+        /**
+         decoView.addEvent(new DecoEvent.Builder(16.3f)
+         .setIndex(series1Index)
+         .setDelay(5000)
+         .build());
+         **/
+        decoView.addEvent(new DecoEvent.Builder(success(scoreReference, total))
+                .setIndex(series1Index)
+
+                .setDelay(3000)
+                .build());
+
+        /**Ending DecoView
+         *
+         *
+         */
+
+        //test.setText(user.getUsername() + "\n" + user.getAge() + "\n" + user.getGenre());
         //Setting the toolbar as the ActionBar
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle(" ");

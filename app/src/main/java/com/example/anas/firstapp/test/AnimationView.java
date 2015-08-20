@@ -340,11 +340,14 @@ public class AnimationView extends SurfaceView implements SurfaceHolder.Callback
 
             //Create a database where to store the data
             final DatabaseHandler db = new DatabaseHandler(context);
-            final List<Test>  tests = db.findTestByUser(user.getId());;
+            final List<Test>  tests = db.findTestByUser(user.getId());
+
+            String touchezBall = getResources().getString(R.string.dialog_touchez_balle);
+            String fois = getResources().getString(R.string.dialog_fois);
 
             final AlertDialog alert = new AlertDialog.Builder(context)
                     .setTitle(R.string.dialog_title)
-                    .setMessage(R.string.dialog_touchez_balle +" " + touched + " " + R.string.dialog_fois)
+                    .setMessage(touchezBall  + touched  + fois)
                     .setPositiveButton(R.string.dialog_refaire_test, new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
                             // continue with delete

@@ -4,44 +4,56 @@
     <string name="wake_up_pilot">WakeUpPilot</string>
 
     <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Options</string>
+    <string name="action_settings">إعدادات</string>
     <string name="profile_welcome"> "لبدء الاختبار إنشىء بروفايل جديد"</string>
-    <string name="intro_niveau_reference"> "Définissez votre niveau de référence pour calibrer l'application\nLe niveau de référence correspond à votre niveau d'éveil optimal"</string>
-    <string name="duree_niveau_reference"> "Durée du test: 30 secondes"</string>
-    <string name="list_niveau_reference"> "&#8226; Reposé\n&#8226; Installé dans un endroit calme\n&#8226; Evitez de l'effectuer après un repas\n"</string>
+    <string name="intro_niveau_reference"> " حدد مستواك المرجعي لضبط التطبيق \nالمستوى المرجعي يساعد على معرفة مدى يقظتكم"</string>
+    <string name="duree_niveau_reference"> "مدة الإختبار 30  ثانية"</string>
+    <string name="list_niveau_reference"> "&#8226; في وضعية إرتياح\n&#8226; إختر مكان هادئ \n&#8226; تفادي إجراء الإختبار بعد وجبة أكل\n"</string>
     <string name="tutorial"> "Cliquez vite sur la balle rouge dès qu'elle apparait sur l'écran vous n'avez que 30 secondes."</string>
-    <string name="intro_after_reference"> "Niveau de référence enregistré"</string>
-    <string name="after_reference"> "Vous pouvez maintenant évaluer votre niveau\nd'éveil avant de prendre le volant."</string>
-    <string name="taux_reussite">Taux de réussite</string>
-    <string name="etablir_niveau_reference">Etablir le niveau de reference</string>
-    <string name="aide_test">Aide pour le test</string>
-    <string name="historique_resultats">Historique des résultats</string>
-    <string name="pseudonyme">Pseudonyme...</string>
-    <string name="age">AGE</string>
-    <string name="genre">GENRE</string>
-    <string name="creer_button">Créer</string>
-    <string name="deja_inscrit_button">Déjà inscrit</string>
-    <string name="retour_list_profiles">Retour a la liste de profiles</string>
-    <string name="passer_test_button">Passer le test</string>
+    <string name="intro_after_reference"> "لقد تم تسجيل مستواكم المرجعي بنجاح"</string>
+    <string name="after_reference"> "يمكنكم الآن تقييم مدى استيقاظكم قبل القيادة"</string>
+    <string name="taux_reussite">معدل النجاح</string>
+    <string name="etablir_niveau_reference">تحديد المستوى المرجعي</string>
+    <string name="aide_test"> مساعدة</string>
+    <string name="historique_resultats">قائمة نتائجكم</string>
+    <string name="pseudonyme">إسم ...</string>
+    <string name="age">السن</string>
+    <string name="genre">الجنس</string>
+    <string name="creer_button">إنشاء البروفايل</string>
+    <string name="deja_inscrit_button">قائمة البروفايلات</string>
+    <string name="retour_list_profiles">الرجوع إلى قائمة البروفايلات </string>
+    <string name="passer_test_button">إجراء الاختبار</string>
     <string name="pourcentage_taux_reussite">% Taux de réussite</string>
-    <string name="creer_nouveau_profile">Créer un nouveau profile</string>
-    <string name="pour_passer_test">Pour passer ce test vous devez etre:</string>
-    <string name="jai_compris_button">"J'ai compris"</string>
-    <string name="retour_profile">Retour au profile</string>
+    <string name="creer_nouveau_profile">إنشاء بروفايل جديد</string>
+    <string name="pour_passer_test">قبل إجرائكم الإختبار من الواجب عليكم ان تكونوا</string>
+    <string name="jai_compris_button">"لقد فهمت"</string>
+    <string name="retour_profile">الرجوع إلى البروفايل</string>
+
+    <!--Toast strings -->
+    <string name="toast_entrer_pseudonyme">"المرجو تحديد إسمكم"</string>
 
     <!--Toolbar strings -->
-    <string name="toolbar_bienvenue">BIENVENUE</string>
-    <string name="toolbar_tutoriel">TUTORIEL</string>
-    <string name="toolbar_liste_profiles">PROFILES</string>
-    <string name="toolbar_nouveau_profile">NOUVEAU PROFILE</string>
-    <string name="toolbar_historique_resultats">HISTORIQUE DES RESULTATS</string>
-    <string name="toolbar_niveau_reference">NIVEAU DE REFERENCE</string>
+    <string name="toolbar_bienvenue">مرحبا</string>
+    <string name="toolbar_tutoriel">كيف يتم الإختبار</string>
+    <string name="toolbar_liste_profiles">قائمة البروفايلات</string>
+    <string name="toolbar_nouveau_profile">بروفايل جديد</string>
+    <string name="toolbar_historique_resultats">قائمة نتائجكم</string>
+    <string name="toolbar_niveau_reference">المستوى المرجعي</string>
+
+    <!--Alert Dialog strings-->
+    <string name="dialog_title">إنتهى الوقت</string>
+    <string name="dialog_touchez_balle">تم الضغط على الكرة بنجاح </string>
+    <string name="dialog_fois">مرة</string>
+    <string name="dialog_refaire_test">إعادة الإختبار</string>
+    <string name="dialog_retourner_profile">الرجوع إلى البروفايل</string>
+    <string name="dialog_enregistrer_score">تسجيل نتيجتكم</string>
+    <string name="dialog_score_minimum">"لم تتمكنوا من إجتياز النتيجة الأدنى \n المرجو : "</string>
 
 
 
-    <string name="first_time"> "C'est la première fois que vous lancez l'application,\nvous devez établir votre niveau de référence:"</string>
+    <string name="first_time"> "إنها أول مرة تفعلون التطبيق, \n عليكم تحديد مستواكم المرجعي"</string>
     <string name="description_welcome">
-        "Cette application vous permet de tester votre niveau d'éveil\navant de prendre le volant. Pour cela, vous devez auparavant\ndéfinir votre niveau de référence qui correspond à votre\nniveau d'éveil optimal dans le cadre d'un premier test."
+        " يمكنكم هذا التطبيق من معرفة مدى يقظتكم\nقبل قيادتكم السيارة  لهذا من فضلكم حددوا \n مستواكم المرجعي الذي يتناسب مع مستوى يقظتكم في\nظروف ملائمة في إطار أول إختبار لكم."
     </string>
 
     <string-array name="age_array">
@@ -51,8 +63,8 @@
     </string-array>
 
     <string-array name="genre_array">
-        <item>Homme</item>
-        <item>Femme </item>
+        <item>ذكر </item>
+        <item>أنثى </item>
     </string-array>
     <string-array name="languages">
         <item>Select language</item>

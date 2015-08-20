@@ -1,14 +1,23 @@
 package com.example.anas.firstapp;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+
+import java.util.Locale;
 
 
 public class WelcomeActivity extends AppCompatActivity {
@@ -16,11 +25,15 @@ public class WelcomeActivity extends AppCompatActivity {
     private Toolbar toolbar;
     private TextView title;
     private Button createNewProfile;
+    private String lang;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
+
 
         //Attaching the layout to the toolbar object
         toolbar = (Toolbar) findViewById(R.id.tool_bar);
@@ -28,6 +41,8 @@ public class WelcomeActivity extends AppCompatActivity {
         createNewProfile = (Button) findViewById(R.id.nouveau_profile);
 
         title.setText(R.string.toolbar_bienvenue);
+
+        lang  = (String) getIntent().getSerializableExtra("LANG");
 
         //Setting the toolbar as the ActionBar
         setSupportActionBar(toolbar);
@@ -44,9 +59,16 @@ public class WelcomeActivity extends AppCompatActivity {
             }
         });
 
+    }
 
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
 
+        Log.d("BENZINO", "language = "+ lang);
 
+        newConfig.locale = new Locale(lang);
+        getResources().updateConfiguration(newConfig, getResources().getDisplayMetrics());
+        super.onConfigurationChanged(newConfig);
     }
 
     @Override

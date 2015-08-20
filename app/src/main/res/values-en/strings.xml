@@ -29,6 +29,9 @@
     <string name="jai_compris_button">"I understand"</string>
     <string name="retour_profile">Back to your profile</string>
 
+    <!--Toast strings -->
+    <string name="toast_entrer_pseudonyme">"Please enter a username"</string>
+
     <!--Toolbar strings -->
     <string name="toolbar_bienvenue">WELCOME</string>
     <string name="toolbar_tutoriel">TUTORIAL</string>

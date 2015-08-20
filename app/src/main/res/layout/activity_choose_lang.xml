@@ -34,12 +34,12 @@
 
         <RadioButton
             android:id="@+id/radio1"
-            android:layout_width="match_parent"
+            android:button="@mipmap/ic_launcher"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:checked="true"
-            android:layout_weight=".3"
             android:tag="OPTION_1"
-            android:text="Option1"
+            android:text=""
             />
 
         <RadioButton

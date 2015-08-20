@@ -1,6 +1,8 @@
 package com.example.anas.firstapp;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.support.v7.app.ActionBarActivity;
@@ -87,10 +89,32 @@ public class ChooseLang extends AppCompatActivity{
         DisplayMetrics dm = res.getDisplayMetrics();
         Configuration conf = res.getConfiguration();
         conf.locale = myLocale;
+
         res.updateConfiguration(conf, dm);
         Intent refresh = new Intent(this, WelcomeActivity.class);
+        refresh.putExtra("LANG", lang);
         startActivity(refresh);
     }
+
+    protected void setCurrentLanguage() {
+        Configuration configuration = new Configuration(getResources().getConfiguration());
+        SharedPreferences preferences = getSharedPreferences("SETTINGS_FILE", Context.MODE_PRIVATE);
+        String restoredLanguage = preferences.getString("currentLanguage", null);
+        if (restoredLanguage.equalsIgnoreCase("en")) {
+            configuration.locale = Locale.ENGLISH;
+            getResources().updateConfiguration(configuration, null);
+        }
+        if (restoredLanguage.equalsIgnoreCase("fr")) {
+            configuration.locale = Locale.FRENCH;
+            getResources().updateConfiguration(configuration, null);
+        }
+        if (restoredLanguage.equalsIgnoreCase("ar")) {
+            //configuration.locale = Locale.;
+            getResources().updateConfiguration(configuration, null);
+        }
+    }
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

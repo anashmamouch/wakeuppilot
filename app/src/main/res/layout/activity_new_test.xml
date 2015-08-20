@@ -12,43 +12,49 @@
         layout="@layout/tool_bar"
         ></include>
 
-    <TextView
-        android:id="@+id/test_textview"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:textSize="16dp"
-        android:textAlignment="center"
-        android:layout_marginTop="12dp"
-        android:textStyle="bold"
-        />
-
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center"
-        >
+        android:layout_height="0dp"
+        android:layout_weight=".38"
+        android:layout_marginTop="16dp"
+        android:layout_above="@+id/textActivity3">
 
         <TextView
-            android:id="@+id/success_rate"
+            android:id="@+id/textPercentage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="24dp"
-            android:text="--"
-            />
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textSize="40sp"/>
+
         <TextView
+            android:id="@+id/textRemaining"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="24dp"
-            android:text="@string/pourcentage_taux_reussite"/>
-    </LinearLayout>
+            android:layout_below="@+id/textPercentage"
+            android:layout_centerHorizontal="true"
+            android:maxWidth="200dp"
+            android:text="@string/taux_reussite"
+            android:textAppearance="?android:attr/textAppearanceSmall"/>
+
+        <com.hookedonplay.decoviewlib.DecoView
+            xmlns:custom="http://schemas.android.com/apk/res-auto"
+            custom:lineWidth="5dp"
+            android:id="@+id/dynamicArcView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true">
+
+        </com.hookedonplay.decoviewlib.DecoView>
+    </RelativeLayout>
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dip"
-        android:layout_weight="1"
+        android:layout_weight=".5"
         android:gravity="center|bottom"
         android:orientation="vertical" >
 

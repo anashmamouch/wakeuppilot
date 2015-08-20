@@ -29,6 +29,9 @@
     <string name="jai_compris_button">"J'ai compris"</string>
     <string name="retour_profile">Retour au profile</string>
 
+    <!--Toast strings -->
+    <string name="toast_entrer_pseudonyme">"Vous devez entrer un pseudonyme"</string>
+
     <!--Toolbar strings -->
     <string name="toolbar_bienvenue">BIENVENUE</string>
     <string name="toolbar_tutoriel">TUTORIEL</string>

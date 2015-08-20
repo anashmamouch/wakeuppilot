@@ -76,7 +76,7 @@ public class NewProfileActivity extends AppCompatActivity {
                 genre = spinnerGenre.getSelectedItem().toString();
 
                 if(username.length() == 0) {
-                    Toast.makeText(getApplicationContext(), "Vous devez entrer un pseudonyme", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), R.string.toast_entrer_pseudonyme, Toast.LENGTH_LONG).show();
                 }else {
                     Log.d("BENZINO", "Inserting-----------------------------------");
 
