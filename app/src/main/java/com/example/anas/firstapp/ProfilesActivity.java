@@ -1,6 +1,7 @@
 package com.example.anas.firstapp;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -22,6 +23,7 @@ import android.widget.Toast;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Created by Anas on 27/7/15.
@@ -43,6 +45,8 @@ public class ProfilesActivity extends AppCompatActivity {
 
     private User user;
 
+    private String lang;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,6 +59,8 @@ public class ProfilesActivity extends AppCompatActivity {
         listView = (ListView) findViewById(R.id.listView_profiles);
         title.setText(R.string.toolbar_liste_profiles);
 
+        lang  = (String) getIntent().getSerializableExtra("LANG");
+
         //Setting the toolbar as the ActionBar
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle(" ");
@@ -65,6 +71,8 @@ public class ProfilesActivity extends AppCompatActivity {
             public void onClick(View v) {
                 //go to the new profile page
                 Intent intent = new Intent(getApplicationContext(), NewProfileActivity.class);
+                intent.putExtra("LANG", lang);
+                setLocale(lang);
                 startActivity(intent);
                 finish();
             }
@@ -97,6 +105,8 @@ public class ProfilesActivity extends AppCompatActivity {
                     Intent intent = new Intent(getApplicationContext(), TestNewActivity.class);
                     Log.d("BENZINO", "creating the intent for the TESTNEWACTIVITY ");
                     intent.putExtra("KEY", user);
+                    intent.putExtra("LANG", lang);
+                    setLocale(lang);
                     Log.d("BENZINO", "starting the intent for the TESTNEWACTIVITY ");
                     startActivity(intent);
                     finish();
@@ -104,6 +114,8 @@ public class ProfilesActivity extends AppCompatActivity {
                     Intent intent = new Intent(getApplicationContext(), TestFirstActivity.class);
                     Log.d("BENZINO", "creating the intent for the TESTFIRSTACTIVITY");
                     intent.putExtra("KEY", user);
+                    intent.putExtra("LANG", lang);
+                    setLocale(lang);
                     Log.d("BENZINO", "starting the intent for the TESTFIRSTACTIVITY");
                     startActivity(intent);
                     finish();
@@ -114,6 +126,25 @@ public class ProfilesActivity extends AppCompatActivity {
         });
 
     }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+
+        newConfig.locale = new Locale(lang);
+        getResources().updateConfiguration(newConfig, getResources().getDisplayMetrics());
+        super.onConfigurationChanged(newConfig);
+    }
+
+    //Conflicts between language and orientation solved.
+    public void setLocale(String lang) {
+
+        Configuration conf = getResources().getConfiguration();
+        conf.locale = new Locale(lang);
+        getResources().updateConfiguration(conf, getResources().getDisplayMetrics());
+
+    }
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -175,8 +206,24 @@ public class ProfilesActivity extends AppCompatActivity {
             TextView usernameTextView = (TextView) row.findViewById(R.id.textView1);
             TextView ageTextView = (TextView) row.findViewById(R.id.textView2);
 
+            String ageString;
             usernameTextView.setText(username[position]);
-            ageTextView.setText(age[position]);
+
+
+            if (age[position].equals("- 40 ans")) {
+                ageString = getResources().getString(R.string.moins_40);
+
+            }else if(age[position].equals("40 - 60 ans")){
+                ageString = getResources().getString(R.string.entre_40_60);
+
+            }else if(age[position].equals("+ 60 ans")) {
+                ageString = getResources().getString(R.string.plus_60);
+
+            }else{
+                ageString = "NULL";
+            }
+
+            ageTextView.setText(ageString);
 
             return row;
         }

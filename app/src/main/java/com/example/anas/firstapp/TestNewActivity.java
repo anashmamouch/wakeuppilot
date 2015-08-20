@@ -1,6 +1,7 @@
 package com.example.anas.firstapp;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
@@ -21,6 +22,7 @@ import com.hookedonplay.decoviewlib.events.DecoEvent;
 import org.w3c.dom.Text;
 
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Created by Anas on 27/7/15.
@@ -41,6 +43,7 @@ public class TestNewActivity extends AppCompatActivity{
 
     private DecoView decoView;
     private TextView textPercentage;
+    private String lang;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +58,7 @@ public class TestNewActivity extends AppCompatActivity{
         historiqueResultats = (Button) findViewById(R.id.historique_resultats);
         listProfiles = (Button)findViewById(R.id.retour_list_profiles);
         //successRate = (TextView) findViewById(R.id.success_rate);
+        lang  = (String) getIntent().getSerializableExtra("LANG");
 
         user = (User) getIntent().getSerializableExtra("KEY");
 
@@ -143,6 +147,8 @@ public class TestNewActivity extends AppCompatActivity{
                 Intent intent = new Intent(getApplicationContext(), GameActivity.class);
                 Log.d("BENZINO", "creating the intent");
                 intent.putExtra("KEY", user);
+                intent.putExtra("LANG", lang);
+                setLocale(lang);
                 Log.d("BENZINO", "starting the intent");
                 startActivity(intent);
                 finish();
@@ -154,6 +160,8 @@ public class TestNewActivity extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), ProfilesActivity.class);
+                intent.putExtra("LANG", lang);
+                setLocale(lang);
                 startActivity(intent);
                 finish();
             }
@@ -166,6 +174,8 @@ public class TestNewActivity extends AppCompatActivity{
                 Intent intent = new Intent(getApplicationContext(), HistoryResultsActivity.class);
                 Log.d("BENZINO", "creating the intent");
                 intent.putExtra("KEY", user);
+                intent.putExtra("LANG", lang);
+                setLocale(lang);
                 Log.d("BENZINO", "starting the intent");
                 startActivity(intent);
                 finish();
@@ -210,6 +220,24 @@ public class TestNewActivity extends AppCompatActivity{
 
         return somme*100;
     }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+
+        newConfig.locale = new Locale(lang);
+        getResources().updateConfiguration(newConfig, getResources().getDisplayMetrics());
+        super.onConfigurationChanged(newConfig);
+    }
+
+    //Conflicts between language and orientation solved.
+    public void setLocale(String lang) {
+
+        Configuration conf = getResources().getConfiguration();
+        conf.locale = new Locale(lang);
+        getResources().updateConfiguration(conf, getResources().getDisplayMetrics());
+
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

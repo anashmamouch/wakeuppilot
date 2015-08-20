@@ -2,6 +2,7 @@
 <resources>
     <string name="app_name">WakeUpPilot</string>
     <string name="wake_up_pilot">WakeUpPilot</string>
+    <string name="changer_langue">Change language</string>
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
@@ -58,10 +59,14 @@
     </string>
 
     <string-array name="age_array">
-        <item>- 40 years</item>
-        <item>40 - 60 years </item>
-        <item>+ 60 years</item>
+        <item>- 40 ans</item>
+        <item>40 - 60 ans</item>
+        <item>+ 60 ans</item>
     </string-array>
+
+    <string name="moins_40"> Under 40 years</string>
+    <string name="entre_40_60"> Between 40 et 60 ans</string>
+    <string name="plus_60"> Above 60 ans</string>
 
     <string-array name="genre_array">
         <item>Male</item>

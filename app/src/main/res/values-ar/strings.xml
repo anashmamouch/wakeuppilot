@@ -3,6 +3,8 @@
     <string name="app_name">WakeUpPilot</string>
     <string name="wake_up_pilot">WakeUpPilot</string>
 
+    <string name="changer_langue">تغيير اللغة</string>
+
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">إعدادات</string>
     <string name="profile_welcome"> "لبدء الاختبار إنشىء بروفايل جديد"</string>
@@ -58,9 +60,14 @@
 
     <string-array name="age_array">
         <item>- 40 ans</item>
-        <item>40 - 60 ans </item>
+        <item>40 - 60 ans</item>
         <item>+ 60 ans</item>
     </string-array>
+
+    <string name="moins_40">  أقل من 40 سنة</string>
+    <string name="entre_40_60">بين 40 و 60 سنة</string>
+    <string name="plus_60"> فوق 60 سنة</string>
+
 
     <string-array name="genre_array">
         <item>ذكر </item>

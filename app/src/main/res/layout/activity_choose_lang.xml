@@ -5,77 +5,85 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+
     tools:context=".ChooseLang">
 
-    <include
-        android:id="@+id/tool_bar"
-        layout="@layout/tool_bar"
-        ></include>
 
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:alpha=".9"
+    android:background="@drawable/dark_background_image_wakeuppilot"
+    android:scaleType = "centerCrop">
 
-    <TextView
-        android:id="@+id/profile_welcome"
-        android:text="@string/profile_welcome"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:textSize="24dp"
-        android:textAlignment="center"
-        android:layout_marginTop="12dp"
-        android:textStyle="bold"
-        />
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_weight=".5"
+        android:src="@drawable/logo_text_white"/>
 
     <RadioGroup
-        android:id="@+id/radioGroupMode"
+        android:id="@+id/radioGroup_languages"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
+        android:layout_gravity="center"
+        android:layout_weight=".5"
         android:orientation="horizontal">
 
         <RadioButton
-            android:id="@+id/radio1"
-            android:button="@mipmap/ic_launcher"
+
+            android:id="@+id/radio_arabic"
+            android:button="@null"
+            android:drawableTop="@mipmap/ma"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:checked="true"
-            android:tag="OPTION_1"
-            android:text=""
+            android:tag="arabic"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="#FFF"
+            android:text="@string/radio_arabic"
+            android:layout_weight=".3"
+            android:gravity="center"
+
             />
 
         <RadioButton
-            android:id="@+id/radio2"
+
+            android:id="@+id/radio_french"
+            android:button="@null"
+            android:drawableTop="@mipmap/fr"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight=".3"
-            android:tag="Option_2"
-            android:text="Option 2"
+            android:gravity="center"
+            android:tag="french"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="#FFF"
+            android:text="@string/radio_french"
+
             />
 
         <RadioButton
-            android:id="@+id/radio3"
+            android:id="@+id/radio_english"
+            android:button="@null"
+            android:drawableTop="@mipmap/us"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight=".3"
-            android:tag="Option_3"
-            android:text="Option 3"
+            android:gravity="center"
+            android:tag="english"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="#FFF"
+            android:text="@string/radio_english"
             />
     </RadioGroup>
-    <Spinner
-        android:id="@+id/spinner1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:entries="@array/languages"
-        android:gravity="center"
-        android:paddingTop="25sp" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dip"
-        android:layout_weight="1"
-        android:gravity="center|bottom"
-        android:orientation="vertical" >
 
-    </LinearLayout>
 
+</LinearLayout>
 </LinearLayout>
 

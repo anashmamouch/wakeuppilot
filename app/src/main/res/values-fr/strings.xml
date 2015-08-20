@@ -5,6 +5,8 @@
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Options</string>
+    <string name="changer_langue">Changer la langue</string>
+
     <string name="profile_welcome"> "Pour commencer le test\nCréer un nouveau profile"</string>
     <string name="intro_niveau_reference"> "Définissez votre niveau de référence pour calibrer l'application\nLe niveau de référence correspond à votre niveau d'éveil optimal"</string>
     <string name="duree_niveau_reference"> "Durée du test: 30 secondes"</string>
@@ -61,6 +63,12 @@
         <item>40 - 60 ans </item>
         <item>+ 60 ans</item>
     </string-array>
+
+
+    <string name="moins_40"> Moins de 40 ans</string>
+    <string name="entre_40_60"> Entre 40 et 60 ans</string>
+    <string name="plus_60"> Plus de 60 ans</string>
+
 
     <string-array name="genre_array">
         <item>Homme</item>

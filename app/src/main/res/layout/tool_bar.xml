@@ -15,7 +15,7 @@
         android:layout_height="match_parent"
         android:padding="10dp"
         android:scaleType="fitStart"
-        android:src="@drawable/logo_small" />
+        android:src="@drawable/logo_white_32" />
 
     <TextView
         android:id="@+id/toolbar_title"

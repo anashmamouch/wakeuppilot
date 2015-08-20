@@ -1,8 +1,10 @@
 package com.example.anas.firstapp.test;
 
 import android.app.Activity;
+import android.content.res.Configuration;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
@@ -12,6 +14,8 @@ import android.view.WindowManager;
 import com.example.anas.firstapp.Test;
 import com.example.anas.firstapp.User;
 
+import java.util.Locale;
+
 /**
  * Created by Anas on 30/7/15.
  */
@@ -20,6 +24,7 @@ public class GameActivity extends Activity{
     private AnimationView view;
     private Test test;
     private User user;
+    private String lang;
     /**
      * Called when the activity is starting.  This is where most initialization
      * should go: calling {@link #setContentView(int)} to inflate the
@@ -42,6 +47,7 @@ public class GameActivity extends Activity{
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
 
+        lang = (String) getIntent().getSerializableExtra("LANG");
 
         runOnUiThread(new Runnable() {
             @Override
@@ -79,7 +85,7 @@ public class GameActivity extends Activity{
                                     Log.d("ANAS", "--------Ball Touched: " + view.getTouched() + "times-------");
                                 }
 
-                                view.alertDialog(user, GameActivity.this);
+                                view.alertDialog(user, GameActivity.this, lang);
                             }
                         });
 
@@ -182,6 +188,24 @@ public class GameActivity extends Activity{
         finish();
 
     }
+    /*TODO FIX BUG WHEN CHANGING ORIENTATION BALL CROSSES THE EDGES */
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+
+        DisplayMetrics displaymetrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(displaymetrics);
+        float height = displaymetrics.heightPixels;
+        float width = displaymetrics.widthPixels;
+
+        view.setWidth(width);
+        view.setHeight(height);
+
+        newConfig.locale = new Locale(lang);
+        getResources().updateConfiguration(newConfig, getResources().getDisplayMetrics());
+        super.onConfigurationChanged(newConfig);
+
+    }
+
 
     private class DisplayTask extends AsyncTask<Void, Void, Void>{
 

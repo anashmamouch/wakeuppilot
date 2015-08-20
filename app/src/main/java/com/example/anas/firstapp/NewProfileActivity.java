@@ -1,19 +1,24 @@
 package com.example.anas.firstapp;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.Locale;
 
 /**
  * Created by Anas on 26/7/15.
@@ -21,11 +26,22 @@ import android.widget.Toast;
 public class NewProfileActivity extends AppCompatActivity {
     private Toolbar toolbar;
     private TextView title;
+
     private EditText pseudonyme;
+
     private Spinner spinnerAge;
     private Spinner spinnerGenre;
+
+    private TextView textAge;
+    private TextView textGenre;
+
+    private RelativeLayout layoutAge;
+    private RelativeLayout layoutGenre;
+
     private Button creer;
     private Button inscrit;
+
+    private String lang;
 
     private String username;
     private String age;
@@ -45,10 +61,22 @@ public class NewProfileActivity extends AppCompatActivity {
         toolbar = (Toolbar) findViewById(R.id.tool_bar);
         title = (TextView) findViewById(R.id.toolbar_title);
         pseudonyme = (EditText) findViewById(R.id.pseudonyme);
-        spinnerAge = (Spinner) findViewById(R.id.spinner_age);
-        spinnerGenre = (Spinner) findViewById(R.id.spinner_genre);
+
         creer = (Button) findViewById(R.id.creer);
         inscrit = (Button)findViewById(R.id.inscrit);
+
+        spinnerAge = (Spinner) findViewById(R.id.spinner_age);
+        spinnerGenre = (Spinner) findViewById(R.id.spinner_genre);
+
+        textAge = (TextView) findViewById(R.id.text_age);
+        textGenre = (TextView) findViewById(R.id.text_genre);
+
+        layoutAge = (RelativeLayout) findViewById(R.id.layout_age);
+        layoutGenre = (RelativeLayout) findViewById(R.id.layout_genre);
+
+        lang  = (String) getIntent().getSerializableExtra("LANG");
+
+        /** TODO RADIO BUTTONS INSTEAD OF SPINNER **/
 
         // Create an ArrayAdapter using the string array and a default spinner layout
         ArrayAdapter<CharSequence> adapterAge = ArrayAdapter.createFromResource(this,
@@ -87,6 +115,8 @@ public class NewProfileActivity extends AppCompatActivity {
 
                     //go to the list of profiles page
                     Intent intent = new Intent(getApplicationContext(), ProfilesActivity.class);
+                    intent.putExtra("LANG", lang);
+                    setLocale(lang);
                     startActivity(intent);
                     finish();
                 }
@@ -97,6 +127,8 @@ public class NewProfileActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), ProfilesActivity.class);
+                intent.putExtra("LANG", lang);
+                setLocale(lang);
                 startActivity(intent);
                 finish();
             }
@@ -108,9 +140,25 @@ public class NewProfileActivity extends AppCompatActivity {
         title.setText(R.string.toolbar_nouveau_profile);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle(" ");
-        getSupportActionBar().setHomeAsUpIndicator(R.drawable.plus_circle);
+
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+
+        newConfig.locale = new Locale(lang);
+        getResources().updateConfiguration(newConfig, getResources().getDisplayMetrics());
+        super.onConfigurationChanged(newConfig);
+    }
+
+    //Conflicts between language and orientation solved.
+    public void setLocale(String lang) {
+
+        Configuration conf = getResources().getConfiguration();
+        conf.locale = new Locale(lang);
+        getResources().updateConfiguration(conf, getResources().getDisplayMetrics());
 
     }
 

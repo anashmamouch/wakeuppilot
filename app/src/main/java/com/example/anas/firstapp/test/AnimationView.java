@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -27,6 +28,7 @@ import com.example.anas.firstapp.TestNewActivity;
 import com.example.anas.firstapp.User;
 
 import java.util.List;
+import java.util.Locale;
 import java.util.Random;
 
 /**
@@ -156,6 +158,15 @@ public class AnimationView extends SurfaceView implements SurfaceHolder.Callback
 
     public void setVy(float vy) {
         this.vy = vy;
+    }
+
+
+    public void setWidth(float width) {
+        this.width = width;
+    }
+
+    public void setHeight(float height) {
+        this.height = height;
     }
 
     public boolean isTouching() {
@@ -320,8 +331,16 @@ public class AnimationView extends SurfaceView implements SurfaceHolder.Callback
         Log.d("ANAS", "++++++++++++++SURFACE CREATED    LOOP: "  +  loop.getState());
 
     }
+    //Conflicts between language and orientation solved.
+    public void setLocale(String lang) {
 
-    public void alertDialog(final User user, final Context context){
+        Configuration conf = getResources().getConfiguration();
+        conf.locale = new Locale(lang);
+        getResources().updateConfiguration(conf, getResources().getDisplayMetrics());
+
+    }
+
+    public void alertDialog(final User user, final Context context, final String lang){
             /*
          * Alert Dialog
          * */
@@ -347,7 +366,7 @@ public class AnimationView extends SurfaceView implements SurfaceHolder.Callback
 
             final AlertDialog alert = new AlertDialog.Builder(context)
                     .setTitle(R.string.dialog_title)
-                    .setMessage(touchezBall  + touched  + fois)
+                    .setMessage(touchezBall  +" " +  touched  +" "+ fois)
                     .setPositiveButton(R.string.dialog_refaire_test, new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
                             // continue with delete
@@ -380,6 +399,8 @@ public class AnimationView extends SurfaceView implements SurfaceHolder.Callback
                                     //go to the list of best scores page
                                     Intent intent = new Intent(context, AfterReferenceActivity.class);
                                     intent.putExtra("KEY", user);
+                                    intent.putExtra("LANG", lang);
+                                    setLocale(lang);
                                     context.startActivity(intent);
                                     //((Activity) context).finish();
                                     //Interupting the Game Loop
@@ -394,6 +415,8 @@ public class AnimationView extends SurfaceView implements SurfaceHolder.Callback
                                     //go to the list of best scores page
                                     Intent intent = new Intent(context, HistoryResultsActivity.class);
                                     intent.putExtra("KEY", user);
+                                    intent.putExtra("LANG", lang);
+                                    setLocale(lang);
                                     context.startActivity(intent);
                                     //((Activity) context).finish();
                                     //Interupting the Game Loop
@@ -437,6 +460,8 @@ public class AnimationView extends SurfaceView implements SurfaceHolder.Callback
                             // go back to the profile page
                             Intent intent = new Intent(context, TestNewActivity.class);
                             intent.putExtra("KEY", user);
+                            intent.putExtra("LANG", lang);
+                            setLocale(lang);
                             context.startActivity(intent);
                             //((Activity) context).finish();
                             loop.interrupt();
@@ -472,7 +497,6 @@ public class AnimationView extends SurfaceView implements SurfaceHolder.Callback
                 // we will try it again and again...
             }
         }
-
 
     }
 }

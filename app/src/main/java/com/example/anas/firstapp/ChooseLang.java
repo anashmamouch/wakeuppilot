@@ -15,6 +15,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,9 +28,7 @@ public class ChooseLang extends AppCompatActivity{
 
     private Toolbar toolbar;
     private TextView title;
-    private Button createNewProfile;
-    private Spinner spinner;
-    Locale myLocale;
+    private RadioGroup languages;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,84 +37,41 @@ public class ChooseLang extends AppCompatActivity{
         //Attaching the layout to the toolbar object
         toolbar = (Toolbar) findViewById(R.id.tool_bar);
         title = (TextView) findViewById(R.id.toolbar_title);
-        createNewProfile = (Button) findViewById(R.id.nouveau_profile);
-        spinner = (Spinner) findViewById(R.id.spinner1);
 
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        languages = (RadioGroup) findViewById(R.id.radioGroup_languages);
+        //uncheck all buttons before starting to chose a langauge
+        languages.clearCheck();
+        languages.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                // find which radio button is selected
 
-            public void onItemSelected(AdapterView<?> parent, View view,
-                                       int pos, long id) {
+                if(checkedId == R.id.radio_arabic) {
 
-                if (pos == 1) {
-
-                    Toast.makeText(parent.getContext(),
-                            "You have selected English", Toast.LENGTH_SHORT)
-                            .show();
-                    setLocale("en");
-                } else if (pos == 2) {
-
-                    Toast.makeText(parent.getContext(),
-                            "You have selected French", Toast.LENGTH_SHORT)
-                            .show();
-                    setLocale("fr");
-                } else if (pos == 3) {
-
-                    Toast.makeText(parent.getContext(),
-                            "You have selected Arabic", Toast.LENGTH_SHORT)
-                            .show();
                     setLocale("ar");
+                } else if(checkedId == R.id.radio_french) {
+                    setLocale("fr");
+                } else {
+                    setLocale("en");
                 }
-
             }
-
-            public void onNothingSelected(AdapterView<?> arg0) {
-                // TODO Auto-generated method stub
-            }
-
         });
 
-        title.setText("WAKEUPPILOT");
-
-        //Setting the toolbar as the ActionBar
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle(" ");
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
     }
 
     public void setLocale(String lang) {
 
-        myLocale = new Locale(lang);
-        Resources res = getResources();
-        DisplayMetrics dm = res.getDisplayMetrics();
-        Configuration conf = res.getConfiguration();
-        conf.locale = myLocale;
+        Configuration conf = getResources().getConfiguration();
+        conf.locale = new Locale(lang);
+        getResources().updateConfiguration(conf, getResources().getDisplayMetrics());
 
-        res.updateConfiguration(conf, dm);
-        Intent refresh = new Intent(this, WelcomeActivity.class);
-        refresh.putExtra("LANG", lang);
-        startActivity(refresh);
+        Intent welcome = new Intent(this, WelcomeActivity.class);
+        welcome.putExtra("LANG", lang);
+
+        startActivity(welcome);
+        finish();
     }
-
-    protected void setCurrentLanguage() {
-        Configuration configuration = new Configuration(getResources().getConfiguration());
-        SharedPreferences preferences = getSharedPreferences("SETTINGS_FILE", Context.MODE_PRIVATE);
-        String restoredLanguage = preferences.getString("currentLanguage", null);
-        if (restoredLanguage.equalsIgnoreCase("en")) {
-            configuration.locale = Locale.ENGLISH;
-            getResources().updateConfiguration(configuration, null);
-        }
-        if (restoredLanguage.equalsIgnoreCase("fr")) {
-            configuration.locale = Locale.FRENCH;
-            getResources().updateConfiguration(configuration, null);
-        }
-        if (restoredLanguage.equalsIgnoreCase("ar")) {
-            //configuration.locale = Locale.;
-            getResources().updateConfiguration(configuration, null);
-        }
-    }
-
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

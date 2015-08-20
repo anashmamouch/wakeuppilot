@@ -1,6 +1,7 @@
 package com.example.anas.firstapp;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -13,6 +14,7 @@ import android.widget.TextView;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Created by Anas on 31/7/15.
@@ -28,6 +30,8 @@ public class AfterReferenceActivity extends AppCompatActivity {
     private DatabaseHandler dbHelper;
 
     private List<Test> tests;
+
+    private String lang;
 
     /*TODO OnBackPressed */
     @Override
@@ -51,6 +55,8 @@ public class AfterReferenceActivity extends AppCompatActivity {
 
         dbHelper = new DatabaseHandler(this);
 
+        lang = (String)getIntent().getSerializableExtra("LANG");
+
         user = (User) getIntent().getSerializableExtra("KEY");
 
         tests = dbHelper.findTestByUser(user.getId());
@@ -73,11 +79,30 @@ public class AfterReferenceActivity extends AppCompatActivity {
                 Log.d("BENZINO", "creating the intent");
                 intent.putExtra("KEY", user);
                 intent.putExtra("TESTS", (Serializable) tests);
+                intent.putExtra("LANG", lang);
+                setLocale(lang);
                 Log.d("BENZINO", "starting the intent");
                 startActivity(intent);
                 finish();
             }
         });
+
+    }
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+
+        Log.d("BENZINO", "language = "+ lang);
+
+        newConfig.locale = new Locale(lang);
+        getResources().updateConfiguration(newConfig, getResources().getDisplayMetrics());
+        super.onConfigurationChanged(newConfig);
+    }
+    //Conflicts between language and orientation solved.
+    public void setLocale(String lang) {
+
+        Configuration conf = getResources().getConfiguration();
+        conf.locale = new Locale(lang);
+        getResources().updateConfiguration(conf, getResources().getDisplayMetrics());
 
     }
 

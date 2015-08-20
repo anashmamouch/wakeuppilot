@@ -1,6 +1,7 @@
 package com.example.anas.firstapp;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -13,6 +14,8 @@ import android.widget.TextView;
 
 import com.example.anas.firstapp.test.GameActivity;
 
+import java.util.Locale;
+
 /**
  * Created by Anas on 31/7/15.
  */
@@ -22,6 +25,8 @@ public class ReferenceActivity extends AppCompatActivity {
     private TextView title;
     private Button passerTest;
     private User user ;
+
+    private String lang;
 
 
     @Override
@@ -34,6 +39,7 @@ public class ReferenceActivity extends AppCompatActivity {
         title = (TextView) findViewById(R.id.toolbar_title);
         passerTest = (Button) findViewById(R.id.passer_niveau_reference);
 
+        lang  = (String) getIntent().getSerializableExtra("LANG");
 
         user = (User) getIntent().getSerializableExtra("KEY");
 
@@ -52,6 +58,8 @@ public class ReferenceActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), GameActivity.class);
                 Log.d("BENZINO", "creating the intent");
                 intent.putExtra("KEY", user);
+                intent.putExtra("LANG", lang);
+                setLocale(lang);
                 Log.d("BENZINO", "starting the intent");
                 startActivity(intent);
                 finish();
@@ -59,6 +67,24 @@ public class ReferenceActivity extends AppCompatActivity {
         });
 
     }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+
+        newConfig.locale = new Locale(lang);
+        getResources().updateConfiguration(newConfig, getResources().getDisplayMetrics());
+        super.onConfigurationChanged(newConfig);
+    }
+
+    //Conflicts between language and orientation solved.
+    public void setLocale(String lang) {
+
+        Configuration conf = getResources().getConfiguration();
+        conf.locale = new Locale(lang);
+        getResources().updateConfiguration(conf, getResources().getDisplayMetrics());
+
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

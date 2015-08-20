@@ -1,6 +1,7 @@
 package com.example.anas.firstapp;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -12,6 +13,8 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.anas.firstapp.test.GameActivity;
+
+import java.util.Locale;
 
 /**
  * Created by Anas on 31/7/15.
@@ -25,6 +28,8 @@ public class TestFirstActivity extends AppCompatActivity {
     private TextView test;
     private TextView successRate;
 
+    private String lang;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +42,8 @@ public class TestFirstActivity extends AppCompatActivity {
         //test = (TextView) findViewById(R.id.test_textview);
         successRate = (TextView) findViewById(R.id.success_rate);
         historiqueResultats = (Button)findViewById(R.id.historique_resultats);
+
+        lang  = (String) getIntent().getSerializableExtra("LANG");
 
         user = (User) getIntent().getSerializableExtra("KEY");
 
@@ -55,6 +62,8 @@ public class TestFirstActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), ReferenceActivity.class);
                 Log.d("BENZINO", "creating the intent");
                 intent.putExtra("KEY", user);
+                intent.putExtra("LANG", lang);
+                setLocale(lang);
                 Log.d("BENZINO", "starting the intent");
                 startActivity(intent);
                 finish();
@@ -68,6 +77,8 @@ public class TestFirstActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), HistoryResultsActivity.class);
                 Log.d("BENZINO", "creating the intent");
                 intent.putExtra("KEY", user);
+                intent.putExtra("LANG", lang);
+                setLocale(lang);
                 Log.d("BENZINO", "starting the intent");
                 startActivity(intent);
                 finish();
@@ -75,6 +86,23 @@ public class TestFirstActivity extends AppCompatActivity {
         });
 
     }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+
+        newConfig.locale = new Locale(lang);
+        getResources().updateConfiguration(newConfig, getResources().getDisplayMetrics());
+        super.onConfigurationChanged(newConfig);
+    }
+    //Conflicts between language and orientation solved.
+    public void setLocale(String lang) {
+
+        Configuration conf = getResources().getConfiguration();
+        conf.locale = new Locale(lang);
+        getResources().updateConfiguration(conf, getResources().getDisplayMetrics());
+
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

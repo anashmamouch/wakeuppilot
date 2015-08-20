@@ -25,8 +25,9 @@ public class WelcomeActivity extends AppCompatActivity {
     private Toolbar toolbar;
     private TextView title;
     private Button createNewProfile;
-    private String lang;
 
+
+    private String lang;
 
 
     @Override
@@ -54,6 +55,8 @@ public class WelcomeActivity extends AppCompatActivity {
             public void onClick(View v) {
                 //go to the new profile page
                 Intent intent = new Intent(getApplicationContext(), NewProfileActivity.class);
+                intent.putExtra("LANG", lang);
+                setLocale(lang);
                 startActivity(intent);
                 finish();
             }
@@ -64,12 +67,22 @@ public class WelcomeActivity extends AppCompatActivity {
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
 
-        Log.d("BENZINO", "language = "+ lang);
-
         newConfig.locale = new Locale(lang);
         getResources().updateConfiguration(newConfig, getResources().getDisplayMetrics());
         super.onConfigurationChanged(newConfig);
+
     }
+
+    //Conflicts between language and orientation solved.
+    public void setLocale(String lang) {
+
+        Configuration conf = getResources().getConfiguration();
+        conf.locale = new Locale(lang);
+        getResources().updateConfiguration(conf, getResources().getDisplayMetrics());
+
+    }
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -87,6 +100,12 @@ public class WelcomeActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            return true;
+        }
+
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.Language) {
+            startActivity(new Intent(getApplicationContext(), ChooseLang.class));
             return true;
         }
 

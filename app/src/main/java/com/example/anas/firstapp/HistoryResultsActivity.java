@@ -1,6 +1,7 @@
 package com.example.anas.firstapp;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
@@ -20,6 +21,7 @@ import android.widget.Toast;
 import com.example.anas.firstapp.test.GameActivity;
 
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Created by Anas on 31/7/15.
@@ -43,6 +45,8 @@ public class HistoryResultsActivity extends AppCompatActivity {
 
     private String[] dates;
     private String[] scores;
+
+    private String lang;
 
     /*TODO: OnBackPressed for HistoryResults*/
     @Override
@@ -111,6 +115,8 @@ public class HistoryResultsActivity extends AppCompatActivity {
 
         dbHelper = new DatabaseHandler(this);
 
+        lang  = (String) getIntent().getSerializableExtra("LANG");
+
         user = (User) getIntent().getSerializableExtra("KEY");
 
         tests = dbHelper.findTestByUser(user.getId());
@@ -143,6 +149,7 @@ public class HistoryResultsActivity extends AppCompatActivity {
                     //go to the new profile page
                     Intent intent = new Intent(getApplicationContext(), TestNewActivity.class);
                     intent.putExtra("KEY", user);
+                    setLocale(lang);
                     startActivity(intent);
                     finish();
 
@@ -150,6 +157,7 @@ public class HistoryResultsActivity extends AppCompatActivity {
                     //go to the new reference page
                     Intent intent = new Intent(getApplicationContext(), TestFirstActivity.class);
                     intent.putExtra("KEY", user);
+                    setLocale(lang);
                     startActivity(intent);
                     finish();
 
@@ -159,6 +167,24 @@ public class HistoryResultsActivity extends AppCompatActivity {
         });
 
     }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+
+        newConfig.locale = new Locale(lang);
+        getResources().updateConfiguration(newConfig, getResources().getDisplayMetrics());
+        super.onConfigurationChanged(newConfig);
+    }
+
+    //Conflicts between language and orientation solved.
+    public void setLocale(String lang) {
+
+        Configuration conf = getResources().getConfiguration();
+        conf.locale = new Locale(lang);
+        getResources().updateConfiguration(conf, getResources().getDisplayMetrics());
+
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

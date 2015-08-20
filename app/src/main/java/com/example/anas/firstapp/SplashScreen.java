@@ -1,11 +1,15 @@
 package com.example.anas.firstapp;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 
@@ -19,33 +23,34 @@ public class SplashScreen extends Activity {
     private TextView splashText;
 
     /** Called when the activity is first created. */
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_splash);
+            super.onCreate(savedInstanceState);
+            setContentView(R.layout.activity_splash);
 
-        splashImg = (ImageView) findViewById(R.id.splash_image);
-        splashText = (TextView) findViewById(R.id.splash_text);
+            splashImg = (ImageView) findViewById(R.id.splash_image);
+            //splashText = (TextView) findViewById(R.id.splash_text);
 
-        Typeface font = Typeface.createFromAsset(getApplicationContext().getAssets(), "lobster.ttf");
-        splashText.setTypeface(font);
-         /*
-         * New Handler to start the Menu-Activity
-         * and close this Splash-Screen after some seconds.
-         * */
-        new Handler().postDelayed(new Runnable(){
-
-            /*
-             * the run method will be executed once the timer ends
-             * stating the WelcomeActivity
+            Typeface font = Typeface.createFromAsset(getApplicationContext().getAssets(), "lobster.ttf");
+            //splashText.setTypeface(font);
+             /*
+             * New Handler to start the Menu-Activity
+             * and close this Splash-Screen after some seconds.
              * */
-            @Override
-            public void run() {
-                startActivity(new Intent(SplashScreen.this, ChooseLang.class));
+            new Handler().postDelayed(new Runnable(){
 
-                //close this activity
-                finish();
-            }
-        }, SPLASH_TIME_OUT);
+                /*
+                 * the run method will be executed once the timer ends
+                 * stating the WelcomeActivity
+                 * */
+                @Override
+                public void run() {
+                    startActivity(new Intent(SplashScreen.this, ChooseLang.class));
+
+                    //close this activity
+                    finish();
+                }
+            }, SPLASH_TIME_OUT);
     }
 }
