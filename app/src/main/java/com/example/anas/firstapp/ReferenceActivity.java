@@ -37,7 +37,7 @@ public class ReferenceActivity extends AppCompatActivity {
 
         user = (User) getIntent().getSerializableExtra("KEY");
 
-        title.setText("NIVEAU DE REFERENCE");
+        title.setText(R.string.toolbar_niveau_reference);
 
 
         //Setting the toolbar as the ActionBar
@@ -49,7 +49,7 @@ public class ReferenceActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //go to the test
-                Intent intent = new Intent(getApplicationContext(), TutorialActivity.class);
+                Intent intent = new Intent(getApplicationContext(), GameActivity.class);
                 Log.d("BENZINO", "creating the intent");
                 intent.putExtra("KEY", user);
                 Log.d("BENZINO", "starting the intent");

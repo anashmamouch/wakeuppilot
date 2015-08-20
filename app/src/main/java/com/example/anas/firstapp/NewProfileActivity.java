@@ -105,7 +105,7 @@ public class NewProfileActivity extends AppCompatActivity {
         //Log.d("ANAS", "Inserting ..");
         //db.createUser(new User(username, age, genre));
 
-        title.setText("NOUVEAU PROFILE");
+        title.setText(R.string.toolbar_nouveau_profile);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle(" ");
         getSupportActionBar().setHomeAsUpIndicator(R.drawable.plus_circle);

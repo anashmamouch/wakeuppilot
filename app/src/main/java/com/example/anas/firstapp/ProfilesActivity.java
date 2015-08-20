@@ -53,7 +53,7 @@ public class ProfilesActivity extends AppCompatActivity {
         title = (TextView) findViewById(R.id.toolbar_title);
         createNewProfile = (Button) findViewById(R.id.nouveau_profile);
         listView = (ListView) findViewById(R.id.listView_profiles);
-        title.setText("PROFILES");
+        title.setText(R.string.toolbar_liste_profiles);
 
         //Setting the toolbar as the ActionBar
         setSupportActionBar(toolbar);

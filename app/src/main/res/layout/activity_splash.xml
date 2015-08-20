@@ -20,7 +20,7 @@
         android:textSize="32dp"
         android:textColor="#454545"
         android:gravity="center_horizontal"
-        android:text="WakeUpPilot"
+        android:text="@string/wake_up_pilot"
         android:layout_below="@+id/splash_image"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />

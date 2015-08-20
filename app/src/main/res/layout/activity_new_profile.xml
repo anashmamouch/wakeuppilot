@@ -19,7 +19,7 @@
         android:layout_gravity="center_horizontal"
         android:layout_margin="32dp"
         android:textSize="18dp"
-        android:hint="Pseudonyme..."/>
+        android:hint="@string/pseudonyme"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -36,7 +36,7 @@
 
             android:textSize="18dp"
             android:layout_weight=".7"
-            android:text="AGE"/>
+            android:text="@string/age"/>
 
 
         <Spinner
@@ -62,7 +62,7 @@
             android:layout_height="wrap_content"
             android:layout_weight=".7"
             android:textSize="18dp"
-            android:text="GENRE"/>
+            android:text="@string/genre"/>
 
         <Spinner
             android:layout_width="0dp"
@@ -87,7 +87,7 @@
             android:id="@+id/creer"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="Créer"
+            android:text="@string/creer_button"
             android:textSize="14dp"
             android:textColor="#fff"
             android:textAllCaps="false"
@@ -100,7 +100,7 @@
             android:id="@+id/inscrit"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="Déjà inscrit"
+            android:text="@string/deja_inscrit_button"
             android:textSize="14dp"
             android:textColor="#fff"
             android:textAllCaps="false"

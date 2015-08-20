@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">WakeUpPilot</string>
+    <string name="wake_up_pilot">WakeUpPilot</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="profile_welcome"> "To start the test \nCreate a new profile"</string>
+    <string name="intro_niveau_reference"> "Define your reference level to calibrate the application \nThe reference level corresponds to your optimal level of awakening"</string>
+    <string name="duree_niveau_reference"> "Test time: 30 seconds"</string>
+    <string name="list_niveau_reference"> "&#8226; Relaxed\n&#8226; Set in a quiet place\n&#8226; Don't do it after a meal\n"</string>
+    <string name="tutorial"> "Quickly press the red ball as soon as it appears on the screen you have only 30 seconds."</string>
+    <string name="intro_after_reference"> "Reference level saved"</string>
+    <string name="after_reference"> "You can now evaluate your level of\nawakening before driving."</string>
+    <string name="taux_reussite">Success Rate</string>
+    <string name="etablir_niveau_reference">Start the reference level</string>
+    <string name="aide_test">Help for the test</string>
+    <string name="historique_resultats">History of your results</string>
+    <string name="pseudonyme">Username...</string>
+    <string name="age">AGE</string>
+    <string name="genre">GENDER</string>
+    <string name="creer_button">Create</string>
+    <string name="deja_inscrit_button">Already a member</string>
+    <string name="retour_list_profiles">Back to the list of profiles</string>
+    <string name="passer_test_button">Take the test</string>
+    <string name="pourcentage_taux_reussite">% Success Rate</string>
+    <string name="creer_nouveau_profile">Create a new profile</string>
+    <string name="pour_passer_test">To take the test make sure you are:</string>
+    <string name="jai_compris_button">"I understand"</string>
+    <string name="retour_profile">Back to your profile</string>
+
+    <!--Toolbar strings -->
+    <string name="toolbar_bienvenue">WELCOME</string>
+    <string name="toolbar_tutoriel">TUTORIAL</string>
+    <string name="toolbar_liste_profiles">PROFILES</string>
+    <string name="toolbar_nouveau_profile">NEW PROFILE</string>
+    <string name="toolbar_historique_resultats">HISTORY OF RESULTS</string>
+    <string name="toolbar_niveau_reference">REFERENCE LEVEL</string>
+
+    <!--Alert Dialog strings-->
+    <string name="dialog_title">"Time's up"</string>
+    <string name="dialog_touchez_balle">You have touched the ball</string>
+    <string name="dialog_fois">times</string>
+    <string name="dialog_refaire_test">Redo the test</string>
+    <string name="dialog_retourner_profile">Go back to your profile</string>
+    <string name="dialog_enregistrer_score">Save your score</string>
+    <string name="dialog_score_minimum">"You have not achieved the minimun score \n Do you want to "</string>
+
+
+
+
+    <string name="first_time"> "This is the first time that you start the app,\nyou can start establishing your reference level"</string>
+    <string name="description_welcome">
+        "This application allows you to test your level of awakening\nbefore taking the steering wheel. You should before hand define\n your reference level that corresponds to your\noptimum level of awakening by taking a first test."
+    </string>
+
+    <string-array name="age_array">
+        <item>- 40 years</item>
+        <item>40 - 60 years </item>
+        <item>+ 60 years</item>
+    </string-array>
+
+    <string-array name="genre_array">
+        <item>Male</item>
+        <item>Female </item>
+    </string-array>
+
+    <string-array name="languages">
+        <item>Select language</item>
+        <item>English</item>
+        <item>French </item>
+        <item>Arabic </item>
+    </string-array>
+</resources>

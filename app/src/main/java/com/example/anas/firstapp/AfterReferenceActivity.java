@@ -57,7 +57,7 @@ public class AfterReferenceActivity extends AppCompatActivity {
 
         Log.d("ANAS", "test "+tests.get(0).getFirstTime());
 
-        title.setText("NIVEAU DE REFERENCE");
+        title.setText(R.string.toolbar_niveau_reference);
 
 
         //Setting the toolbar as the ActionBar

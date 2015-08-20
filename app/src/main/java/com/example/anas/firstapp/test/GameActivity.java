@@ -110,6 +110,7 @@ public class GameActivity extends Activity{
                             view.setY(event.getY());
                             view.increaseSpeed(0.5F);
                             view.changePosition();
+
                         }
                         view.incrementTouch();
                         view.success();
@@ -127,9 +128,9 @@ public class GameActivity extends Activity{
 
                     case MotionEvent.ACTION_MOVE:
                         //finger move in the screen (drag)
-                        view.setX(event.getX());
-                        view.setY(event.getY());
-                        view.setTouching(true);
+                        //view.setX(event.getX());
+                        //view.setY(event.getY());
+                        //view.setTouching(true);
                         Log.d("ANAS", "------------------->>ACTION MOVE");
                         break;
 

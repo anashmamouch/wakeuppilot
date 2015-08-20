@@ -41,7 +41,7 @@
             android:id="@+id/retour_profile"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="Retour au profile"
+            android:text="@string/retour_profile"
             android:textSize="14dp"
             android:textColor="#fff"
             android:textAllCaps="false"

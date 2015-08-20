@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">WakeUpPilot</string>
     <string name="wake_up_pilot">WakeUpPilot</string>
@@ -36,6 +37,15 @@
     <string name="toolbar_historique_resultats">HISTORIQUE DES RESULTATS</string>
     <string name="toolbar_niveau_reference">NIVEAU DE REFERENCE</string>
 
+    <!--Alert Dialog strings-->
+    <string name="dialog_title">Temps écoulé</string>
+    <string name="dialog_touchez_balle">Vous avez touchez la balle</string>
+    <string name="dialog_fois">fois</string>
+    <string name="dialog_refaire_test">Refaire le test</string>
+    <string name="dialog_retourner_profile">Retourner au profile</string>
+    <string name="dialog_enregistrer_score">Enregistrer votre score</string>
+    <string name="dialog_score_minimum">"Vous n'avez pas dépasser le score minimum \n Voulez-vous "</string>
+
 
 
     <string name="first_time"> "C'est la première fois que vous lancez l'application,\nvous devez établir votre niveau de référence:"</string>
@@ -60,6 +70,4 @@
         <item>French </item>
         <item>Arabic </item>
     </string-array>
-    <string name="title_activity_choose_lang">ChooseLang</string>
-
 </resources>

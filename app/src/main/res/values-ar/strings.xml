@@ -1,10 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">WakeUpPilot</string>
     <string name="wake_up_pilot">WakeUpPilot</string>
 
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Options</string>
-    <string name="profile_welcome"> "Pour commencer le test\nCréer un nouveau profile"</string>
+    <string name="profile_welcome"> "لبدء الاختبار إنشىء بروفايل جديد"</string>
     <string name="intro_niveau_reference"> "Définissez votre niveau de référence pour calibrer l'application\nLe niveau de référence correspond à votre niveau d'éveil optimal"</string>
     <string name="duree_niveau_reference"> "Durée du test: 30 secondes"</string>
     <string name="list_niveau_reference"> "&#8226; Reposé\n&#8226; Installé dans un endroit calme\n&#8226; Evitez de l'effectuer après un repas\n"</string>
@@ -53,13 +54,10 @@
         <item>Homme</item>
         <item>Femme </item>
     </string-array>
-
     <string-array name="languages">
         <item>Select language</item>
         <item>English</item>
-        <item>French </item>
-        <item>Arabic </item>
+        <item>French</item>
+        <item>Arabic</item>
     </string-array>
-    <string name="title_activity_choose_lang">ChooseLang</string>
-
 </resources>

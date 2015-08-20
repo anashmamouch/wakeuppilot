@@ -37,10 +37,12 @@ public class TutorialActivity extends AppCompatActivity {
         jaiCompris = (Button) findViewById(R.id.jai_compris_button);
         redballImage = (ImageView)findViewById(R.id.tutorial_image);
 
+        //redballImage.setBackgroundResource(R.drawable.redball);
+
 
         user = (User) getIntent().getSerializableExtra("KEY");
 
-        title.setText("TUTORIEL");
+        title.setText(R.string.toolbar_tutoriel);
 
 
         //Setting the toolbar as the ActionBar

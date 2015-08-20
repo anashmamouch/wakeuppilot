@@ -44,7 +44,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="24dp"
-            android:text="Taux de réussite"/>
+            android:text="@string/taux_reussite"/>
     </LinearLayout>
 
 
@@ -60,7 +60,7 @@
             android:id="@+id/niveau_reference"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="Etablir le niveau de reference"
+            android:text="@string/etablir_niveau_reference"
             android:textSize="14dp"
             android:textColor="#fff"
             android:textAllCaps="false"
@@ -74,7 +74,7 @@
             android:id="@+id/aide_test"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="Aide pour le test"
+            android:text="@string/aide_test"
             android:textSize="14dp"
             android:textColor="#fff"
             android:textAllCaps="false"
@@ -88,7 +88,7 @@
             android:id="@+id/historique_resultats"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="Historique des résultats"
+            android:text="@string/historique_resultats"
             android:textSize="14dp"
             android:textColor="#fff"
             android:textAllCaps="false"

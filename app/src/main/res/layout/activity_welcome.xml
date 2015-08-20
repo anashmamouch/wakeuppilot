@@ -54,7 +54,7 @@
             android:id="@+id/nouveau_profile"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:text="Créer un nouveau profile"
+            android:text="@string/creer_nouveau_profile"
             android:textSize="14dp"
             android:textColor="#fff"
             android:textAllCaps="false"

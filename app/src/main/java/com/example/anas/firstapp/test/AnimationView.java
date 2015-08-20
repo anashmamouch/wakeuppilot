@@ -343,9 +343,9 @@ public class AnimationView extends SurfaceView implements SurfaceHolder.Callback
             final List<Test>  tests = db.findTestByUser(user.getId());;
 
             final AlertDialog alert = new AlertDialog.Builder(context)
-                    .setTitle("Time is up!")
-                    .setMessage("Vous avez touchez la balle " + touched + " fois")
-                    .setPositiveButton("Refaire le test", new DialogInterface.OnClickListener() {
+                    .setTitle(R.string.dialog_title)
+                    .setMessage(R.string.dialog_touchez_balle +" " + touched + " " + R.string.dialog_fois)
+                    .setPositiveButton(R.string.dialog_refaire_test, new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
                             // continue with delete
                             time = 0;
@@ -356,7 +356,7 @@ public class AnimationView extends SurfaceView implements SurfaceHolder.Callback
                             dialog.dismiss();
                         }
                     })
-                    .setNegativeButton("Enregistrer votre score", new DialogInterface.OnClickListener() {
+                    .setNegativeButton(R.string.dialog_enregistrer_score, new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
                             // do nothing
                             //String username = usernameEditText.getText().toString();
@@ -416,9 +416,9 @@ public class AnimationView extends SurfaceView implements SurfaceHolder.Callback
         if (time ==30 && touched <= 5){
 
             AlertDialog alert = new AlertDialog.Builder(context)
-                    .setTitle("Time is up!")
-                    .setMessage(" Vous n'avez pas dépasser le score minimum \n Voulez-vous ")
-                    .setPositiveButton("Refaire le test", new DialogInterface.OnClickListener() {
+                    .setTitle(R.string.dialog_title)
+                    .setMessage(R.string.dialog_score_minimum)
+                    .setPositiveButton(R.string.dialog_refaire_test, new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
                             // redo the test
                             time = 0;
@@ -429,7 +429,7 @@ public class AnimationView extends SurfaceView implements SurfaceHolder.Callback
                             dialog.dismiss();
                         }
                     })
-                    .setNegativeButton("Retourner au profile", new DialogInterface.OnClickListener() {
+                    .setNegativeButton(R.string.dialog_retourner_profile, new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
                             // go back to the profile page
                             Intent intent = new Intent(context, TestNewActivity.class);

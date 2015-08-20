@@ -27,7 +27,7 @@ public class WelcomeActivity extends AppCompatActivity {
         title = (TextView) findViewById(R.id.toolbar_title);
         createNewProfile = (Button) findViewById(R.id.nouveau_profile);
 
-        title.setText("BIENVENUE");
+        title.setText(R.string.toolbar_bienvenue);
 
         //Setting the toolbar as the ActionBar
         setSupportActionBar(toolbar);

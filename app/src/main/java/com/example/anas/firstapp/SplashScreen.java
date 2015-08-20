@@ -41,7 +41,7 @@ public class SplashScreen extends Activity {
              * */
             @Override
             public void run() {
-                startActivity(new Intent(SplashScreen.this, WelcomeActivity.class));
+                startActivity(new Intent(SplashScreen.this, ChooseLang.class));
 
                 //close this activity
                 finish();

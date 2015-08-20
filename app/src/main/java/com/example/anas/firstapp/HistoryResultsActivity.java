@@ -128,7 +128,7 @@ public class HistoryResultsActivity extends AppCompatActivity {
 
         listView.setAdapter(new ListResultsAdapter(dates, scores));
 
-        title.setText("HISTORIQUE DES RESULTATS");
+        title.setText(R.string.toolbar_historique_resultats);
         usernameHistoryResults.setText(user.getUsername());
 
         //Setting the toolbar as the ActionBar

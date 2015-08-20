@@ -6,7 +6,7 @@
     android:background="@color/ColorPrimary"
     android:theme="@style/ThemeOverlay.AppCompat.Dark"
     android:elevation="4dp"
-    android:title="WakeUpPilot"
+    android:title="@string/wake_up_pilot"
     android:textAlignment="center">
 
     <ImageView
