@@ -72,9 +72,28 @@ public class TestNewActivity extends AppCompatActivity{
         
         success(scoreReference, total);
 
-        //successRate.setText("" + success(scoreReference, total));
+        String username = user.getUsername();
+        String age = user.getAge();
+        String genre = user.getGenre();
 
-        title.setText(user.getUsername() + "("+user.getAge()+")");
+        if(age.equals("- 40 ans")){
+            age = getResources().getString(R.string.moins_40);
+        }
+        else if(age.equals("40 - 60 ans")){
+            age = getResources().getString(R.string.entre_40_60);
+        }
+        else if(age.equals("+ 60 ans")){
+            age = getResources().getString(R.string.plus_60);
+        }
+
+        if(genre.equals("Homme")){
+            genre = getResources().getString(R.string.male);
+        }else if(genre.equals("Femme")){
+            genre = getResources().getString(R.string.female);
+        }
+
+
+        title.setText(username + " | " + genre + " | " + age);
 
         /**Starting DecoView
          *
@@ -135,8 +154,12 @@ public class TestNewActivity extends AppCompatActivity{
 
         //test.setText(user.getUsername() + "\n" + user.getAge() + "\n" + user.getGenre());
         //Setting the toolbar as the ActionBar
+        toolbar.setNavigationIcon(R.drawable.back_white);
+        //Setting the toolbar as the ActionBar
         setSupportActionBar(toolbar);
+
         getSupportActionBar().setTitle(" ");
+        getSupportActionBar().setLogo(R.drawable.logo_white_32);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         passerTest.setOnClickListener(new View.OnClickListener() {
@@ -255,6 +278,12 @@ public class TestNewActivity extends AppCompatActivity{
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            return true;
+        }
+
+        //Language selection
+        if (id == R.id.Language) {
+            startActivity(new Intent(getApplicationContext(), ChooseLang.class));
             return true;
         }
 

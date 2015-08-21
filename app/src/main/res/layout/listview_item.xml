@@ -9,19 +9,21 @@
     <ImageView
         android:id="@+id/avatar"
         android:layout_width="wrap_content"
-        android:layout_height="fill_parent"
-        android:layout_marginRight="6dip"
+        android:layout_height="72dp"
         android:src="@mipmap/ic_launcher" />
 
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="0dip"
         android:layout_weight="1"
+
+        android:paddingRight="16dp"
         android:layout_height="match_parent">
 
         <TextView android:id="@+id/textView1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+
             android:textSize="24dp"
             android:gravity="center"/>
         <TextView android:id="@+id/textView2"
@@ -30,6 +32,19 @@
             android:layout_marginLeft="10px"
             android:textColor="#0099CC"/>
     </LinearLayout>
+
+    <ImageView
+        android:id="@+id/edit_profile"
+        android:layout_width="wrap_content"
+        android:layout_height="72dp"
+        android:paddingRight="8dp"
+        android:src="@drawable/edit" />
+
+    <ImageView
+        android:id="@+id/delete_profile"
+        android:layout_width="wrap_content"
+        android:layout_height="72dp"
+        android:src="@drawable/delete" />
 
 
 </LinearLayout>

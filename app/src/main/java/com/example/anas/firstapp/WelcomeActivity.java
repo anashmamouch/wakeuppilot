@@ -44,10 +44,12 @@ public class WelcomeActivity extends AppCompatActivity {
         title.setText(R.string.toolbar_bienvenue);
 
         lang  = (String) getIntent().getSerializableExtra("LANG");
-
+        toolbar.setNavigationIcon(R.drawable.back_white);
         //Setting the toolbar as the ActionBar
         setSupportActionBar(toolbar);
+
         getSupportActionBar().setTitle(" ");
+        getSupportActionBar().setLogo(R.drawable.logo_white_32);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         createNewProfile.setOnClickListener(new View.OnClickListener() {
@@ -103,7 +105,7 @@ public class WelcomeActivity extends AppCompatActivity {
             return true;
         }
 
-        //noinspection SimplifiableIfStatement
+        //Language selection
         if (id == R.id.Language) {
             startActivity(new Intent(getApplicationContext(), ChooseLang.class));
             return true;

@@ -2,6 +2,7 @@ package com.example.anas.firstapp.test;
 
 import android.app.Activity;
 import android.content.res.Configuration;
+import android.media.MediaPlayer;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
@@ -11,6 +12,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
+import com.example.anas.firstapp.R;
 import com.example.anas.firstapp.Test;
 import com.example.anas.firstapp.User;
 
@@ -25,6 +27,8 @@ public class GameActivity extends Activity{
     private Test test;
     private User user;
     private String lang;
+    private MediaPlayer soundTouched;
+    private MediaPlayer soundMissed;
     /**
      * Called when the activity is starting.  This is where most initialization
      * should go: calling {@link #setContentView(int)} to inflate the
@@ -46,6 +50,8 @@ public class GameActivity extends Activity{
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
+        soundTouched= MediaPlayer.create(getApplicationContext(), R.raw.coin);
+        soundMissed = MediaPlayer.create(getApplicationContext(), R.raw.stomp);
 
         lang = (String) getIntent().getSerializableExtra("LANG");
 
@@ -116,8 +122,13 @@ public class GameActivity extends Activity{
                             view.setY(event.getY());
                             view.increaseSpeed(0.5F);
                             view.changePosition();
+                            //sound
+                            soundTouched.start();
 
+                        }else{
+                            soundMissed.start();
                         }
+
                         view.incrementTouch();
                         view.success();
                         view.setTouching(true);

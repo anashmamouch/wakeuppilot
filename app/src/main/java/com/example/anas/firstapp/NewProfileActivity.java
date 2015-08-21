@@ -13,6 +13,8 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -29,14 +31,8 @@ public class NewProfileActivity extends AppCompatActivity {
 
     private EditText pseudonyme;
 
-    private Spinner spinnerAge;
-    private Spinner spinnerGenre;
-
-    private TextView textAge;
-    private TextView textGenre;
-
-    private RelativeLayout layoutAge;
-    private RelativeLayout layoutGenre;
+    private RadioGroup radioAge;
+    private RadioGroup radioGenre;
 
     private Button creer;
     private Button inscrit;
@@ -55,7 +51,6 @@ public class NewProfileActivity extends AppCompatActivity {
         //Create a database where to store the data
         final DatabaseHandler db = new DatabaseHandler(this);
 
-        
 
         //Attaching the layout elements to the java object
         toolbar = (Toolbar) findViewById(R.id.tool_bar);
@@ -65,52 +60,27 @@ public class NewProfileActivity extends AppCompatActivity {
         creer = (Button) findViewById(R.id.creer);
         inscrit = (Button)findViewById(R.id.inscrit);
 
-        spinnerAge = (Spinner) findViewById(R.id.spinner_age);
-        spinnerGenre = (Spinner) findViewById(R.id.spinner_genre);
+        radioAge = (RadioGroup) findViewById(R.id.radioAge);
+        radioGenre = (RadioGroup) findViewById(R.id.radioGenre);
 
-        textAge = (TextView) findViewById(R.id.text_age);
-        textGenre = (TextView) findViewById(R.id.text_genre);
-
-        layoutAge = (RelativeLayout) findViewById(R.id.layout_age);
-        layoutGenre = (RelativeLayout) findViewById(R.id.layout_genre);
-
-        lang  = (String) getIntent().getSerializableExtra("LANG");
-
-        /** TODO RADIO BUTTONS INSTEAD OF SPINNER **/
-
-        // Create an ArrayAdapter using the string array and a default spinner layout
-        ArrayAdapter<CharSequence> adapterAge = ArrayAdapter.createFromResource(this,
-                R.array.age_array, android.R.layout.simple_spinner_item);
-        ArrayAdapter<CharSequence> adapterGenre = ArrayAdapter.createFromResource(this,
-                R.array.genre_array, android.R.layout.simple_spinner_item);
-
-        // Specify the layout to use when the list of choices appears
-        adapterAge.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        adapterGenre.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-        // Apply the adapter to the spinner
-        spinnerAge.setAdapter(adapterAge);
-        spinnerGenre.setAdapter(adapterGenre);
 
         username = pseudonyme.getText().toString();
-        age = spinnerAge.getSelectedItem().toString();
-        genre = spinnerGenre.getSelectedItem().toString();
+
+        checkRadio();
+
+        lang  = (String) getIntent().getSerializableExtra("LANG");
 
         creer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                username = pseudonyme.getText().toString();
-                age = spinnerAge.getSelectedItem().toString();
-                genre = spinnerGenre.getSelectedItem().toString();
+                username = pseudonyme.getText().toString().trim();
 
-                if(username.length() == 0) {
+                if (username.length() == 0) {
                     Toast.makeText(getApplicationContext(), R.string.toast_entrer_pseudonyme, Toast.LENGTH_LONG).show();
-                }else {
-                    Log.d("BENZINO", "Inserting-----------------------------------");
+                } else if (username.length() > 24) {
+                    Toast.makeText(getApplicationContext(), R.string.toast_depasser_pseudonyme, Toast.LENGTH_LONG).show();
+                } else {
 
-                    Log.d("BENZINO", "USERNAME:" + username);
-                    Log.d("BENZINO", "AGE:" + age);
-                    Log.d("BENZINO", "GENRE:" + genre);
                     db.createUser(new User(username, age, genre));
 
                     //go to the list of profiles page
@@ -119,6 +89,7 @@ public class NewProfileActivity extends AppCompatActivity {
                     setLocale(lang);
                     startActivity(intent);
                     finish();
+
                 }
             }
         });
@@ -134,14 +105,47 @@ public class NewProfileActivity extends AppCompatActivity {
             }
         });
 
-        //Log.d("ANAS", "Inserting ..");
-        //db.createUser(new User(username, age, genre));
-
         title.setText(R.string.toolbar_nouveau_profile);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle(" ");
 
+        toolbar.setNavigationIcon(R.drawable.back_white);
+        //Setting the toolbar as the ActionBar
+        setSupportActionBar(toolbar);
+
+        getSupportActionBar().setTitle(" ");
+        getSupportActionBar().setLogo(R.drawable.logo_white_32);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+
+    }
+
+    public void checkRadio(){
+        //Valeurs par default
+        genre = "Homme";
+        age = "- 40 ans";
+
+        radioGenre.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+
+                if (checkedId == R.id.radioMale) {
+                    genre = "Homme";
+                } else if (checkedId == R.id.radioFemale) {
+                    genre = "Femme";
+                }
+            }
+        });
+
+        radioAge.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                if (checkedId == R.id.radio_40) {
+                    age = "- 40 ans";
+                } else if (checkedId == R.id.radio_40_60) {
+                    age = "40 - 60 ans";
+                } else if (checkedId == R.id.radio_60) {
+                    age = "+ 60 ans";
+                }
+            }
+        });
 
     }
 
@@ -180,6 +184,13 @@ public class NewProfileActivity extends AppCompatActivity {
         if (id == R.id.action_settings) {
             return true;
         }
+
+        //Language selection
+        if (id == R.id.Language) {
+            startActivity(new Intent(getApplicationContext(), ChooseLang.class));
+            return true;
+        }
+
 
         return super.onOptionsItemSelected(item);
     }

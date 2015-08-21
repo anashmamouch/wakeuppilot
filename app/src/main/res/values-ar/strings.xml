@@ -33,6 +33,7 @@
 
     <!--Toast strings -->
     <string name="toast_entrer_pseudonyme">"المرجو تحديد إسمكم"</string>
+    <string name="toast_depasser_pseudonyme">"المرجو أن لا تزيدوا عن 24 حرفا في الإسم"</string>
 
     <!--Toolbar strings -->
     <string name="toolbar_bienvenue">مرحبا</string>
@@ -64,15 +65,19 @@
         <item>+ 60 ans</item>
     </string-array>
 
-    <string name="moins_40">  أقل من 40 سنة</string>
+    <string name="moins_40">أقل من 40 سنة</string>
     <string name="entre_40_60">بين 40 و 60 سنة</string>
-    <string name="plus_60"> فوق 60 سنة</string>
+    <string name="plus_60">فوق 60 سنة</string>
 
 
     <string-array name="genre_array">
         <item>ذكر </item>
         <item>أنثى </item>
     </string-array>
+
+    <string name="male">ذكر</string>
+    <string name="female">أنتى</string>
+
     <string-array name="languages">
         <item>Select language</item>
         <item>English</item>

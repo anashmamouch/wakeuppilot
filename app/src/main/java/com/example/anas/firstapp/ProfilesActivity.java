@@ -1,5 +1,7 @@
 package com.example.anas.firstapp;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.database.Cursor;
@@ -16,6 +18,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -32,6 +35,7 @@ public class ProfilesActivity extends AppCompatActivity {
     private Toolbar toolbar;
     private TextView title;
     private Button createNewProfile;
+    //private ImageView avatar;
 
     private DatabaseHandler dbHelper;
 
@@ -42,6 +46,7 @@ public class ProfilesActivity extends AppCompatActivity {
 
     private String[] names;
     private String[] ages;
+    private String[] genres;
 
     private User user;
 
@@ -57,13 +62,17 @@ public class ProfilesActivity extends AppCompatActivity {
         title = (TextView) findViewById(R.id.toolbar_title);
         createNewProfile = (Button) findViewById(R.id.nouveau_profile);
         listView = (ListView) findViewById(R.id.listView_profiles);
+        //avatar = (ImageView) findViewById(R.id.avatar);
         title.setText(R.string.toolbar_liste_profiles);
 
         lang  = (String) getIntent().getSerializableExtra("LANG");
 
+        toolbar.setNavigationIcon(R.drawable.back_white);
         //Setting the toolbar as the ActionBar
         setSupportActionBar(toolbar);
+
         getSupportActionBar().setTitle(" ");
+        getSupportActionBar().setLogo(R.drawable.logo_white_32);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         createNewProfile.setOnClickListener(new View.OnClickListener() {
@@ -84,13 +93,15 @@ public class ProfilesActivity extends AppCompatActivity {
         users = dbHelper.findAllUsers();
         names = new String[users.size()];
         ages = new String[users.size()];
+        genres = new String[users.size()];
 
         for(int i=0; i<users.size(); i++){
             names[i] = users.get(i).getUsername();
             ages[i] = users.get(i).getAge();
+            genres[i] = users.get(i).getGenre();
         }
 
-        listView.setAdapter(new ListProfilesAdapter(names, ages));
+        listView.setAdapter(new ListProfilesAdapter(names, ages, genres));
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -121,7 +132,6 @@ public class ProfilesActivity extends AppCompatActivity {
                     finish();
                 }
 
-
             }
         });
 
@@ -144,8 +154,6 @@ public class ProfilesActivity extends AppCompatActivity {
 
     }
 
-
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -165,22 +173,32 @@ public class ProfilesActivity extends AppCompatActivity {
             return true;
         }
 
+        //Language selection
+        if (id == R.id.Language) {
+            startActivity(new Intent(getApplicationContext(), ChooseLang.class));
+            return true;
+        }
+
         return super.onOptionsItemSelected(item);
     }
 
      class ListProfilesAdapter extends BaseAdapter {
 
-        String[] username;
-        String[] age;
+         String[] username;
+         String[] age;
+         String[] genre;
 
         public ListProfilesAdapter() {
             username = null;
             age = null;
+            genre = null;
+
         }
 
-        public ListProfilesAdapter(String[] username, String[] age) {
+        public ListProfilesAdapter(String[] username, String[] age, String[] genre) {
             this.username = username;
             this.age = age;
+            this.genre = genre;
         }
 
         @Override
@@ -206,18 +224,81 @@ public class ProfilesActivity extends AppCompatActivity {
             TextView usernameTextView = (TextView) row.findViewById(R.id.textView1);
             TextView ageTextView = (TextView) row.findViewById(R.id.textView2);
 
+            ImageView avatar = (ImageView) row.findViewById(R.id.avatar);
+
+            ImageView delete = (ImageView) row.findViewById(R.id.delete_profile);
+            ImageView edit = (ImageView) row.findViewById(R.id.edit_profile);
+
             String ageString;
-            usernameTextView.setText(username[position]);
+            final String usernameString = username[position];
+            usernameTextView.setText(usernameString);
+
+            final DatabaseHandler dbHandler = new DatabaseHandler(getApplicationContext());
+
+            delete.setOnClickListener(new View.OnClickListener() {
+               @Override
+               public void onClick(View v) {
+                   Toast.makeText(getApplicationContext(), "DELETE BUTTON", Toast.LENGTH_SHORT).show();
+
+                   final AlertDialog alert = new AlertDialog.Builder(ProfilesActivity.this)
+                           .setTitle("Supprimer profile")
+                           .setMessage("Etes vous sure de supprimer ce profile")
+                           .setPositiveButton("NON", new DialogInterface.OnClickListener() {
+                               public void onClick(DialogInterface dialog, int which) {
+                                   // redo the test
+
+                                   dialog.dismiss();
+                               }
+                           })
+                           .setNegativeButton("OUI", new DialogInterface.OnClickListener() {
+                               public void onClick(DialogInterface dialog, int which) {
+
+                                   dbHandler.deleteUser(dbHandler.findUserByName(usernameString));
+
+                                   Intent intent = getIntent();
+                                   finish();
+                                   startActivity(intent);
+                                   dialog.dismiss();
+                               }
+                           })
+                           .setIcon(android.R.drawable.ic_dialog_alert)
+                           .show();
+
+                   alert.setCanceledOnTouchOutside(false);
+               }
+           });
+
+            edit.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(getApplicationContext(), "EDIT BUTTON", Toast.LENGTH_SHORT).show();
+                }
+            });
 
 
             if (age[position].equals("- 40 ans")) {
                 ageString = getResources().getString(R.string.moins_40);
 
+                if(genre[position].equals("Femme"))
+                    avatar.setImageResource(R.drawable.avatar_female_40);
+                else if(genre[position].equals("Homme"))
+                    avatar.setImageResource(R.drawable.avatar_male_40);
+
             }else if(age[position].equals("40 - 60 ans")){
                 ageString = getResources().getString(R.string.entre_40_60);
 
+                if(genre[position].equals("Femme"))
+                    avatar.setImageResource(R.drawable.avatar_female_40_60);
+                else if(genre[position].equals("Homme"))
+                    avatar.setImageResource(R.drawable.avatar_male_40_60);
+
             }else if(age[position].equals("+ 60 ans")) {
                 ageString = getResources().getString(R.string.plus_60);
+
+                if(genre[position].equals("Femme"))
+                    avatar.setImageResource(R.drawable.avatar_female_60);
+                else if(genre[position].equals("Homme"))
+                    avatar.setImageResource(R.drawable.avatar_male_60);
 
             }else{
                 ageString = "NULL";

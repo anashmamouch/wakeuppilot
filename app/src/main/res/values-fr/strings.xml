@@ -33,6 +33,7 @@
 
     <!--Toast strings -->
     <string name="toast_entrer_pseudonyme">"Vous devez entrer un pseudonyme"</string>
+    <string name="toast_depasser_pseudonyme">"Votre pseudonyme ne doit pas dépasser les 24 caractères!"</string>
 
     <!--Toolbar strings -->
     <string name="toolbar_bienvenue">BIENVENUE</string>
@@ -65,15 +66,18 @@
     </string-array>
 
 
-    <string name="moins_40"> Moins de 40 ans</string>
-    <string name="entre_40_60"> Entre 40 et 60 ans</string>
-    <string name="plus_60"> Plus de 60 ans</string>
+    <string name="moins_40"> - 40 ans</string>
+    <string name="entre_40_60">  40 - 60 ans</string>
+    <string name="plus_60"> + 60 ans</string>
 
 
     <string-array name="genre_array">
         <item>Homme</item>
         <item>Femme </item>
     </string-array>
+
+    <string name="male">Homme</string>
+    <string name="female">Femme</string>
 
     <string-array name="languages">
         <item>Select language</item>

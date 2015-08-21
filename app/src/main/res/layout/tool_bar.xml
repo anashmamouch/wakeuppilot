@@ -8,7 +8,7 @@
     android:elevation="4dp"
     android:title="@string/wake_up_pilot"
     android:textAlignment="center">
-
+<!--
     <ImageView
         android:id="@+id/toolbar_logo"
         android:layout_width="wrap_content"
@@ -16,7 +16,7 @@
         android:padding="10dp"
         android:scaleType="fitStart"
         android:src="@drawable/logo_white_32" />
-
+-->
     <TextView
         android:id="@+id/toolbar_title"
 

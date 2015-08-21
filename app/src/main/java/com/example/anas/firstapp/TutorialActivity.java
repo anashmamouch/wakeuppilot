@@ -44,18 +44,21 @@ public class TutorialActivity extends AppCompatActivity {
 
         lang = (String) getIntent().getSerializableExtra("LANG");
 
+        title.setText(R.string.toolbar_tutoriel);
+        toolbar.setNavigationIcon(R.drawable.back_white);
+        //Setting the toolbar as the ActionBar
+        setSupportActionBar(toolbar);
+        title.setText(R.string.toolbar_tutoriel);
+        getSupportActionBar().setTitle(" ");
+        getSupportActionBar().setLogo(R.drawable.logo_white_32);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
+
+
         //redballImage.setBackgroundResource(R.drawable.redball);
 
 
         user = (User) getIntent().getSerializableExtra("KEY");
 
-        title.setText(R.string.toolbar_tutoriel);
-
-
-        //Setting the toolbar as the ActionBar
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle(" ");
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         jaiCompris.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -109,6 +112,12 @@ public class TutorialActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            return true;
+        }
+
+        //Language selection
+        if (id == R.id.Language) {
+            startActivity(new Intent(getApplicationContext(), ChooseLang.class));
             return true;
         }
 

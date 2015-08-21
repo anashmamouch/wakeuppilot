@@ -137,9 +137,12 @@ public class HistoryResultsActivity extends AppCompatActivity {
         title.setText(R.string.toolbar_historique_resultats);
         usernameHistoryResults.setText(user.getUsername());
 
+        toolbar.setNavigationIcon(R.drawable.back_white);
         //Setting the toolbar as the ActionBar
         setSupportActionBar(toolbar);
+
         getSupportActionBar().setTitle(" ");
+        getSupportActionBar().setLogo(R.drawable.logo_white_32);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         retourProfile.setOnClickListener(new View.OnClickListener() {
@@ -149,6 +152,7 @@ public class HistoryResultsActivity extends AppCompatActivity {
                     //go to the new profile page
                     Intent intent = new Intent(getApplicationContext(), TestNewActivity.class);
                     intent.putExtra("KEY", user);
+                    intent.putExtra("LANG", lang);
                     setLocale(lang);
                     startActivity(intent);
                     finish();
@@ -157,6 +161,7 @@ public class HistoryResultsActivity extends AppCompatActivity {
                     //go to the new reference page
                     Intent intent = new Intent(getApplicationContext(), TestFirstActivity.class);
                     intent.putExtra("KEY", user);
+                    intent.putExtra("LANG", lang);
                     setLocale(lang);
                     startActivity(intent);
                     finish();
@@ -204,6 +209,13 @@ public class HistoryResultsActivity extends AppCompatActivity {
         if (id == R.id.action_settings) {
             return true;
         }
+
+        //Language selection
+        if (id == R.id.Language) {
+            startActivity(new Intent(getApplicationContext(), ChooseLang.class));
+            return true;
+        }
+
 
         return super.onOptionsItemSelected(item);
     }

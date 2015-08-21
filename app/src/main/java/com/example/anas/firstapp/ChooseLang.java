@@ -26,17 +26,12 @@ import java.util.Locale;
 
 public class ChooseLang extends AppCompatActivity{
 
-    private Toolbar toolbar;
-    private TextView title;
     private RadioGroup languages;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose_lang);
-        //Attaching the layout to the toolbar object
-        toolbar = (Toolbar) findViewById(R.id.tool_bar);
-        title = (TextView) findViewById(R.id.toolbar_title);
 
         languages = (RadioGroup) findViewById(R.id.radioGroup_languages);
         //uncheck all buttons before starting to chose a langauge
@@ -47,16 +42,16 @@ public class ChooseLang extends AppCompatActivity{
                 // find which radio button is selected
 
                 if(checkedId == R.id.radio_arabic) {
-
                     setLocale("ar");
+
                 } else if(checkedId == R.id.radio_french) {
+
                     setLocale("fr");
                 } else {
                     setLocale("en");
                 }
             }
         });
-
 
     }
 
