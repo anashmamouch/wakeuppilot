@@ -45,26 +45,21 @@ public class ReferenceActivity extends AppCompatActivity {
 
         title.setText(R.string.toolbar_niveau_reference);
 
-
-        toolbar.setNavigationIcon(R.drawable.back_white);
+        toolbar.setNavigationIcon(R.drawable.logo_white_32);
         //Setting the toolbar as the ActionBar
         setSupportActionBar(toolbar);
 
         getSupportActionBar().setTitle(" ");
-        getSupportActionBar().setLogo(R.drawable.logo_white_32);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-
 
         passerTest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //go to the test
-                Intent intent = new Intent(getApplicationContext(), GameActivity.class);
-                Log.d("BENZINO", "creating the intent");
+                //go to the tutorial
+                Intent intent = new Intent(getApplicationContext(), TutorialActivity.class);
                 intent.putExtra("KEY", user);
                 intent.putExtra("LANG", lang);
                 setLocale(lang);
-                Log.d("BENZINO", "starting the intent");
                 startActivity(intent);
                 finish();
             }

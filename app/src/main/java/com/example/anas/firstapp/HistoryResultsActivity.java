@@ -137,12 +137,11 @@ public class HistoryResultsActivity extends AppCompatActivity {
         title.setText(R.string.toolbar_historique_resultats);
         usernameHistoryResults.setText(user.getUsername());
 
-        toolbar.setNavigationIcon(R.drawable.back_white);
+        toolbar.setNavigationIcon(R.drawable.logo_white_32);
         //Setting the toolbar as the ActionBar
         setSupportActionBar(toolbar);
 
         getSupportActionBar().setTitle(" ");
-        getSupportActionBar().setLogo(R.drawable.logo_white_32);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         retourProfile.setOnClickListener(new View.OnClickListener() {

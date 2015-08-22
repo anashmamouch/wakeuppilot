@@ -41,15 +41,18 @@ public class WelcomeActivity extends AppCompatActivity {
         title = (TextView) findViewById(R.id.toolbar_title);
         createNewProfile = (Button) findViewById(R.id.nouveau_profile);
 
+        lang  = (String) getIntent().getSerializableExtra("LANG");
+
         title.setText(R.string.toolbar_bienvenue);
 
-        lang  = (String) getIntent().getSerializableExtra("LANG");
-        toolbar.setNavigationIcon(R.drawable.back_white);
+        toolbar.setNavigationIcon(R.drawable.logo_white_32);
+
         //Setting the toolbar as the ActionBar
         setSupportActionBar(toolbar);
 
         getSupportActionBar().setTitle(" ");
-        getSupportActionBar().setLogo(R.drawable.logo_white_32);
+
+        //getSupportActionBar().setLogo(R.drawable.logo_white_32);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         createNewProfile.setOnClickListener(new View.OnClickListener() {

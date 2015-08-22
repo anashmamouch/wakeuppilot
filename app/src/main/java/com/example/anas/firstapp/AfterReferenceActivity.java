@@ -38,7 +38,8 @@ public class AfterReferenceActivity extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
         Intent intent = new Intent(getApplicationContext(), ProfilesActivity.class);
-        //intent.putExtra("KEY", user);
+        intent.putExtra("LANG", lang);
+        setLocale(lang);
         startActivity(intent);
         finish();
     }
@@ -66,12 +67,11 @@ public class AfterReferenceActivity extends AppCompatActivity {
         title.setText(R.string.toolbar_niveau_reference);
 
 
-        toolbar.setNavigationIcon(R.drawable.back_white);
+        toolbar.setNavigationIcon(R.drawable.logo_white_32);
         //Setting the toolbar as the ActionBar
         setSupportActionBar(toolbar);
 
         getSupportActionBar().setTitle(" ");
-        getSupportActionBar().setLogo(R.drawable.logo_white_32);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         retourProfile.setOnClickListener(new View.OnClickListener() {

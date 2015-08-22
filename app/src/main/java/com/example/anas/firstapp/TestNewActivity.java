@@ -160,12 +160,13 @@ public class TestNewActivity extends AppCompatActivity{
 
         //test.setText(user.getUsername() + "\n" + user.getAge() + "\n" + user.getGenre());
         //Setting the toolbar as the ActionBar
-        toolbar.setNavigationIcon(R.drawable.back_white);
+        toolbar.setNavigationIcon(R.drawable.logo_white_32);
+        //toolbar.setNavigationIcon(R.drawable.back_white);
         //Setting the toolbar as the ActionBar
         setSupportActionBar(toolbar);
 
         getSupportActionBar().setTitle(" ");
-        getSupportActionBar().setLogo(R.drawable.logo_white_32);
+        //getSupportActionBar().setLogo(R.drawable.logo_white_32);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         passerTest.setOnClickListener(new View.OnClickListener() {

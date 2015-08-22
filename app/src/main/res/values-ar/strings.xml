@@ -11,7 +11,7 @@
     <string name="intro_niveau_reference"> " حدد مستواك المرجعي لضبط التطبيق \nالمستوى المرجعي يساعد على معرفة مدى يقظتكم"</string>
     <string name="duree_niveau_reference"> "مدة الإختبار 30  ثانية"</string>
     <string name="list_niveau_reference"> "&#8226; في وضعية إرتياح\n&#8226; إختر مكان هادئ \n&#8226; تفادي إجراء الإختبار بعد وجبة أكل\n"</string>
-    <string name="tutorial"> "Cliquez vite sur la balle rouge dès qu'elle apparait sur l'écran vous n'avez que 30 secondes."</string>
+    <string name="tutorial"> "إضغطوا سريعا على الكرة الحمراء حين ترونها في الشاشة  ليس لديكم إلا 30 ثانية."</string>
     <string name="intro_after_reference"> "لقد تم تسجيل مستواكم المرجعي بنجاح"</string>
     <string name="after_reference"> "يمكنكم الآن تقييم مدى استيقاظكم قبل القيادة"</string>
     <string name="taux_reussite">معدل النجاح</string>

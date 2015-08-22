@@ -25,7 +25,6 @@ public class TutorialActivity extends AppCompatActivity {
     private Toolbar toolbar;
     private TextView title;
     private Button jaiCompris;
-    private ImageView redballImage;
     private User user ;
 
     private String lang;
@@ -40,22 +39,19 @@ public class TutorialActivity extends AppCompatActivity {
         toolbar = (Toolbar) findViewById(R.id.tool_bar);
         title = (TextView) findViewById(R.id.toolbar_title);
         jaiCompris = (Button) findViewById(R.id.jai_compris_button);
-        redballImage = (ImageView)findViewById(R.id.tutorial_image);
+
 
         lang = (String) getIntent().getSerializableExtra("LANG");
 
         title.setText(R.string.toolbar_tutoriel);
-        toolbar.setNavigationIcon(R.drawable.back_white);
+        toolbar.setNavigationIcon(R.drawable.logo_white_32);
         //Setting the toolbar as the ActionBar
         setSupportActionBar(toolbar);
         title.setText(R.string.toolbar_tutoriel);
         getSupportActionBar().setTitle(" ");
-        getSupportActionBar().setLogo(R.drawable.logo_white_32);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
-
         //redballImage.setBackgroundResource(R.drawable.redball);
-
 
         user = (User) getIntent().getSerializableExtra("KEY");
 
@@ -65,11 +61,9 @@ public class TutorialActivity extends AppCompatActivity {
             public void onClick(View v) {
                 //go to the test
                 Intent intent = new Intent(getApplicationContext(), GameActivity.class);
-                Log.d("BENZINO", "creating the intent");
                 intent.putExtra("KEY", user);
                 intent.putExtra("LANG", lang);
                 setLocale(lang);
-                Log.d("BENZINO", "starting the intent");
                 startActivity(intent);
                 finish();
             }
