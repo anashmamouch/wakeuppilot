@@ -68,7 +68,9 @@ public class TestNewActivity extends AppCompatActivity{
 
         int total = tests.size();
 
-        scoreReference = tests.get((total - 1)).getBallTouched();
+        if(total !=0)
+            scoreReference = tests.get((total - 1)).getBallTouched();
+
         
         success(scoreReference, total);
 
@@ -92,8 +94,12 @@ public class TestNewActivity extends AppCompatActivity{
             genre = getResources().getString(R.string.female);
         }
 
-
-        title.setText(username + " | " + genre + " | " + age);
+        if(lang.equals("ar")){
+            title.setText(age + " | " + username);
+            Log.d("BENZINO", "LANGUE ARABE BBBBBBBBBBBBBBBBBB");
+        }else{
+            title.setText(username + " | " + age);
+        }
 
         /**Starting DecoView
          *

@@ -31,6 +31,12 @@
     <string name="jai_compris_button">"لقد فهمت"</string>
     <string name="retour_profile">الرجوع إلى البروفايل</string>
 
+    <string name="supprimer_profile">حذف البروفايل</string>
+    <string name="sure_supprimer_profile">هل تريدون حذف هذا البروفايل ؟</string>
+
+    <string name="oui">نعم</string>
+    <string name="non">لا</string>
+
     <!--Toast strings -->
     <string name="toast_entrer_pseudonyme">"المرجو تحديد إسمكم"</string>
     <string name="toast_depasser_pseudonyme">"المرجو أن لا تزيدوا عن 24 حرفا في الإسم"</string>

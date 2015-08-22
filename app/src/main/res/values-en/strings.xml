@@ -30,6 +30,12 @@
     <string name="jai_compris_button">"I understand"</string>
     <string name="retour_profile">Back to your profile</string>
 
+    <string name="supprimer_profile">Delete Profile</string>
+    <string name="sure_supprimer_profile">Are you sure you want to delete this profile?</string>
+
+    <string name="oui">Yes</string>
+    <string name="non">No</string>
+
     <!--Toast strings -->
     <string name="toast_entrer_pseudonyme">"Please enter a username"</string>
     <string name="toast_depasser_pseudonyme">"Your username should not be more than 24 characters"</string>

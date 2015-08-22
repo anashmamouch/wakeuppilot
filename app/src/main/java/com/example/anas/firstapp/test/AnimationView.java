@@ -24,6 +24,7 @@ import com.example.anas.firstapp.DatabaseHandler;
 import com.example.anas.firstapp.HistoryResultsActivity;
 import com.example.anas.firstapp.R;
 import com.example.anas.firstapp.Test;
+import com.example.anas.firstapp.TestFirstActivity;
 import com.example.anas.firstapp.TestNewActivity;
 import com.example.anas.firstapp.User;
 
@@ -341,6 +342,12 @@ public class AnimationView extends SurfaceView implements SurfaceHolder.Callback
     }
 
     public void alertDialog(final User user, final Context context, final String lang){
+
+        final DatabaseHandler db = new DatabaseHandler(context);
+        final List<Test>  tests = db.findTestByUser(user.getId());
+
+        String touchezBall = getResources().getString(R.string.dialog_touchez_balle);
+        String fois = getResources().getString(R.string.dialog_fois);
             /*
          * Alert Dialog
          * */
@@ -358,11 +365,7 @@ public class AnimationView extends SurfaceView implements SurfaceHolder.Callback
             //usernameEditText = (EditText) inputView.findViewById(R.id.inputEditText);
 
             //Create a database where to store the data
-            final DatabaseHandler db = new DatabaseHandler(context);
-            final List<Test>  tests = db.findTestByUser(user.getId());
 
-            String touchezBall = getResources().getString(R.string.dialog_touchez_balle);
-            String fois = getResources().getString(R.string.dialog_fois);
 
             final AlertDialog alert = new AlertDialog.Builder(context)
                     .setTitle(R.string.dialog_title)
@@ -457,15 +460,30 @@ public class AnimationView extends SurfaceView implements SurfaceHolder.Callback
                     })
                     .setNegativeButton(R.string.dialog_retourner_profile, new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int which) {
-                            // go back to the profile page
-                            Intent intent = new Intent(context, TestNewActivity.class);
-                            intent.putExtra("KEY", user);
-                            intent.putExtra("LANG", lang);
-                            setLocale(lang);
-                            context.startActivity(intent);
-                            //((Activity) context).finish();
-                            loop.interrupt();
-                            dialog.dismiss();
+
+                            if(tests.isEmpty()){
+                                // go back to the profile page
+                                Intent intent = new Intent(context, TestFirstActivity.class);
+                                intent.putExtra("KEY", user);
+                                intent.putExtra("LANG", lang);
+                                setLocale(lang);
+                                context.startActivity(intent);
+                                //((Activity) context).finish();
+                                loop.interrupt();
+                                dialog.dismiss();
+                            }else{
+                                // go back to the profile page
+                                Intent intent = new Intent(context, TestNewActivity.class);
+                                intent.putExtra("KEY", user);
+                                intent.putExtra("LANG", lang);
+                                setLocale(lang);
+                                context.startActivity(intent);
+                                //((Activity) context).finish();
+                                loop.interrupt();
+                                dialog.dismiss();
+
+                            }
+
                         }
                     })
                     .setIcon(android.R.drawable.ic_dialog_alert)

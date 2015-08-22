@@ -34,13 +34,6 @@
     </LinearLayout>
 
     <ImageView
-        android:id="@+id/edit_profile"
-        android:layout_width="wrap_content"
-        android:layout_height="72dp"
-        android:paddingRight="8dp"
-        android:src="@drawable/edit" />
-
-    <ImageView
         android:id="@+id/delete_profile"
         android:layout_width="wrap_content"
         android:layout_height="72dp"

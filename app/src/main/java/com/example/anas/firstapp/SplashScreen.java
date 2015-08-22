@@ -3,14 +3,23 @@ package com.example.anas.firstapp;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import java.io.BufferedInputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 
 
 /**
@@ -28,6 +37,7 @@ public class SplashScreen extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_splash);
+
 
             splashImg = (ImageView) findViewById(R.id.splash_image);
             //splashText = (TextView) findViewById(R.id.splash_text);
@@ -53,4 +63,6 @@ public class SplashScreen extends Activity {
                 }
             }, SPLASH_TIME_OUT);
     }
+
+
 }

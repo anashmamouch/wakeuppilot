@@ -50,8 +50,8 @@ public class GameActivity extends Activity{
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-        soundTouched= MediaPlayer.create(getApplicationContext(), R.raw.coin);
-        soundMissed = MediaPlayer.create(getApplicationContext(), R.raw.stomp);
+        soundTouched= new MediaPlayer().create(GameActivity.this, R.raw.coin);
+        soundMissed = new MediaPlayer().create(GameActivity.this, R.raw.stomp);
 
         lang = (String) getIntent().getSerializableExtra("LANG");
 

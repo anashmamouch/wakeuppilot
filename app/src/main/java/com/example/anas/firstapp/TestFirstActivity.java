@@ -67,11 +67,12 @@ public class TestFirstActivity extends AppCompatActivity {
             genre = getResources().getString(R.string.female);
         }
 
+        if(lang.equals("ar")){
+            title.setText(age + " | " + username);
+        }else {
+            title.setText(username + " | " + age);
 
-        title.setText(username + " | " + genre + " | " + age);
-
-
-        //test.setText(user.getUsername()+"\n"+user.getAge()+"\n"+user.getGenre());
+        }
         //Setting the toolbar as the ActionBar
         toolbar.setNavigationIcon(R.drawable.back_white);
         //Setting the toolbar as the ActionBar

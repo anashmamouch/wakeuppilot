@@ -31,6 +31,12 @@
     <string name="jai_compris_button">"J'ai compris"</string>
     <string name="retour_profile">Retour au profile</string>
 
+    <string name="supprimer_profile">Supprimer profile</string>
+    <string name="sure_supprimer_profile">Etes vous sure de supprimer ce profile</string>
+
+    <string name="oui">Oui</string>
+    <string name="non">Non</string>
+
     <!--Toast strings -->
     <string name="toast_entrer_pseudonyme">"Vous devez entrer un pseudonyme"</string>
     <string name="toast_depasser_pseudonyme">"Votre pseudonyme ne doit pas dépasser les 24 caractères!"</string>

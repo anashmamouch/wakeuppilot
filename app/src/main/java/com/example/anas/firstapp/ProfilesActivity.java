@@ -227,7 +227,7 @@ public class ProfilesActivity extends AppCompatActivity {
             ImageView avatar = (ImageView) row.findViewById(R.id.avatar);
 
             ImageView delete = (ImageView) row.findViewById(R.id.delete_profile);
-            ImageView edit = (ImageView) row.findViewById(R.id.edit_profile);
+            //ImageView edit = (ImageView) row.findViewById(R.id.edit_profile);
 
             String ageString;
             final String usernameString = username[position];
@@ -238,24 +238,23 @@ public class ProfilesActivity extends AppCompatActivity {
             delete.setOnClickListener(new View.OnClickListener() {
                @Override
                public void onClick(View v) {
-                   Toast.makeText(getApplicationContext(), "DELETE BUTTON", Toast.LENGTH_SHORT).show();
 
                    final AlertDialog alert = new AlertDialog.Builder(ProfilesActivity.this)
-                           .setTitle("Supprimer profile")
-                           .setMessage("Etes vous sure de supprimer ce profile")
-                           .setPositiveButton("NON", new DialogInterface.OnClickListener() {
+                           .setTitle(R.string.supprimer_profile)
+                           .setMessage(R.string.sure_supprimer_profile)
+                           .setPositiveButton(R.string.non, new DialogInterface.OnClickListener() {
                                public void onClick(DialogInterface dialog, int which) {
                                    // redo the test
-
                                    dialog.dismiss();
                                }
                            })
-                           .setNegativeButton("OUI", new DialogInterface.OnClickListener() {
+                           .setNegativeButton(R.string.oui, new DialogInterface.OnClickListener() {
                                public void onClick(DialogInterface dialog, int which) {
-
                                    dbHandler.deleteUser(dbHandler.findUserByName(usernameString));
 
                                    Intent intent = getIntent();
+                                   intent.putExtra("LANG", lang);
+                                   setLocale(lang);
                                    finish();
                                    startActivity(intent);
                                    dialog.dismiss();
@@ -268,12 +267,16 @@ public class ProfilesActivity extends AppCompatActivity {
                }
            });
 
-            edit.setOnClickListener(new View.OnClickListener() {
+            /**
+             *
+             edit.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Toast.makeText(getApplicationContext(), "EDIT BUTTON", Toast.LENGTH_SHORT).show();
                 }
             });
+
+             **/
 
 
             if (age[position].equals("- 40 ans")) {
