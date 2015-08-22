@@ -304,6 +304,7 @@ public class ProfilesActivity extends AppCompatActivity {
 
             }else{
                 ageString = "NULL";
+                avatar.setImageResource(R.drawable.avatar_unknown);
             }
 
             ageTextView.setText(ageString);
