@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.Resources;
+import android.media.Image;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
@@ -15,6 +16,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.Locale;
@@ -25,6 +27,8 @@ public class WelcomeActivity extends AppCompatActivity {
     private Toolbar toolbar;
     private TextView title;
     private Button createNewProfile;
+    private ImageView welcomeLogo;
+
 
 
     private String lang;
@@ -40,9 +44,19 @@ public class WelcomeActivity extends AppCompatActivity {
         toolbar = (Toolbar) findViewById(R.id.tool_bar);
         title = (TextView) findViewById(R.id.toolbar_title);
         createNewProfile = (Button) findViewById(R.id.nouveau_profile);
+        welcomeLogo = (ImageView) findViewById(R.id.logo_welcome);
 
         lang  = (String) getIntent().getSerializableExtra("LANG");
 
+        if(lang.equals("ar")){
+            welcomeLogo.setImageResource(R.drawable.logo_teal_marhaba);
+        }
+        else if(lang.equals("fr")){
+            welcomeLogo.setImageResource(R.drawable.logo_teal_bienvenue);
+        }
+        else if(lang.equals("en")){
+            welcomeLogo.setImageResource(R.drawable.logo_teal_welcome);
+        }
         title.setText(R.string.toolbar_bienvenue);
 
         toolbar.setNavigationIcon(R.drawable.logo_white_32);

@@ -43,12 +43,15 @@ public class GameActivity extends Activity{
     private Thread thread;
 
     /*TODO OnBackPressed */
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
         soundTouched= new MediaPlayer().create(GameActivity.this, R.raw.coin);
         soundMissed = new MediaPlayer().create(GameActivity.this, R.raw.stomp);
@@ -70,7 +73,6 @@ public class GameActivity extends Activity{
         //view = new AnimationView(getApplicationContext());
 
         user = (User) getIntent().getSerializableExtra("KEY");
-
 
         thread = new Thread() {
 
@@ -193,10 +195,8 @@ public class GameActivity extends Activity{
 
     @Override
     public void onBackPressed() {
+
         super.onBackPressed();
-        thread.interrupt();
-        view.surfaceDestroyed(view.getHolder());
-        finish();
 
     }
     /*TODO FIX BUG WHEN CHANGING ORIENTATION BALL CROSSES THE EDGES */

@@ -86,6 +86,7 @@ public class AnimationView extends SurfaceView implements SurfaceHolder.Callback
     public AnimationView(Context context) {
         super(context);
         getHolder().addCallback(this);
+        getHolder().setKeepScreenOn(true);
 
         circleRadius = 30;
         circlePaint = new Paint();

@@ -62,7 +62,7 @@
 
     <string name="first_time"> "This is the first time that you start the app,\nyou can start establishing your reference level"</string>
     <string name="description_welcome">
-        "This application allows you to test your level of awakening\nbefore taking the steering wheel. You should before hand define\n your reference level that corresponds to your\noptimum level of awakening by taking a first test."
+        "This application allows you to test your level of awakening before taking the steering wheel. You should before hand define your reference level that corresponds to your optimum level of awakening by taking a first test."
     </string>
 
     <string-array name="age_array">

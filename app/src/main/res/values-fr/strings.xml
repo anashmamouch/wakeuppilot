@@ -62,7 +62,7 @@
 
     <string name="first_time"> "C'est la première fois que vous lancez l'application,\nvous devez établir votre niveau de référence:"</string>
     <string name="description_welcome">
-        "Cette application vous permet de tester votre niveau d'éveil\navant de prendre le volant. Pour cela, vous devez auparavant\ndéfinir votre niveau de référence qui correspond à votre\nniveau d'éveil optimal dans le cadre d'un premier test."
+        "Cette application vous permet de tester votre niveau d'éveil avant de prendre le volant. Pour cela, vous devez auparavant définir votre niveau de référence qui correspond à votre niveau d'éveil optimal dans le cadre d'un premier test."
     </string>
 
     <string-array name="age_array">
