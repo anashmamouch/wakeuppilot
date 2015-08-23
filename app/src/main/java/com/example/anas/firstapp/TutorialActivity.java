@@ -112,6 +112,7 @@ public class TutorialActivity extends AppCompatActivity {
         //Language selection
         if (id == R.id.Language) {
             startActivity(new Intent(getApplicationContext(), ChooseLang.class));
+            finish();
             return true;
         }
 
