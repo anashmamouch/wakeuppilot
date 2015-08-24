@@ -422,11 +422,20 @@ public class MapActivity extends AppCompatActivity implements LocationListener{
 
         //Language selection
         if (id == R.id.Language) {
-
             startActivity(new Intent(getApplicationContext(), ChooseLang.class));
             finish();
             return true;
         }
+
+        //Map Activity selection
+        if (id == R.id.action_map) {
+            Intent intent = new Intent(getApplicationContext(), MapActivity.class);
+            intent.putExtra("LANG", lang);
+            startActivity(intent);
+            //finish();
+            return true;
+        }
+
 
         return super.onOptionsItemSelected(item);
     }

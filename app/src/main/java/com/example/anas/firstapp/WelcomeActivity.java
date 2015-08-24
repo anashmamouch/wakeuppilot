@@ -123,7 +123,7 @@ public class WelcomeActivity extends AppCompatActivity {
             return true;
         }
 
-        //Language selection
+        //Map Activity selection
         if (id == R.id.action_map) {
             Intent intent = new Intent(getApplicationContext(), MapActivity.class);
             intent.putExtra("LANG", lang);

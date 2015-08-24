@@ -191,6 +191,15 @@ public class NewProfileActivity extends AppCompatActivity {
             return true;
         }
 
+        //Map Activity selection
+        if (id == R.id.action_map) {
+            Intent intent = new Intent(getApplicationContext(), MapActivity.class);
+            intent.putExtra("LANG", lang);
+            startActivity(intent);
+            //finish();
+            return true;
+        }
+
 
         return super.onOptionsItemSelected(item);
     }
