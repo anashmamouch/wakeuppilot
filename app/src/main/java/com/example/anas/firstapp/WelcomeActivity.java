@@ -29,16 +29,12 @@ public class WelcomeActivity extends AppCompatActivity {
     private Button createNewProfile;
     private ImageView welcomeLogo;
 
-
-
     private String lang;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
-
 
         //Attaching the layout to the toolbar object
         toolbar = (Toolbar) findViewById(R.id.tool_bar);
@@ -101,8 +97,6 @@ public class WelcomeActivity extends AppCompatActivity {
 
     }
 
-
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -126,6 +120,15 @@ public class WelcomeActivity extends AppCompatActivity {
         if (id == R.id.Language) {
             startActivity(new Intent(getApplicationContext(), ChooseLang.class));
             finish();
+            return true;
+        }
+
+        //Language selection
+        if (id == R.id.action_map) {
+            Intent intent = new Intent(getApplicationContext(), MapActivity.class);
+            intent.putExtra("LANG", lang);
+            startActivity(intent);
+            //finish();
             return true;
         }
 

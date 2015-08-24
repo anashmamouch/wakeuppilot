@@ -30,6 +30,7 @@
     <string name="pour_passer_test">Pour passer ce test vous devez etre:</string>
     <string name="jai_compris_button">"J'ai compris"</string>
     <string name="retour_profile">Retour au profile</string>
+    <string name="carte">Carte</string>
 
     <string name="supprimer_profile">Supprimer profile</string>
     <string name="sure_supprimer_profile">Etes vous sure de supprimer ce profile</string>
@@ -43,6 +44,7 @@
 
     <!--Toolbar strings -->
     <string name="toolbar_bienvenue">BIENVENUE</string>
+    <string name="toolbar_carte">CARTE</string>
     <string name="toolbar_tutoriel">TUTORIEL</string>
     <string name="toolbar_liste_profiles">PROFILES</string>
     <string name="toolbar_nouveau_profile">NOUVEAU PROFILE</string>

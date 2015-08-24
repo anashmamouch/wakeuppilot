@@ -31,6 +31,7 @@
     <string name="jai_compris_button">"لقد فهمت"</string>
     <string name="retour_profile">الرجوع إلى البروفايل</string>
 
+
     <string name="supprimer_profile">حذف البروفايل</string>
     <string name="sure_supprimer_profile">هل تريدون حذف هذا البروفايل ؟</string>
 
@@ -43,6 +44,7 @@
 
     <!--Toolbar strings -->
     <string name="toolbar_bienvenue">مرحبا</string>
+    <string name="toolbar_carte">الخريطة</string>
     <string name="toolbar_tutoriel">كيف يتم الإختبار</string>
     <string name="toolbar_liste_profiles">قائمة البروفايلات</string>
     <string name="toolbar_nouveau_profile">بروفايل جديد</string>

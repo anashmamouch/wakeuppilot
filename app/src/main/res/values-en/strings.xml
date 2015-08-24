@@ -29,6 +29,7 @@
     <string name="pour_passer_test">To take the test make sure you are:</string>
     <string name="jai_compris_button">"I understand"</string>
     <string name="retour_profile">Back to your profile</string>
+    <string name="carte">Map</string>
 
     <string name="supprimer_profile">Delete Profile</string>
     <string name="sure_supprimer_profile">Are you sure you want to delete this profile?</string>
@@ -42,6 +43,7 @@
 
     <!--Toolbar strings -->
     <string name="toolbar_bienvenue">WELCOME</string>
+    <string name="toolbar_carte">MAP</string>
     <string name="toolbar_tutoriel">TUTORIAL</string>
     <string name="toolbar_liste_profiles">PROFILES</string>
     <string name="toolbar_nouveau_profile">NEW PROFILE</string>
