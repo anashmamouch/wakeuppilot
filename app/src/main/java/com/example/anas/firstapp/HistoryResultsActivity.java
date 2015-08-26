@@ -225,6 +225,17 @@ public class HistoryResultsActivity extends AppCompatActivity {
             return true;
         }
 
+
+        //Advice Activity selection
+        if (id == R.id.action_advice) {
+            Intent intent = new Intent(getApplicationContext(), AdvicesActivity.class);
+            intent.putExtra("LANG", lang);
+            startActivity(intent);
+            //finish();
+            return true;
+        }
+
+
         return super.onOptionsItemSelected(item);
     }
 

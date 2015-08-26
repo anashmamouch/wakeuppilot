@@ -52,6 +52,7 @@
     <string name="toolbar_nouveau_profile">NOUVEAU PROFILE</string>
     <string name="toolbar_historique_resultats">HISTORIQUE DES RESULTATS</string>
     <string name="toolbar_niveau_reference">NIVEAU DE REFERENCE</string>
+    <string name="toolbar_conseils">CONSEILS</string>
 
     <!--Alert Dialog strings-->
     <string name="dialog_title">Temps écoulé</string>

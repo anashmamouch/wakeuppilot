@@ -50,6 +50,7 @@
     <string name="toolbar_nouveau_profile">بروفايل جديد</string>
     <string name="toolbar_historique_resultats">قائمة نتائجكم</string>
     <string name="toolbar_niveau_reference">المستوى المرجعي</string>
+    <string name="toolbar_conseils">نصائح</string>
 
     <!--Alert Dialog strings-->
     <string name="dialog_title">إنتهى الوقت</string>

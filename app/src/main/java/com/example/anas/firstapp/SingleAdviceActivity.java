@@ -1,17 +1,10 @@
 package com.example.anas.firstapp;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.res.Configuration;
-import android.content.res.Resources;
-import android.media.Image;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -22,60 +15,60 @@ import android.widget.TextView;
 import java.util.Locale;
 
 
-public class WelcomeActivity extends AppCompatActivity {
+public class SingleAdviceActivity extends AppCompatActivity {
 
     private Toolbar toolbar;
-    private TextView title;
-    private Button createNewProfile;
-    private ImageView welcomeLogo;
+    private TextView title_toolbar;
 
     private String lang;
+
+    /*JSON Node names*/
+    public static String TAG_TITLE = "title";
+    public static String TAG_BODY = "body";
+    public static String TAG_DATE = "created_at";
+
+    private String title;
+    private String body;
+    private String date;
+
+    private TextView titleTextView;
+    private TextView bodyTextView;
+    private TextView dateTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_welcome);
+        setContentView(R.layout.activity_single_advice);
 
         //Attaching the layout to the toolbar object
         toolbar = (Toolbar) findViewById(R.id.tool_bar);
-        title = (TextView) findViewById(R.id.toolbar_title);
-        createNewProfile = (Button) findViewById(R.id.nouveau_profile);
-        welcomeLogo = (ImageView) findViewById(R.id.logo_welcome);
+        title_toolbar = (TextView) findViewById(R.id.toolbar_title);
 
         lang  = (String) getIntent().getSerializableExtra("LANG");
 
-        if(lang.equals("ar")){
-            welcomeLogo.setImageResource(R.drawable.logo_teal_marhaba);
-        }
-        else if(lang.equals("fr")){
-            welcomeLogo.setImageResource(R.drawable.logo_teal_bienvenue);
-        }
-        else if(lang.equals("en")){
-            welcomeLogo.setImageResource(R.drawable.logo_teal_welcome);
-        }
-        title.setText(R.string.toolbar_bienvenue);
+
+        title_toolbar.setText(R.string.toolbar_conseils);
 
         toolbar.setNavigationIcon(R.drawable.logo_white_32);
 
         //Setting the toolbar as the ActionBar
         setSupportActionBar(toolbar);
-
         getSupportActionBar().setTitle(" ");
 
         //getSupportActionBar().setLogo(R.drawable.logo_white_32);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
-        createNewProfile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //go to the new profile page
-                Intent intent = new Intent(getApplicationContext(), NewProfileActivity.class);
-                intent.putExtra("LANG", lang);
-                setLocale(lang);
-                startActivity(intent);
-                finish();
-            }
-        });
+        title = (String) getIntent().getSerializableExtra(TAG_TITLE);
+        body = (String) getIntent().getSerializableExtra(TAG_BODY);
+        date = (String) getIntent().getSerializableExtra(TAG_DATE);
+
+        titleTextView = (TextView) findViewById(R.id.title_label);
+        bodyTextView = (TextView) findViewById(R.id.body_label);
+        dateTextView = (TextView) findViewById(R.id.date_label);
+
+        titleTextView.setText(title);
+        bodyTextView.setText(body);
+        dateTextView.setText(date);
 
     }
 
@@ -132,6 +125,7 @@ public class WelcomeActivity extends AppCompatActivity {
             return true;
         }
 
+
         //Advice Activity selection
         if (id == R.id.action_advice) {
             Intent intent = new Intent(getApplicationContext(), AdvicesActivity.class);
@@ -140,6 +134,7 @@ public class WelcomeActivity extends AppCompatActivity {
             //finish();
             return true;
         }
+
 
         return super.onOptionsItemSelected(item);
     }

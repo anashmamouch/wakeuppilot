@@ -148,6 +148,20 @@
             android:label="@string/app_name" >
         </activity>
 
+        <!-- Advices activity -->
+        <activity
+            android:name=".AdvicesActivity"
+            android:configChanges="locale|orientation|screenSize"
+            android:label="@string/app_name" >
+        </activity>
+
+        <!-- Single Advice activity -->
+        <activity
+            android:name=".SingleAdviceActivity"
+            android:configChanges="locale|orientation|screenSize"
+            android:label="@string/app_name" >
+        </activity>
+
     </application>
 
 </manifest>

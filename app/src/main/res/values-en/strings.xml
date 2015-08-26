@@ -49,6 +49,7 @@
     <string name="toolbar_nouveau_profile">NEW PROFILE</string>
     <string name="toolbar_historique_resultats">HISTORY OF RESULTS</string>
     <string name="toolbar_niveau_reference">REFERENCE LEVEL</string>
+    <string name="toolbar_conseils">ADVICES</string>
 
     <!--Alert Dialog strings-->
     <string name="dialog_title">"Time's up"</string>
