@@ -178,8 +178,6 @@ public class TestFirstActivity extends AppCompatActivity {
             return true;
         }
 
-
-
         return super.onOptionsItemSelected(item);
     }
 

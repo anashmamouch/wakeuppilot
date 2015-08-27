@@ -17,6 +17,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -37,6 +38,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.List;
 import java.util.Locale;
 
 
@@ -113,6 +115,27 @@ public class MapActivity extends AppCompatActivity implements LocationListener{
         drinkIcon = R.drawable.marker_teal;
         otherIcon = R.drawable.marker_orange;
 
+        //find out if we already have it
+        if(map==null){
+            //get the map
+            map = ((SupportMapFragment)getSupportFragmentManager().findFragmentById(R.id.map)).getMap();
+            //check in case map/ Google Play services not available
+            if(map!=null){
+                //ok - proceed
+                //map.setMapType(GoogleMap.MAP_TYPE_HYBRID);
+                //create marker array
+                placeMarkers = new Marker[MAX_PLACES];
+
+                map.setMyLocationEnabled(true);
+
+                locationManager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
+                locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 30000, 100, this);
+                //update location
+                updatePlaces();
+            }
+
+        }
+        /**
         //get the map
         map = ((SupportMapFragment)getSupportFragmentManager().findFragmentById(R.id.map)).getMap();
 
@@ -124,45 +147,58 @@ public class MapActivity extends AppCompatActivity implements LocationListener{
         locationManager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
         locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 30000, 100, this);
         updatePlaces();
+         **/
 
     }
     //method to update user location
     private void updatePlaces(){
+        Log.d("BENZINO MAP", "MAP LOCATION MANAGER : " + locationManager.toString());
+        //Location lastLocation = getLastKnownLocation();
+        Location lastLocation = locationManager.getLastKnownLocation(LocationManager.PASSIVE_PROVIDER);
+        //Log.d("BENZINO MAP", "MAP LAST LOCATION : " + lastLocation.toString());
 
-        Location lastLocation = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
-        //save the current latitude and longitude
-        double lat  = lastLocation.getLatitude();
-        double lng = lastLocation.getLongitude();
+        if(lastLocation == null){
 
-        //wrap up in a LatLng object to put it on the marker
-        LatLng lastLatLng  = new LatLng(lat, lng);
+            Log.d("BENZINO MAP", "lastLocation is null check the code");
+            Toast.makeText(MapActivity.this, "Please turn on your GPS", Toast.LENGTH_SHORT).show();
 
-        //remove any existing markers
-        if( userMarker !=null )
-            userMarker.remove();
+        }else{
+            //save the current latitude and longitude
+            double lat  = lastLocation.getLatitude();
+            double lng = lastLocation.getLongitude();
 
-        //create and set markers properties
-        userMarker = map.addMarker(new MarkerOptions()
-                .position(lastLatLng)
-                .title("You are here")
-                .icon(BitmapDescriptorFactory.fromResource(userIcon))
-                .snippet("Your last recorded position"));
+            //wrap up in a LatLng object to put it on the marker
+            LatLng lastLatLng  = new LatLng(lat, lng);
 
-        //animate the camera to zoom to the users position
-        map.animateCamera(CameraUpdateFactory.newLatLngZoom(lastLatLng, 9.0F), 1000, null);
+            //remove any existing markers
+            if( userMarker !=null )
+                userMarker.remove();
 
-        //build places search query string
-        String placesSearchStr = "https://maps.googleapis.com/maps/api/place/nearbysearch/" +
-                "json?location="+lat+","+lng+
-                "&radius=40000&sensor=true" +
-                "&types=gas_station"+
-                "&key="+BROWSER_KEY;
+            //create and set markers properties
+            userMarker = map.addMarker(new MarkerOptions()
+                    .position(lastLatLng)
+                    .title("You are here")
+                    .icon(BitmapDescriptorFactory.fromResource(userIcon))
+                    .snippet("Your last recorded position"));
 
-        //execute query
-        new GetPlaces().execute(placesSearchStr);
+            //animate the camera to zoom to the users position
+            map.animateCamera(CameraUpdateFactory.newLatLngZoom(lastLatLng, 9.0F), 1000, null);
+
+            //build places search query string
+            String placesSearchStr = "https://maps.googleapis.com/maps/api/place/nearbysearch/" +
+                    "json?location="+lat+","+lng+
+                    "&radius=40000&sensor=true" +
+                    "&types=gas_station"+
+                    "&key="+BROWSER_KEY;
+
+            //execute query
+            new GetPlaces().execute(placesSearchStr);
+
+        }
+
 
     }
-
+    
     //Async task classes to fetch the places
     private class GetPlaces extends AsyncTask<String, Void, String> {
 

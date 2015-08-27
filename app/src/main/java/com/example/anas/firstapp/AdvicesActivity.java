@@ -64,9 +64,6 @@ public class AdvicesActivity extends AppCompatActivity {
     private static String TAG_BODY = "body";
     private static String TAG_DATE = "created_at";
 
-    /*HashMap for ListView*/
-    private ArrayList<HashMap<String, String>> logsList;
-
     /*ListView where we are going to display the data*/
     private ListView listView;
 
@@ -267,10 +264,18 @@ public class AdvicesActivity extends AppCompatActivity {
                     }
 
                 }catch(JSONException e){
+                    titles = new String[1];
+                    bodys = new String [1];
+                    dates = new String[1];
+
+                    titles[0] = "Pas de données !";
+                    bodys[0] = "Verifier que vous etes connecte a internet";
+                    dates[0] = " ";
                     Log.d("BENZINO", "Error Logs JSON : ", e);
                 }
             }else{
-                /*Hashmap for a single log*/
+
+
 
                 Log.e("BENZINO", "Couldn't get any data from the server!");
             }
@@ -407,7 +412,7 @@ public class AdvicesActivity extends AppCompatActivity {
             //finish();
             return true;
         }
-        
+
         //Advice Activity selection
         if (id == R.id.action_advice) {
             Intent intent = new Intent(getApplicationContext(), AdvicesActivity.class);

@@ -88,6 +88,10 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     //CRUD Operations
 
+    /**
+     * Begin CRUD for users
+     * */
+
     //Create new user
     public void createUser(User user){
         SQLiteDatabase db = this.getWritableDatabase();
@@ -209,6 +213,14 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         //return count
         return cursor.getCount();
     }
+
+    /**
+     * End CRUD for users
+     * */
+
+    /**
+     * Begin CRUD for tests
+     * */
 
     //Create a test according to a user
     public void createTest(Test test){
@@ -347,6 +359,10 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         //return count
         return cursor.getCount();
     }
+
+    /**
+     * End CRUD for tests
+     * */
 
     //Created_at value current datetime
     private String getDateTime() {
