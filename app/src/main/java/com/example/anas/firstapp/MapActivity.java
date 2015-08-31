@@ -198,7 +198,7 @@ public class MapActivity extends AppCompatActivity implements LocationListener{
 
 
     }
-    
+
     //Async task classes to fetch the places
     private class GetPlaces extends AsyncTask<String, Void, String> {
 

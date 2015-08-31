@@ -10,22 +10,31 @@ public class User implements Serializable{
     private String username;
     private String age;
     private String genre;
+    private boolean sent;
     private String createdAt;
 
     public User() {
     }
 
-    public User(int id, String username, String age, String genre, String createdAt) {
+    public User(int id, String username, String age, String genre, boolean sent, String createdAt) {
         this.id = id;
         this.username = username;
         this.age = age;
         this.genre = genre;
+        this.sent = sent;
         this.createdAt = createdAt;
     }
 
     public User(String username, String age, String genre) {
         this.username = username;
         this.age = age;
+        this.genre = genre;
+    }
+
+    public User(String username, String age, boolean sent, String genre) {
+        this.username = username;
+        this.age = age;
+        this.sent = sent;
         this.genre = genre;
     }
 
@@ -61,6 +70,14 @@ public class User implements Serializable{
         this.genre = genre;
     }
 
+    public boolean isSent() {
+        return sent;
+    }
+
+    public void setSent(boolean sent) {
+        this.sent = sent;
+    }
+
     public String getCreatedAt(){return createdAt; }
 
     public void setCreatedAt(String createdAt) {
@@ -74,6 +91,7 @@ public class User implements Serializable{
                 ", username='" + username + '\'' +
                 ", age='" + age + '\'' +
                 ", genre='" + genre + '\'' +
+                ", sent= '" + sent + '\'' +
                 ", createdAt='" + createdAt + '\'' +
                 '}';
     }

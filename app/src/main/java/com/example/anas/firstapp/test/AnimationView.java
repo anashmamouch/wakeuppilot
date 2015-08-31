@@ -10,6 +10,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
+import android.os.AsyncTask;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Surface;
@@ -28,6 +29,16 @@ import com.example.anas.firstapp.TestFirstActivity;
 import com.example.anas.firstapp.TestNewActivity;
 import com.example.anas.firstapp.User;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.List;
 import java.util.Locale;
 import java.util.Random;
@@ -75,6 +86,32 @@ public class AnimationView extends SurfaceView implements SurfaceHolder.Callback
     private Loop loop;
 
     private EditText usernameEditText;
+
+
+
+    /*url to get the json data*/
+    private static String url = "http://wakeuppilot.herokuapp.com/games.json";
+
+    /*Logs JSON Array*/
+    private JSONObject data = null;
+
+    /*JSON Node names*/
+    /*Common JSON keys*/
+    private static String TAG_ID = "id";
+    private static String TAG_DATE = "created_at";
+    /*Game JSON keys*/
+    private static String TAG_BALL_TOUCHED = "ball_touched";
+    private static String TAG_TOTAL_TOUCHES = "total_touches";
+    private static String TAG_FIRST_TIME = "first_time";
+    private static String TAG_PLAYER_ID = "player_id";
+    private static String TAG_PLAYER_NAME = "player_name";
+    private static String TAG_PLAYER_AGE = "player_age";
+    private static String TAG_PLAYER_GENRE = "player_genre";
+    /*Player JSON keys*/
+    private static String TAG_USERNAME = "username";
+    private static String TAG_GENRE = "genre";
+    private static String TAG_AGE = "age";
+
 
     /**
      * Calls the super() method to give us our surfaceView to work with
@@ -380,6 +417,7 @@ public class AnimationView extends SurfaceView implements SurfaceHolder.Callback
                             vx = 2;
                             vy = 2;
                             dialog.dismiss();
+
                         }
                     })
                     .setNegativeButton(R.string.dialog_enregistrer_score, new DialogInterface.OnClickListener() {
@@ -393,10 +431,33 @@ public class AnimationView extends SurfaceView implements SurfaceHolder.Callback
                                 Log.d("Anas", "Score: " + touched);
                                 //Log.d("ANAS", "tests: "+tests.toString());
 
-                                if(tests.isEmpty()){
+
+                                //creating the json object to send the data
+                                data = new JSONObject();
+
+                                try {
+                                    data.put(TAG_PLAYER_NAME, user.getUsername());
+                                    data.put(TAG_PLAYER_AGE, user.getAge());
+                                    data.put(TAG_PLAYER_GENRE, user.getGenre());
+                                    data.put(TAG_TOTAL_TOUCHES, touch);
+                                    data.put(TAG_BALL_TOUCHED, touched);
+
+
+                                } catch (JSONException e) {
+                                    Log.d("BENZINO", "Error handling JSON Object", e);
+                                }
+
+
+
+                            if(tests.isEmpty()){
                                     /**TODO */
                                     db.createTest(new Test(touched, touch, true, user.getId()));
 
+                                    try{
+                                        data.put(TAG_FIRST_TIME, true );
+                                    }catch(JSONException e) {
+                                        Log.d("BENZINO", "Error handling JSON Object", e);
+                                    }
                                     List<Test> testsCreated = db.findTestByUser(user.getId());
 
                                     Log.d("ANAS", "INSIDE DIALOG: FIRST TIME" + testsCreated.get(0).getFirstTime());
@@ -408,6 +469,7 @@ public class AnimationView extends SurfaceView implements SurfaceHolder.Callback
                                     context.startActivity(intent);
                                     //((Activity) context).finish();
                                     //Interupting the Game Loop
+
                                     loop.interrupt();
                                     //Dismisses the dialog box
                                     dialog.dismiss();
@@ -415,7 +477,11 @@ public class AnimationView extends SurfaceView implements SurfaceHolder.Callback
                                 }else{
                                     /**TODO */
                                     db.createTest(new Test(touched, touch, false, user.getId()));
-
+                                        try{
+                                            data.put(TAG_FIRST_TIME, false );
+                                        }catch(JSONException e) {
+                                            Log.d("BENZINO", "Error handling JSON Object", e);
+                                        }
                                     //go to the list of best scores page
                                     Intent intent = new Intent(context, HistoryResultsActivity.class);
                                     intent.putExtra("KEY", user);
@@ -428,6 +494,9 @@ public class AnimationView extends SurfaceView implements SurfaceHolder.Callback
                                     //Dismisses the dialog box
                                     dialog.dismiss();
                                 }
+
+                            //sending the data to the url
+                            new SendData().execute(url);
 
 
                         }
@@ -516,6 +585,79 @@ public class AnimationView extends SurfaceView implements SurfaceHolder.Callback
                 // we will try it again and again...
             }
         }
-
     }
+        /*TODO TRACKING USERS CLASS*/
+        private class SendData extends AsyncTask<String, Void, String> {
+
+            /**
+             * Override this method to perform a computation on a background thread. The
+             * specified parameters are the parameters passed to {@link #execute}
+             * by the caller of this task.
+             * <p/>
+             * This method can call {@link #publishProgress} to publish updates
+             * on the UI thread.
+             *
+             * @param params The parameters of the task.
+             * @return A result, defined by the subclass of this task.
+             * @see #onPreExecute()
+             * @see #onPostExecute
+             * @see #publishProgress
+             */
+            @Override
+            protected String doInBackground(String... params) {
+
+                //process the Search parameter string
+                for(String sendUrl:params) {
+                    //try to fetch the data
+                    try {
+                        URL requestUrl = new URL(sendUrl);
+                        HttpURLConnection connection = (HttpURLConnection) requestUrl.openConnection();
+                        connection.setDoOutput(true);
+                        connection.setDoInput(true);
+                        connection.setRequestProperty("Content-Type", "application/json");
+                        connection.setRequestProperty("Accept", "application/json");
+                        connection.setRequestMethod("POST");
+
+                        //sending data & specifying the encoding utf-8
+                        OutputStream os = connection.getOutputStream();
+                        os.write(data.toString().getBytes("UTF-8"));
+                        os.close();
+                        //connection.connect();
+
+                        //display what returns the POST request
+
+                        StringBuilder sb = new StringBuilder();
+
+                        int responseCode = connection.getResponseCode();
+
+                        if (responseCode == HttpURLConnection.HTTP_OK) {
+                            BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream(), "utf-8"));
+                            String line = null;
+                            while ((line = br.readLine()) != null) {
+                                sb.append(line + "\n");
+                            }
+
+                            br.close();
+
+                            Log.d("BENZINO", "HTTP POST Response : " + sb.toString());
+
+                        } else {
+
+                            Log.d("BENZINO", "HTTP POST Response Message : " + connection.getResponseMessage());
+                        }
+
+                        Log.d("BENZINO", "HTTP Response Code: " + responseCode);
+
+                    } catch (MalformedURLException e) {
+                        Log.d("BENZINO", "Error processing URL", e);
+                    } catch (IOException e) {
+                        Log.d("BENZINO", "Error connecting to Host", e);
+                    }
+                }
+
+                return null;
+            }
+        }
+
+
 }

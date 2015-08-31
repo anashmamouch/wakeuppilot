@@ -18,7 +18,7 @@ import java.util.Locale;
 public class DatabaseHandler extends SQLiteOpenHelper {
 
     //Database Version
-    private static final int DATABASE_VERSION = 5;
+    private static final int DATABASE_VERSION = 6;
 
     //Database Name
     private static final String DATABASE_NAME = "wakeup";
@@ -38,6 +38,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private static final String KEY_USERNAME = "username";
     private static final String KEY_AGE = "age";
     private static final String KEY_GENRE = "genre";
+    private static final String KEY_SENT = "sent";
 
     //Tests table column names
     private static final String KEY_BALL_TOUCHED = "ball_touched";
@@ -57,6 +58,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 + KEY_USERNAME + " TEXT,"
                 + KEY_AGE + " TEXT, "
                 + KEY_GENRE + " TEXT, "
+                + KEY_SENT + " BOOLEAN, "
                 + KEY_CREATED_AT + " DATETIME" + ")";
 
         String CREATE_TESTS_TABLE = "CREATE TABLE " + TABLE_TESTS + "("
@@ -103,6 +105,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put(KEY_AGE, user.getAge());
         //User genre
         values.put(KEY_GENRE, user.getGenre());
+        //User sent
+        values.put(KEY_SENT, user.isSent());
         //User created_at
         values.put(KEY_CREATED_AT, getDateTime());
 
@@ -120,6 +124,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         values.put(KEY_USERNAME, user.getUsername());
         values.put(KEY_AGE, user.getAge());
         values.put(KEY_GENRE, user.getGenre());
+        values.put(KEY_SENT, user.isSent());
 
         return db.update(TABLE_USERS, values, KEY_ID + "=?",
                         new String[]{String.valueOf(user.getId())});
@@ -138,39 +143,52 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getWritableDatabase();
 
         Cursor cursor = db.query(TABLE_USERS,
-                                new String[]{KEY_ID, KEY_USERNAME, KEY_AGE, KEY_GENRE, KEY_CREATED_AT},
+                                new String[]{KEY_ID, KEY_USERNAME, KEY_AGE, KEY_GENRE,KEY_SENT, KEY_CREATED_AT},
                                 KEY_ID+"=?",
                                 new String[]{String.valueOf(id)},
                                 null, null, null, null );
         if(cursor !=null)
             cursor.moveToFirst();
 
-        User user = new User(Integer.parseInt(cursor.getString(0)),
-                            cursor.getString(1),
-                            cursor.getString(2),
-                            cursor.getString(3),
-                            cursor.getString(4));
+        User user = new User();
+
+        user.setId(Integer.parseInt(cursor.getString(0)));
+        user.setUsername(cursor.getString(1));
+        user.setAge(cursor.getString(2));
+        user.setGenre(cursor.getString(3));
+        if(cursor.getInt(4) == 1)
+            user.setSent(true);
+        else
+            user.setSent(false);
+        user.setCreatedAt(cursor.getString(5));
+
         cursor.close();
         return user;
     }
 
     //Find a user by username
-    public User findUserByName(String username ){
+    public User findUserByName(String username){
         SQLiteDatabase db = this.getWritableDatabase();
 
         Cursor cursor = db.query(TABLE_USERS,
-                new String[]{KEY_ID, KEY_USERNAME, KEY_AGE, KEY_GENRE, KEY_CREATED_AT},
+                new String[]{KEY_ID, KEY_USERNAME, KEY_AGE, KEY_GENRE,KEY_SENT, KEY_CREATED_AT},
                 KEY_USERNAME+"=?",
                 new String[]{String.valueOf(username)},
                 null, null, null, null );
         if(cursor !=null)
             cursor.moveToFirst();
 
-        User user = new User(Integer.parseInt(cursor.getString(0)),
-                cursor.getString(1),
-                cursor.getString(2),
-                cursor.getString(3),
-                cursor.getString(4));
+        User user = new User();
+
+        user.setId(Integer.parseInt(cursor.getString(0)));
+        user.setUsername(cursor.getString(1));
+        user.setAge(cursor.getString(2));
+        user.setGenre(cursor.getString(3));
+        if(cursor.getInt(4) == 1)
+            user.setSent(true);
+        else
+            user.setSent(false);
+        //user.setCreatedAt(cursor.getString(5));
 
         return user;
     }
@@ -192,7 +210,11 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 user.setUsername(cursor.getString(1));
                 user.setAge(cursor.getString(2));
                 user.setGenre(cursor.getString(3));
-                user.setCreatedAt(cursor.getString(4));
+                if(cursor.getInt(4) == 1)
+                    user.setSent(true);
+                else
+                    user.setSent(false);
+                user.setCreatedAt(cursor.getString(5));
 
                 //Adding user to the list
                 users.add(user);
