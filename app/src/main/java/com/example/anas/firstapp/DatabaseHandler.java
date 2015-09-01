@@ -32,13 +32,13 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     //Common column names
     private static final String KEY_ID = "id";
     private static final String KEY_CREATED_AT = "created_at";
-
+    private static final String KEY_SENT = "sent";
 
     //Users table column names
     private static final String KEY_USERNAME = "username";
     private static final String KEY_AGE = "age";
     private static final String KEY_GENRE = "genre";
-    private static final String KEY_SENT = "sent";
+
 
     //Tests table column names
     private static final String KEY_BALL_TOUCHED = "ball_touched";
@@ -86,7 +86,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         // Create tables again
         onCreate(db);
     }
-
 
     //CRUD Operations
 
@@ -199,7 +198,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
         List<User> users = new ArrayList<User>();
 
-        String query = "SELECT * FROM "+TABLE_USERS;
+        String query = "SELECT * FROM "+TABLE_USERS +" ORDER BY "+ KEY_CREATED_AT + " DESC ";
         Cursor cursor = db.rawQuery(query, null);
 
         //Looping through the table and add all the users

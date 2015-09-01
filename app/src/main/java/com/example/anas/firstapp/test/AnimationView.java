@@ -451,7 +451,7 @@ public class AnimationView extends SurfaceView implements SurfaceHolder.Callback
 
                             if(tests.isEmpty()){
                                     /**TODO */
-                                    db.createTest(new Test(touched, touch, true, user.getId()));
+                                    db.createTest(new Test(touched, touch, true, user.getId(), false));
 
                                     try{
                                         data.put(TAG_FIRST_TIME, true );
@@ -476,7 +476,7 @@ public class AnimationView extends SurfaceView implements SurfaceHolder.Callback
 
                                 }else{
                                     /**TODO */
-                                    db.createTest(new Test(touched, touch, false, user.getId()));
+                                    db.createTest(new Test(touched, touch, false, user.getId(), false));
                                         try{
                                             data.put(TAG_FIRST_TIME, false );
                                         }catch(JSONException e) {
@@ -617,6 +617,9 @@ public class AnimationView extends SurfaceView implements SurfaceHolder.Callback
                         connection.setRequestProperty("Content-Type", "application/json");
                         connection.setRequestProperty("Accept", "application/json");
                         connection.setRequestMethod("POST");
+                        connection.connect();
+
+
 
                         //sending data & specifying the encoding utf-8
                         OutputStream os = connection.getOutputStream();

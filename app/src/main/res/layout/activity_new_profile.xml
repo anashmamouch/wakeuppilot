@@ -21,8 +21,15 @@
         android:layout_marginLeft="32dp"
         android:layout_marginRight="32dp"
         android:layout_marginBottom="12dp"
+        android:singleLine="true"
+        android:lines="1"
+        android:maxLines="1"
         android:textSize="18dp"
-        android:hint="@string/pseudonyme"/>
+        android:hint="@string/pseudonyme">
+
+        <requestFocus />
+
+    </EditText>
 
     <RadioGroup
         android:id="@+id/radioGenre"

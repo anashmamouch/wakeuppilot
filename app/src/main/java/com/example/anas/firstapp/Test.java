@@ -12,6 +12,7 @@ public class Test implements Serializable {
     private int totalTouches;
     private boolean firstTime;
     private int userId;
+    private boolean sent;
     private String createdAt;
 
     public Test() {
@@ -31,7 +32,14 @@ public class Test implements Serializable {
         this.totalTouches = totalTouches;
         this.firstTime = firstTime;
         this.userId = userId;
-        this.createdAt = createdAt;
+    }
+
+    public Test(int ballTouched, int totalTouches, boolean firstTime, int userId, boolean sent) {
+        this.ballTouched = ballTouched;
+        this.totalTouches = totalTouches;
+        this.firstTime = firstTime;
+        this.userId = userId;
+        this.sent = sent;
     }
 
     public int getId() {
@@ -72,6 +80,14 @@ public class Test implements Serializable {
 
     public void setUserId(int userId) {
         this.userId = userId;
+    }
+
+    public boolean isSent() {
+        return sent;
+    }
+
+    public void setSent(boolean sent) {
+        this.sent = sent;
     }
 
     public String getCreatedAt() {

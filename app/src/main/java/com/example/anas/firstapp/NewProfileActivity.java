@@ -135,12 +135,13 @@ public class NewProfileActivity extends AppCompatActivity {
                 } else if (username.length() > 24) {
                     Toast.makeText(getApplicationContext(), R.string.toast_depasser_pseudonyme, Toast.LENGTH_LONG).show();
                 } else if (condition) {
-
+                    //create the user with the data selected
                     user = new User(username, age, false, genre);
 
-                    db.createUser(new User(username, age, false, genre));
+                    //persist the user in the database
+                    db.createUser(user);
 
-
+                    //send the data to the website wakeuppilot.herokuapp.com
                     new SendData().execute(url);
 
                     //go to the list of profiles page
@@ -158,6 +159,12 @@ public class NewProfileActivity extends AppCompatActivity {
         inscrit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                username = "";
+                //get all users
+                users = db.findAllUsers();
+                //send the data to the website wakeuppilot.herokuapp.com
+                new SendData().execute(url);
+
                 Intent intent = new Intent(getApplicationContext(), ProfilesActivity.class);
                 intent.putExtra("LANG", lang);
                 setLocale(lang);
@@ -241,24 +248,32 @@ public class NewProfileActivity extends AppCompatActivity {
                     connection.setRequestProperty("Content-Type", "application/json");
                     connection.setRequestProperty("Accept", "application/json");
                     connection.setRequestMethod("POST");
+                    connection.connect();
 
-                    //creating the main json object player
-                    player = new JSONObject();
-
-                    //creating the json object to send the data
-                    data = new JSONObject();
-
-                    try {
-                        data.put(TAG_USERNAME, username);
-                        data.put(TAG_AGE, age);
-                        data.put(TAG_GENRE, genre);
-
-                    } catch (JSONException e) {
-                        Log.d("BENZINO", "Error handling JSON Object", e);
-                    }
                     //creating the array
                     array = new JSONArray();
-                    array.put(data);
+
+
+                    if(username.length() != 0){
+                        //creating the json object to send the data
+                        data = new JSONObject();
+
+                        try {
+                            data.put(TAG_USERNAME, username);
+                            data.put(TAG_AGE, age);
+                            data.put(TAG_GENRE, genre);
+
+                        } catch (JSONException e) {
+                            Log.d("BENZINO", "Error handling JSON Object", e);
+                        }
+
+                        array.put(data);
+                        //when data is sent set sent to true
+                        user = db.findUserByName(username);
+                        user.setSent(true);
+                        //update user in the database
+                        db.updateUser(user);
+                    }
 
                     //Check if there is still users that are not registred
                     for(User u: users){
@@ -306,6 +321,8 @@ public class NewProfileActivity extends AppCompatActivity {
                     int responseCode = connection.getResponseCode();
 
                     if (responseCode == HttpURLConnection.HTTP_OK) {
+
+
                         BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream(), "utf-8"));
                         String line ;
                         while ((line = br.readLine()) != null) {
@@ -314,13 +331,8 @@ public class NewProfileActivity extends AppCompatActivity {
 
                         br.close();
 
-                        //when data is sent set sent to true
-                        user = db.findUserByName(username);
-                        user.setSent(true);
-                        //update user in the database
-                        db.updateUser(user);
-
                         Log.d("BENZINO", "HTTP POST Response : " + sb.toString());
+
 
                     } else {
 
