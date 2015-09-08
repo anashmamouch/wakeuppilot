@@ -58,17 +58,21 @@ public class GameActivity extends Activity{
 
         lang = (String) getIntent().getSerializableExtra("LANG");
 
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                view = new AnimationView(getApplicationContext());
-                setContentView(view);
-                Log.d("ANAS", "****************************************INSIDE THE RUNONUITHREAD VIEW");
+        /**
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    view = new AnimationView(getApplicationContext());
+                    setContentView(view);
+                    Log.d("ANAS", "****************************************INSIDE THE RUNONUITHREAD VIEW");
 
 
-            }
-        });
-
+                }
+            });
+        **/
+        view = new AnimationView(getApplicationContext());
+        setContentView(view);
+        Log.d("ANAS", "****************************************INSIDE THE RUNONUITHREAD VIEW");
 
         //view = new AnimationView(getApplicationContext());
 
