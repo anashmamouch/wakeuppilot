@@ -164,6 +164,13 @@
             android:label="@string/app_name" >
         </activity>
 
+        <!-- Credits Advice activity -->
+        <activity
+            android:name=".CreditsActivity"
+            android:configChanges="locale|orientation|screenSize"
+            android:label="@string/app_name" >
+        </activity>
+
     </application>
 
 </manifest>

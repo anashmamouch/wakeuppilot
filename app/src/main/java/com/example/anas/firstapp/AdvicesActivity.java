@@ -422,6 +422,15 @@ public class AdvicesActivity extends AppCompatActivity {
             return true;
         }
 
+        //Credits Activity selection
+        if (id == R.id.action_credits) {
+            Intent intent = new Intent(getApplicationContext(), CreditsActivity.class);
+            intent.putExtra("LANG", lang);
+            startActivity(intent);
+            //finish();
+            return true;
+        }
+
 
         return super.onOptionsItemSelected(item);
     }

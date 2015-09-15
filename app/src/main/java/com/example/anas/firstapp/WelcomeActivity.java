@@ -42,8 +42,6 @@ public class WelcomeActivity extends AppCompatActivity {
         createNewProfile = (Button) findViewById(R.id.nouveau_profile);
         welcomeLogo = (ImageView) findViewById(R.id.logo_welcome);
 
-
-
         lang  = (String) getIntent().getSerializableExtra("LANG");
 
         if(lang.equals("ar")){
@@ -137,6 +135,15 @@ public class WelcomeActivity extends AppCompatActivity {
         //Advice Activity selection
         if (id == R.id.action_advice) {
             Intent intent = new Intent(getApplicationContext(), AdvicesActivity.class);
+            intent.putExtra("LANG", lang);
+            startActivity(intent);
+            //finish();
+            return true;
+        }
+
+        //Credits Activity selection
+        if (id == R.id.action_credits) {
+            Intent intent = new Intent(getApplicationContext(), CreditsActivity.class);
             intent.putExtra("LANG", lang);
             startActivity(intent);
             //finish();

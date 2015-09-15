@@ -5,65 +5,47 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
-
-import com.example.anas.firstapp.test.GameActivity;
 
 import java.util.Locale;
 
-/**
- * Created by Anas on 31/7/15.
- */
-public class ReferenceActivity extends AppCompatActivity {
+
+public class CreditsActivity extends AppCompatActivity {
 
     private Toolbar toolbar;
     private TextView title;
-    private Button passerTest;
-    private User user ;
 
     private String lang;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_reference);
+        setContentView(R.layout.activity_credits);
 
         //Attaching the layout to the toolbar object
         toolbar = (Toolbar) findViewById(R.id.tool_bar);
         title = (TextView) findViewById(R.id.toolbar_title);
-        passerTest = (Button) findViewById(R.id.passer_niveau_reference);
 
         lang  = (String) getIntent().getSerializableExtra("LANG");
 
-        user = (User) getIntent().getSerializableExtra("KEY");
 
-        title.setText(R.string.toolbar_niveau_reference);
+        title.setText(R.string.toolbar_credits);
 
         toolbar.setNavigationIcon(R.drawable.logo_white_32);
+
         //Setting the toolbar as the ActionBar
         setSupportActionBar(toolbar);
 
         getSupportActionBar().setTitle(" ");
+
+        //getSupportActionBar().setLogo(R.drawable.logo_white_32);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
 
-        passerTest.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //go to the tutorial
-                Intent intent = new Intent(getApplicationContext(), TutorialActivity.class);
-                intent.putExtra("KEY", user);
-                intent.putExtra("LANG", lang);
-                setLocale(lang);
-                startActivity(intent);
-                finish();
-            }
-        });
 
     }
 
@@ -73,6 +55,7 @@ public class ReferenceActivity extends AppCompatActivity {
         newConfig.locale = new Locale(lang);
         getResources().updateConfiguration(newConfig, getResources().getDisplayMetrics());
         super.onConfigurationChanged(newConfig);
+
     }
 
     //Conflicts between language and orientation solved.
@@ -83,7 +66,6 @@ public class ReferenceActivity extends AppCompatActivity {
         getResources().updateConfiguration(conf, getResources().getDisplayMetrics());
 
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -120,7 +102,6 @@ public class ReferenceActivity extends AppCompatActivity {
             return true;
         }
 
-
         //Advice Activity selection
         if (id == R.id.action_advice) {
             Intent intent = new Intent(getApplicationContext(), AdvicesActivity.class);
@@ -138,8 +119,6 @@ public class ReferenceActivity extends AppCompatActivity {
             //finish();
             return true;
         }
-
-
 
         return super.onOptionsItemSelected(item);
     }

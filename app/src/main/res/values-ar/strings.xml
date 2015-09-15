@@ -30,6 +30,8 @@
     <string name="pour_passer_test">قبل إجرائكم الإختبار من الواجب عليكم ان تكونوا</string>
     <string name="jai_compris_button">"لقد فهمت"</string>
     <string name="retour_profile">الرجوع إلى البروفايل</string>
+    <string name="credits">لقد تم تصميم هذا التطبيق من طرف أنس حماموش، خريج المعهد الوطني للبريد و المواصلات، في إطار مشروع السيارة المغربية الذكية و تحت إشراف السوفت سنتر.</string>
+    <string name="partenaires">الفريق</string>
 
 
     <string name="supprimer_profile">حذف البروفايل</string>
@@ -51,6 +53,7 @@
     <string name="toolbar_historique_resultats">قائمة نتائجكم</string>
     <string name="toolbar_niveau_reference">المستوى المرجعي</string>
     <string name="toolbar_conseils">نصائح</string>
+    <string name="toolbar_credits">الفريق</string>
 
     <!--Alert Dialog strings-->
     <string name="dialog_title">إنتهى الوقت</string>

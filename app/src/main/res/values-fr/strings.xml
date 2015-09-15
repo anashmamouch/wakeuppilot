@@ -31,6 +31,9 @@
     <string name="jai_compris_button">"J'ai compris"</string>
     <string name="retour_profile">Retour au profile</string>
     <string name="carte">Carte</string>
+    <string name="credits">Application mobile développée, par Anas HMAMOUCH, ingénieur lauréat de l’INPT, dans le cadre d’un projet dédié à la ‘’Chevrolet Moroccan Smart Cart’’ initié par le Soft Centre pour le compte de CFAO Motors Maroc.</string>
+    <string name="partenaires">Partenaires</string>
+
 
     <string name="supprimer_profile">Supprimer profile</string>
     <string name="sure_supprimer_profile">Etes vous sure de supprimer ce profile</string>
@@ -51,6 +54,7 @@
     <string name="toolbar_historique_resultats">HISTORIQUE DES RESULTATS</string>
     <string name="toolbar_niveau_reference">NIVEAU DE REFERENCE</string>
     <string name="toolbar_conseils">Conseils</string>
+    <string name="toolbar_credits">Crédits</string>
 
     <!--Alert Dialog strings-->
     <string name="dialog_title">Temps écoulé</string>
