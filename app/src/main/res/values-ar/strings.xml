@@ -61,6 +61,7 @@
     <string name="dialog_enregistrer_score">تسجيل نتيجتكم</string>
     <string name="dialog_score_minimum">"لم تتمكنوا من إجتياز النتيجة الأدنى \n المرجو : "</string>
 
+    <string name="veuillez_patientez">المرجو الا نتظار...</string>
 
 
     <string name="first_time"> "إنها أول مرة تفعلون التطبيق, \n عليكم تحديد مستواكم المرجعي"</string>

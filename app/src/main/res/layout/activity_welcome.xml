@@ -22,8 +22,9 @@
         android:padding="10dp"
         android:maxHeight="150dp"
         android:maxWidth="150dp"
+        android:antialias="true"
 
-        android:scaleType="centerCrop"/>
+        />
 
 
     <TextView

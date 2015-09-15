@@ -36,6 +36,7 @@
             android:layout_centerHorizontal="true"
             android:maxWidth="200dp"
             android:text="@string/taux_reussite"
+            android:textSize="12dp"
             android:textAppearance="?android:attr/textAppearanceSmall"/>
 
         <com.hookedonplay.decoviewlib.DecoView

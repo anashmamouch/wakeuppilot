@@ -128,6 +128,7 @@ public class AnimationView extends SurfaceView implements SurfaceHolder.Callback
         circleRadius = 30;
         circlePaint = new Paint();
         circlePaint.setColor(Color.RED);
+        circlePaint.setAntiAlias(true);
 
         textPaint = new Paint();
         textPaint.setColor(Color.BLACK);
@@ -137,7 +138,7 @@ public class AnimationView extends SurfaceView implements SurfaceHolder.Callback
         timePaint.setColor(Color.BLUE);
         timePaint.setTextAlign(Paint.Align.CENTER);
         timePaint.setTextSize(22);
-
+        timePaint.setAntiAlias(true);
 
         vx = 2;
         vy = 2;
@@ -298,14 +299,14 @@ public class AnimationView extends SurfaceView implements SurfaceHolder.Callback
     protected void onDraw(Canvas canvas) {
         canvas.drawColor(Color.WHITE);
 
-        canvas.drawText("Time in seconds: " + time, width / 2, 30, timePaint);
-        canvas.drawText("Touched: "+touching, 0, 50, textPaint);
-        canvas.drawText("POSITION X = " + x + "; Y = " + y , 0, 70, textPaint);
-        canvas.drawText("VELOCITY VX = "+String.format("%.2f",vx)+"; VY = "+String.format("%.2f", vy)+"",0, 90, textPaint);
-        canvas.drawText("SCREEN SIZE Width = "+getWidth()+"; Height = "+getHeight()+".", 0, 110, textPaint);
-        canvas.drawText("BALL TOUCHED " + touched + " times" , 0, 130, textPaint);
-        canvas.drawText("TOTAL TOUCHES: " + touch + " times" , 0, 150, textPaint);
-        canvas.drawText("SUCCESS RATE: " + rate + " %" , 0, 170, textPaint);
+        canvas.drawText(" " + time, width / 2, 30, timePaint);
+        //canvas.drawText("Touched: "+touching, 0, 50, textPaint);
+        //canvas.drawText("POSITION X = " + x + "; Y = " + y , 0, 70, textPaint);
+        //canvas.drawText("VELOCITY VX = "+String.format("%.2f",vx)+"; VY = "+String.format("%.2f", vy)+"",0, 90, textPaint);
+        //canvas.drawText("SCREEN SIZE Width = "+getWidth()+"; Height = "+getHeight()+".", 0, 110, textPaint);
+        //canvas.drawText("BALL TOUCHED " + touched + " times" , 0, 130, textPaint);
+        //canvas.drawText("TOTAL TOUCHES: " + touch + " times" , 0, 150, textPaint);
+        //canvas.drawText("SUCCESS RATE: " + rate + " %" , 0, 170, textPaint);
         canvas.drawCircle(x, y, circleRadius, circlePaint);
     }
 
@@ -618,8 +619,6 @@ public class AnimationView extends SurfaceView implements SurfaceHolder.Callback
                         connection.setRequestProperty("Accept", "application/json");
                         connection.setRequestMethod("POST");
                         connection.connect();
-
-
 
                         //sending data & specifying the encoding utf-8
                         OutputStream os = connection.getOutputStream();

@@ -153,7 +153,7 @@ public class AdvicesActivity extends AppCompatActivity {
             super.onPreExecute();
             /*Show the Progress Dialog*/
             progressDialog = new ProgressDialog(AdvicesActivity.this);
-            progressDialog.setMessage("Veuillez patientez ...");
+            progressDialog.setMessage(getResources().getString(R.string.veuillez_patientez));
             progressDialog.setCancelable(true);
             progressDialog.show();
         }

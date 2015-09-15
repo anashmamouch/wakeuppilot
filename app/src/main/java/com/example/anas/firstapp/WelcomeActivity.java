@@ -42,6 +42,8 @@ public class WelcomeActivity extends AppCompatActivity {
         createNewProfile = (Button) findViewById(R.id.nouveau_profile);
         welcomeLogo = (ImageView) findViewById(R.id.logo_welcome);
 
+
+
         lang  = (String) getIntent().getSerializableExtra("LANG");
 
         if(lang.equals("ar")){

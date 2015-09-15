@@ -63,6 +63,9 @@
     <string name="dialog_enregistrer_score">Enregistrer votre score</string>
     <string name="dialog_score_minimum">"Vous n'avez pas dépasser le score minimum \n Voulez-vous "</string>
 
+    <string name="veuillez_patientez">Veuillez patienter ...</string>
+
+
     <string name="first_time"> "C'est la première fois que vous lancez l'application,\nvous devez établir votre niveau de référence:"</string>
     <string name="description_welcome">
         "Cette application vous permet de tester votre niveau d'éveil avant de prendre le volant. Pour cela, vous devez auparavant définir votre niveau de référence qui correspond à votre niveau d'éveil optimal dans le cadre d'un premier test."

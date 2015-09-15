@@ -43,13 +43,13 @@
 
     <!--Toolbar strings -->
     <string name="toolbar_bienvenue">WELCOME</string>
-    <string name="toolbar_carte">MAP</string>
+    <string name="toolbar_carte">Map</string>
     <string name="toolbar_tutoriel">TUTORIAL</string>
     <string name="toolbar_liste_profiles">PROFILES</string>
     <string name="toolbar_nouveau_profile">NEW PROFILE</string>
     <string name="toolbar_historique_resultats">HISTORY OF RESULTS</string>
     <string name="toolbar_niveau_reference">REFERENCE LEVEL</string>
-    <string name="toolbar_conseils">ADVICES</string>
+    <string name="toolbar_conseils">Advices</string>
 
     <!--Alert Dialog strings-->
     <string name="dialog_title">"Time's up"</string>
@@ -61,6 +61,7 @@
     <string name="dialog_score_minimum">"You have not achieved the minimun score \n Do you want to "</string>
 
 
+    <string name="veuillez_patientez">Please wait...</string>
 
 
     <string name="first_time"> "This is the first time that you start the app,\nyou can start establishing your reference level"</string>
