@@ -54,7 +54,7 @@ public class AfterReferenceActivity extends AppCompatActivity {
         title = (TextView) findViewById(R.id.toolbar_title);
         retourProfile = (Button) findViewById(R.id.retour_profile);
 
-        dbHelper = new DatabaseHandler(this);
+        dbHelper = DatabaseHandler.getInstance(this);
 
         lang = (String)getIntent().getSerializableExtra("LANG");
 

@@ -113,7 +113,7 @@ public class HistoryResultsActivity extends AppCompatActivity {
 
         listView = (ListView) findViewById(R.id.list_best_score);
 
-        dbHelper = new DatabaseHandler(this);
+        dbHelper =  DatabaseHandler.getInstance(this);
 
         lang  = (String) getIntent().getSerializableExtra("LANG");
 

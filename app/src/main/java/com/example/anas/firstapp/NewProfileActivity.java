@@ -1,5 +1,6 @@
 package com.example.anas.firstapp;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.AsyncTask;
@@ -84,8 +85,11 @@ public class NewProfileActivity extends AppCompatActivity {
     private static String TAG_GENRE = "genre";
     private static String TAG_AGE = "age";
 
+    Context context;
+
+
     //Create a database where to store the data
-    final DatabaseHandler db = new DatabaseHandler(this);
+     DatabaseHandler db = DatabaseHandler.getInstance(this);
 
     private List<User> users;
 

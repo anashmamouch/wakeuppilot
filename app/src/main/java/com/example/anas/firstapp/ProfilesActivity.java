@@ -87,7 +87,7 @@ public class ProfilesActivity extends AppCompatActivity {
         });
 
 
-        dbHelper = new DatabaseHandler(this);
+        dbHelper = DatabaseHandler.getInstance(this);
 
         users = dbHelper.findAllUsers();
         names = new String[users.size()];
@@ -263,7 +263,7 @@ public class ProfilesActivity extends AppCompatActivity {
             final String usernameString = username[position];
             usernameTextView.setText(usernameString);
 
-            final DatabaseHandler dbHandler = new DatabaseHandler(getApplicationContext());
+            final DatabaseHandler dbHandler = DatabaseHandler.getInstance(getApplicationContext());
 
             delete.setOnClickListener(new View.OnClickListener() {
                @Override

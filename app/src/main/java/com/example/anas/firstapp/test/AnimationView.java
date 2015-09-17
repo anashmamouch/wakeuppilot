@@ -382,7 +382,7 @@ public class AnimationView extends SurfaceView implements SurfaceHolder.Callback
 
     public void alertDialog(final User user, final Context context, final String lang){
 
-        final DatabaseHandler db = new DatabaseHandler(context);
+        final DatabaseHandler db = DatabaseHandler.getInstance(context);
         final List<Test>  tests = db.findTestByUser(user.getId());
 
         String touchezBall = getResources().getString(R.string.dialog_touchez_balle);

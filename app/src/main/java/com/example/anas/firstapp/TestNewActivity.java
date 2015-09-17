@@ -62,7 +62,7 @@ public class TestNewActivity extends AppCompatActivity{
 
         user = (User) getIntent().getSerializableExtra("KEY");
 
-        dbHelper = new DatabaseHandler(this);
+        dbHelper = DatabaseHandler.getInstance(this);
 
         tests = dbHelper.findTestByUser(user.getId());
 

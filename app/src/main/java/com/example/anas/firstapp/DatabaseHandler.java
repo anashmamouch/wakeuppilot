@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.provider.ContactsContract;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -17,8 +18,14 @@ import java.util.Locale;
  */
 public class DatabaseHandler extends SQLiteOpenHelper {
 
+    //Database Helper
+    private static DatabaseHandler instance = null;
+
+    //Database Context
+    private static Context context;
+
     //Database Version
-    private static final int DATABASE_VERSION = 6;
+    private static final int DATABASE_VERSION = 7;
 
     //Database Name
     private static final String DATABASE_NAME = "wakeup";
@@ -46,8 +53,21 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private static final String KEY_FIRST_TIME = "first_time";
     private static final String KEY_USER_ID = "user_id";
 
-    public DatabaseHandler(Context context) {
+    //Using the singleton design pattern to connect with the database
+    public static synchronized DatabaseHandler getInstance(Context context){
+
+        // Use the application context, which will ensure that you
+        // don't accidentally leak on the Activity's context
+        if(instance == null){
+            instance = new DatabaseHandler(context);
+            
+        }
+        return instance;
+    }
+
+    private DatabaseHandler(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
+        DatabaseHandler.context = context;
     }
 
     //Creating tables
