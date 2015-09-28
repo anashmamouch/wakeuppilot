@@ -2,18 +2,18 @@
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="10dp"
-    android:paddingLeft="10dp"
-    android:paddingRight="10dp" >
+    android:paddingTop="6dp"
+    android:paddingBottom="6dp"
+    android:paddingRight="10dp"
+    android:paddingLeft="10dp">
 
     <!-- Title Label -->
-
     <TextView
         android:id="@+id/title"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:paddingBottom="2dip"
-        android:paddingTop="6dip"
+        android:paddingTop="2dip"
         android:textColor="@color/ColorPrimaryDark"
         android:textSize="16sp"
         android:textStyle="bold" />
@@ -23,7 +23,8 @@
         android:id="@+id/body"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="2dip"
+        android:adjustViewBounds="true"
+        android:maxHeight="50dp"
         android:textColor="#acacac" />
 
     <!-- Date label -->

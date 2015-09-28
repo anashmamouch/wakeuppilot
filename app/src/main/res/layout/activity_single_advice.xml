@@ -6,34 +6,81 @@
     android:layout_height="match_parent"
     tools:context=".SingleAdviceActivity">
 
-    <include
-        android:id="@+id/tool_bar"
-        layout="@layout/tool_bar"
-        ></include>
-    <!-- Title Label -->
-    <TextView android:id="@+id/title_label"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:textSize="25dip"
-        android:textStyle="bold"
-        android:padding="10dip"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+        <include
+            android:id="@+id/tool_bar"
+            layout="@layout/tool_bar" />
 
-        android:textColor="@color/ColorPrimaryDark"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp">
 
-    <!-- Body Label -->
-    <TextView android:id="@+id/body_label"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:paddingLeft="15dp"
-        android:paddingRight="10dp"
-        android:textColor="#acacac"/>
+            <!-- Title Label -->
+            <TextView android:id="@+id/title_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="25dip"
+                android:gravity="start"
+                android:textStyle="bold"
+                android:layout_alignParentLeft="true"
+                android:textColor="@color/ColorPrimaryDark"/>
 
-    <!-- Date Label -->
-    <TextView android:id="@+id/date_label"
-        android:layout_width="fill_parent"
+            <!-- Date Label -->
+            <TextView android:id="@+id/date_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignBaseline="@id/title_label"
+                android:text="date"
+                android:textColor="#000"
+                android:textStyle="bold"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_below="@id/title_label"
+                android:background="@android:color/darker_gray"/>
+        </RelativeLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <!-- Body Label -->
+            <TextView android:id="@+id/body_label"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:textColor="#acacac"/>
+
+        </ScrollView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingRight="10dp"
-        android:gravity="right"
-        android:textColor="#000"
-        android:textStyle="bold"/>
+        android:gravity="center|bottom"
+        android:orientation="vertical" >
+
+        <Button
+            android:id="@+id/retour_conseils"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/retour_conseils"
+            android:textSize="14dp"
+            android:textColor="#fff"
+            android:textAllCaps="false"
+            android:background="@color/ColorPrimaryDark"
+
+            android:layout_marginTop="16dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginRight="24dp"
+            android:layout_marginBottom="24dp"/>
+
+    </LinearLayout>
 </LinearLayout>

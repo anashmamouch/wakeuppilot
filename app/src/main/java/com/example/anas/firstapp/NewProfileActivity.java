@@ -359,10 +359,10 @@ public class NewProfileActivity extends AppCompatActivity {
 
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
-
-        newConfig.locale = new Locale(lang);
-        getResources().updateConfiguration(newConfig, getResources().getDisplayMetrics());
         super.onConfigurationChanged(newConfig);
+        Configuration config = new Configuration(newConfig);
+        config.locale = new Locale(lang);
+        getBaseContext().getResources().updateConfiguration(config, getResources().getDisplayMetrics());
     }
 
     //Conflicts between language and orientation solved.
@@ -404,6 +404,7 @@ public class NewProfileActivity extends AppCompatActivity {
         if (id == R.id.action_map) {
             Intent intent = new Intent(getApplicationContext(), MapActivity.class);
             intent.putExtra("LANG", lang);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
             //finish();
             return true;
@@ -413,6 +414,7 @@ public class NewProfileActivity extends AppCompatActivity {
         if (id == R.id.action_advice) {
             Intent intent = new Intent(getApplicationContext(), AdvicesActivity.class);
             intent.putExtra("LANG", lang);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
             //finish();
             return true;
@@ -422,6 +424,7 @@ public class NewProfileActivity extends AppCompatActivity {
         if (id == R.id.action_credits) {
             Intent intent = new Intent(getApplicationContext(), CreditsActivity.class);
             intent.putExtra("LANG", lang);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
             //finish();
             return true;

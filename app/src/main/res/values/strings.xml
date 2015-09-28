@@ -39,6 +39,7 @@
     \nINPT : www.inpt.ac.ma
         \nEmail: benzinoanas@gmail.com
     </string>
+    <string name="retour_conseils">Retour aux conseils</string>
     
     
     <string name="supprimer_profile">Supprimer profile</string>
@@ -109,6 +110,7 @@
     <string name="radio_arabic">العربية</string>
     <string name="radio_french">Français</string>
     <string name="radio_english">English</string>
+
 
 
 </resources>

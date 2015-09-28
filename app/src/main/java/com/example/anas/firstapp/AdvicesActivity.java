@@ -3,6 +3,7 @@ package com.example.anas.firstapp;
 import android.app.AlertDialog;
 import android.app.ListActivity;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
@@ -117,7 +118,12 @@ public class AdvicesActivity extends AppCompatActivity {
                 intent.putExtra(TAG_TITLE, title);
                 intent.putExtra(TAG_BODY, body);
                 intent.putExtra(TAG_DATE, date);
+                intent.putExtra("LANG", lang);
+                setLocale(lang);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -128,6 +134,8 @@ public class AdvicesActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(), NewProfileActivity.class);
                 intent.putExtra("LANG", lang);
                 setLocale(lang);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
                 startActivity(intent);
                 finish();
             }
@@ -354,30 +362,53 @@ public class AdvicesActivity extends AppCompatActivity {
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
-            LayoutInflater inflater = getLayoutInflater();
-            View row = inflater.inflate(R.layout.list_advice_item, parent, false);
+            //Here, position is the index in the list, the convertView is the view to be
+            //recycled (or created), and parent is the ListView itself.
 
-            TextView titleTextView = (TextView) row.findViewById(R.id.title);
-            TextView bodyTextView = (TextView) row.findViewById(R.id.body);
-            TextView dateTextView = (TextView) row.findViewById(R.id.date);
+            //Grab the convertView as our row of the ListView
+            View row = convertView;
+
+            //If the row is null, it means that we aren't recycling anything - so we have
+            //to inflate the layout ourselves.
+            ViewHolder holder = null;
+            if(row == null) {
+                LayoutInflater inflater = getLayoutInflater();
+                row = inflater.inflate(R.layout.list_advice_item, parent, false);
+                //Now create the ViewHolder
+                holder = new ViewHolder();
+                //and set its textView field to the proper value
+                holder.titleTextView = (TextView) row.findViewById(R.id.title);
+                holder.bodyTextView = (TextView) row.findViewById(R.id.body);
+                holder.dateTextView = (TextView) row.findViewById(R.id.date);
+
+                //and store it as the 'tag' of our view
+                row.setTag(holder);
+            }else {
+                holder = (ViewHolder) row.getTag();
+            }
 
             int index = title.length - position - 1;
 
-            titleTextView.setText(title[index]);
-            bodyTextView.setText(body[index]);
-            dateTextView.setText(date[index]);
+            holder.titleTextView.setText(title[index]);
+            holder.bodyTextView.setText(body[index]);
+            holder.dateTextView.setText(date[index]);
 
             return row;
         }
     }
 
+    private static class ViewHolder {
+        TextView titleTextView;
+        TextView bodyTextView;
+        TextView dateTextView;
+    }
+
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
-
-        newConfig.locale = new Locale(lang);
-        getResources().updateConfiguration(newConfig, getResources().getDisplayMetrics());
         super.onConfigurationChanged(newConfig);
-
+        Configuration config = new Configuration(newConfig);
+        config.locale = new Locale(lang);
+        getBaseContext().getResources().updateConfiguration(config, getResources().getDisplayMetrics());
     }
 
     //Conflicts between language and orientation solved.
@@ -419,8 +450,10 @@ public class AdvicesActivity extends AppCompatActivity {
         if (id == R.id.action_map) {
             Intent intent = new Intent(getApplicationContext(), MapActivity.class);
             intent.putExtra("LANG", lang);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
             startActivity(intent);
-            //finish();
+            finish();
             return true;
         }
 
@@ -428,8 +461,10 @@ public class AdvicesActivity extends AppCompatActivity {
         if (id == R.id.action_advice) {
             Intent intent = new Intent(getApplicationContext(), AdvicesActivity.class);
             intent.putExtra("LANG", lang);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
             startActivity(intent);
-            //finish();
+            finish();
             return true;
         }
 
@@ -437,8 +472,10 @@ public class AdvicesActivity extends AppCompatActivity {
         if (id == R.id.action_credits) {
             Intent intent = new Intent(getApplicationContext(), CreditsActivity.class);
             intent.putExtra("LANG", lang);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
             startActivity(intent);
-            //finish();
+            finish();
             return true;
         }
 

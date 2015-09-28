@@ -113,12 +113,12 @@ public class GameActivity extends Activity{
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 int h = (int) (event.getX());
-                int d = (int) (view.getX() + view.getCircleRadius());
-                int l = (int) (view.getX() - view.getCircleRadius());
+                int d = (int) (view.getX() + view.getCircleRadius() + 15);
+                int l = (int) (view.getX() - view.getCircleRadius() - 15);
 
                 int i = (int) (event.getY());
-                int j = (int) (view.getY() + view.getCircleRadius());
-                int k = (int) (view.getY() - view.getCircleRadius());
+                int j = (int) (view.getY() + view.getCircleRadius() + 15);
+                int k = (int) (view.getY() - view.getCircleRadius() - 15);
 
                 switch (event.getAction()) {
                     case MotionEvent.ACTION_DOWN:
@@ -215,9 +215,10 @@ public class GameActivity extends Activity{
         view.setWidth(width);
         view.setHeight(height);
 
-        newConfig.locale = new Locale(lang);
-        getResources().updateConfiguration(newConfig, getResources().getDisplayMetrics());
         super.onConfigurationChanged(newConfig);
+        Configuration config = new Configuration(newConfig);
+        config.locale = new Locale(lang);
+        getBaseContext().getResources().updateConfiguration(config, getResources().getDisplayMetrics());
 
     }
 

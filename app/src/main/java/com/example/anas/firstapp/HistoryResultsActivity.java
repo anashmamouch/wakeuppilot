@@ -128,10 +128,10 @@ public class HistoryResultsActivity extends AppCompatActivity {
 
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
-
-        newConfig.locale = new Locale(lang);
-        getResources().updateConfiguration(newConfig, getResources().getDisplayMetrics());
         super.onConfigurationChanged(newConfig);
+        Configuration config = new Configuration(newConfig);
+        config.locale = new Locale(lang);
+        getBaseContext().getResources().updateConfiguration(config, getResources().getDisplayMetrics());
     }
 
     //Conflicts between language and orientation solved.
@@ -173,6 +173,8 @@ public class HistoryResultsActivity extends AppCompatActivity {
         //Map Activity selection
         if (id == R.id.action_map) {
             Intent intent = new Intent(getApplicationContext(), MapActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
             intent.putExtra("LANG", lang);
             startActivity(intent);
             //finish();
@@ -183,6 +185,8 @@ public class HistoryResultsActivity extends AppCompatActivity {
         //Advice Activity selection
         if (id == R.id.action_advice) {
             Intent intent = new Intent(getApplicationContext(), AdvicesActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
             intent.putExtra("LANG", lang);
             startActivity(intent);
             //finish();
@@ -192,6 +196,8 @@ public class HistoryResultsActivity extends AppCompatActivity {
         //Credits Activity selection
         if (id == R.id.action_credits) {
             Intent intent = new Intent(getApplicationContext(), CreditsActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
             intent.putExtra("LANG", lang);
             startActivity(intent);
             //finish();
@@ -233,17 +239,29 @@ public class HistoryResultsActivity extends AppCompatActivity {
 
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
+            View row = convertView;
+            ViewHolder holder = null;
 
-            LayoutInflater inflater = getLayoutInflater();
-            View row = inflater.inflate(R.layout.best_score_item, parent, false);
+            if(row == null){
+                LayoutInflater inflater = getLayoutInflater();
+                row = inflater.inflate(R.layout.best_score_item, parent, false);
+                holder = new ViewHolder();
+                holder.dateTextView = (TextView) row.findViewById(R.id.text_date);
+                holder.scoreTextView = (TextView) row.findViewById(R.id.text_score);
+                row.setTag(holder);
+            }else{
+                holder = (ViewHolder) row.getTag();
+            }
 
-            TextView usernameTextView = (TextView) row.findViewById(R.id.text_date);
-            TextView ageTextView = (TextView) row.findViewById(R.id.text_score);
-
-            usernameTextView.setText(date[position]);
-            ageTextView.setText(score[position]);
+            holder.dateTextView.setText(date[position]);
+            holder.scoreTextView.setText(score[position]);
 
             return row;
         }
+    }
+
+    private static class ViewHolder{
+        TextView dateTextView ;
+        TextView scoreTextView ;
     }
 }

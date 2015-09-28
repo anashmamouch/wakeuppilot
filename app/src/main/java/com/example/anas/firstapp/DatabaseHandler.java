@@ -25,7 +25,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     private static Context context;
 
     //Database Version
-    private static final int DATABASE_VERSION = 7;
+    private static final int DATABASE_VERSION = 8;
 
     //Database Name
     private static final String DATABASE_NAME = "wakeup";
@@ -408,7 +408,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     //Created_at value current datetime
     private String getDateTime() {
         SimpleDateFormat dateFormat = new SimpleDateFormat(
-                "yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+                "dd/MM/yyyy HH:mm", Locale.getDefault());
         Date date = new Date();
         return dateFormat.format(date);
     }
