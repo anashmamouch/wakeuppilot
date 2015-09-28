@@ -60,7 +60,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         // don't accidentally leak on the Activity's context
         if(instance == null){
             instance = new DatabaseHandler(context);
-            
+
         }
         return instance;
     }

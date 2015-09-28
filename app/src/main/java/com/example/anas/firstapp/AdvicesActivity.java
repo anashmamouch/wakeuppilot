@@ -136,8 +136,6 @@ public class AdvicesActivity extends AppCompatActivity {
         /*Calling the AsyncTask to get the JSON*/
         new GetAdvices().execute(url);
 
-
-
     }
 
     private class GetAdvices extends AsyncTask<String, Void, String> {
@@ -244,24 +242,37 @@ public class AdvicesActivity extends AppCompatActivity {
                 try {
                     /*Getting the json Array */
                     logs = new JSONArray(result);
+                    int size = logs.length() - 1;
 
-                    titles = new String[logs.length()];
-                    bodys = new String [logs.length()];
-                    dates = new String[logs.length()];
+                    if(logs.length() != 0){
+                        titles = new String[logs.length()];
+                        bodys = new String [logs.length()];
+                        dates = new String[logs.length()];
 
-                    /*Loop through the JSON Array (All logs)*/
-                    for (int i = 0; i < logs.length(); i++) {
-                        JSONObject logsObject = logs.getJSONObject(i);
+                        /*Loop through the JSON Array (All logs)*/
+                        /*Show the logs in the reverse order*/
+                        for (int i = 0; i < logs.length(); i++) {
+                            JSONObject logsObject = logs.getJSONObject(i);
 
-                        String id = logsObject.getString(TAG_ID);
-                        titles[i] = logsObject.getString(TAG_TITLE);
-                        bodys[i] = logsObject.getString(TAG_BODY);
-                        dates[i] = logsObject.getString(TAG_DATE);
+                            String id = logsObject.getString(TAG_ID);
+                            titles[i] = logsObject.getString(TAG_TITLE);
+                            bodys[i] = logsObject.getString(TAG_BODY);
+                            dates[i] = logsObject.getString(TAG_DATE);
 
-                        Log.d("BENZINO", "DATA : " + titles[0] + bodys[0] + dates[0]);
-                        Log.d("BENZINO", "DATA LOGS : " + logs);
+                            Log.d("BENZINO", "DATA : " + titles[0] + bodys[0] + dates[0]);
+                            Log.d("BENZINO", "DATA LOGS : " + logs);
+                        }
+                    }else {
+                        titles = new String[1];
+                        bodys = new String [1];
+                        dates = new String[1];
+
+                        titles[0] = "Pas de Conseils pour le moment!";
+                        bodys[0] = "il n'y a pas encore de conseils";
+                        dates[0] = " ";
 
                     }
+
 
                 }catch(JSONException e){
                     titles = new String[1];
@@ -274,8 +285,6 @@ public class AdvicesActivity extends AppCompatActivity {
                     Log.d("BENZINO", "Error Logs JSON : ", e);
                 }
             }else{
-
-
 
                 Log.e("BENZINO", "Couldn't get any data from the server!");
             }
@@ -352,9 +361,11 @@ public class AdvicesActivity extends AppCompatActivity {
             TextView bodyTextView = (TextView) row.findViewById(R.id.body);
             TextView dateTextView = (TextView) row.findViewById(R.id.date);
 
-            titleTextView.setText(title[position]);
-            bodyTextView.setText(body[position]);
-            dateTextView.setText(date[position]);
+            int index = title.length - position - 1;
+
+            titleTextView.setText(title[index]);
+            bodyTextView.setText(body[index]);
+            dateTextView.setText(date[index]);
 
             return row;
         }

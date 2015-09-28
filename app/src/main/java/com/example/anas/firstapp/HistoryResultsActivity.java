@@ -49,55 +49,9 @@ public class HistoryResultsActivity extends AppCompatActivity {
     private String lang;
 
     /*TODO: OnBackPressed for HistoryResults*/
-    @Override
-    public void onBackPressed() {
-        if (doubleBackToExitPressedOnce) {
-            super.onBackPressed();
-            return;
-        }
 
-        this.doubleBackToExitPressedOnce = true;
-        Toast.makeText(this, "Please click BACK again to exit", Toast.LENGTH_SHORT).show();
-
-        new Handler().postDelayed(new Runnable() {
-
-            @Override
-            public void run() {
-                doubleBackToExitPressedOnce=false;
-            }
-        }, 2000);
-    }
     /**
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        dbHelper = new DatabaseHandler(this);
 
-        user = (User) getIntent().getSerializableExtra("KEY");
-
-        tests = dbHelper.findTestByUser(user.getId());
-
-        Log.d("ANAS", tests.toString());
-
-
-        //Intent intent = new Intent(getApplicationContext(), GameActivity.class);
-        //intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        //getApplicationContext().startActivity(intent);
-
-        if(!tests.isEmpty()){
-            //go to the new profile page
-            Intent intent = new Intent(getApplicationContext(), TestNewActivity.class);
-            intent.putExtra("KEY", user);
-            startActivity(intent);
-
-        }else {
-            //go to the new reference page
-            Intent intent = new Intent(getApplicationContext(), TestFirstActivity.class);
-            intent.putExtra("KEY", user);
-            startActivity(intent);
-
-        }
-    }
     **/
 
     @Override
