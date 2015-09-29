@@ -44,17 +44,13 @@ import java.util.Locale;
 
 public class AdvicesActivity extends AppCompatActivity {
 
-    private Toolbar toolbar;
-    private TextView title;
-    private Button back;
-
     private String lang;
 
     /*Progress dialog to show when loading JSON data*/
     private ProgressDialog progressDialog;
 
     /*url to get the json data*/
-    private static String url = "http://wakeuppilot.herokuapp.com/logs.json";
+    private  static final String url = "http://wakeuppilot.herokuapp.com/logs.json";
 
     /*Logs JSON Array*/
     private JSONArray logs = null;
@@ -79,26 +75,22 @@ public class AdvicesActivity extends AppCompatActivity {
         setContentView(R.layout.activity_advices);
 
         //Attaching the layout to the toolbar object
-        toolbar = (Toolbar) findViewById(R.id.tool_bar);
-        title = (TextView) findViewById(R.id.toolbar_title);
-        back = (Button) findViewById(R.id.retour_profile);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.tool_bar);
+
         listView = (ListView) findViewById(R.id.listView_advices);
 
         lang = (String) getIntent().getSerializableExtra("LANG");
 
-        title.setText(R.string.toolbar_conseils);
+        ((TextView) findViewById(R.id.toolbar_title)).setText(R.string.toolbar_conseils);
 
         toolbar.setNavigationIcon(R.drawable.logo_white_32);
 
         //Setting the toolbar as the ActionBar
-        setSupportActionBar(toolbar);
+        setSupportActionBar((Toolbar) findViewById(R.id.tool_bar));
         getSupportActionBar().setTitle(" ");
         //getSupportActionBar().setLogo(R.drawable.logo_white_32);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
-
-
-
-        /*List view on item click listener*/
+         /*List view on item click listener*/
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
             @Override
@@ -127,7 +119,7 @@ public class AdvicesActivity extends AppCompatActivity {
             }
         });
 
-        back.setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.retour_profile).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //go to the new profile page
@@ -479,9 +471,7 @@ public class AdvicesActivity extends AppCompatActivity {
             return true;
         }
 
-
         return super.onOptionsItemSelected(item);
     }
-
 
 }
