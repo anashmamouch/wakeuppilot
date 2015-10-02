@@ -5,7 +5,6 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.provider.ContactsContract;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -13,16 +12,10 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-/**
- * Created by Anas on 26/7/15.
- */
 public class DatabaseHandler extends SQLiteOpenHelper {
 
     //Database Helper
     private static DatabaseHandler instance = null;
-
-    //Database Context
-    private static Context context;
 
     //Database Version
     private static final int DATABASE_VERSION = 8;
@@ -60,14 +53,12 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         // don't accidentally leak on the Activity's context
         if(instance == null){
             instance = new DatabaseHandler(context);
-
         }
         return instance;
     }
 
     private DatabaseHandler(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
-        DatabaseHandler.context = context;
     }
 
     //Creating tables
@@ -209,6 +200,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             user.setSent(false);
         //user.setCreatedAt(cursor.getString(5));
 
+        cursor.close();
         return user;
     }
 
@@ -240,6 +232,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             }while(cursor.moveToNext());
         }
 
+        cursor.close();
         return users;
     }
 
@@ -250,8 +243,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(query, null);
         cursor.close();
-
-        //return count
         return cursor.getCount();
     }
 
@@ -316,6 +307,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 tests.add(test);
             }while(cursor.moveToNext());
         }
+        cursor.close();
         db.close();
         return tests;
     }
@@ -355,6 +347,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 tests.add(test);
             }while(cursor.moveToNext());
         }
+        cursor.close();
         db.close();
         return tests;
     }
@@ -386,6 +379,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         test.setUserId(Integer.parseInt(cursor.getString(4)));
         test.setCreatedAt(cursor.getString(5));
 
+        cursor.close();
         db.close();
         return  test;
     }
@@ -396,8 +390,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(query, null);
         cursor.close();
-
-        //return count
         return cursor.getCount();
     }
 

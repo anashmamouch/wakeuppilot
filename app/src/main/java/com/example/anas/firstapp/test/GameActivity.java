@@ -18,9 +18,6 @@ import com.example.anas.firstapp.User;
 
 import java.util.Locale;
 
-/**
- * Created by Anas on 30/7/15.
- */
 public class GameActivity extends Activity{
 
     private AnimationView view;
@@ -58,18 +55,6 @@ public class GameActivity extends Activity{
 
         lang = (String) getIntent().getSerializableExtra("LANG");
 
-        /**
-            runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    view = new AnimationView(getApplicationContext());
-                    setContentView(view);
-                    Log.d("ANAS", "****************************************INSIDE THE RUNONUITHREAD VIEW");
-
-
-                }
-            });
-        **/
         view = new AnimationView(getApplicationContext());
         setContentView(view);
         Log.d("ANAS", "****************************************INSIDE THE RUNONUITHREAD VIEW");
@@ -222,14 +207,4 @@ public class GameActivity extends Activity{
 
     }
 
-
-    private class DisplayTask extends AsyncTask<Void, Void, Void>{
-
-        @Override
-        protected Void doInBackground(Void... params) {
-
-            return null;
-        }
-
-    }
 }

@@ -1,90 +1,39 @@
 package com.example.anas.firstapp;
 
 import android.content.Intent;
-import android.content.res.Configuration;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.anas.firstapp.test.GameActivity;
+public class TestFirstActivity extends BaseActivity {
 
-import java.util.Locale;
-
-/**
- * Created by Anas on 31/7/15.
- */
-public class TestFirstActivity extends AppCompatActivity {
-    private Toolbar toolbar;
-    private TextView title;
-    private Button passerTest;
-    private Button historiqueResultats;
     private User user ;
-    private TextView test;
-    private TextView successRate;
-
-    private String lang;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_first_test);
-
-        //Attaching the layout to the toolbar object
-        toolbar = (Toolbar) findViewById(R.id.tool_bar);
-        title = (TextView) findViewById(R.id.toolbar_title);
-        passerTest = (Button) findViewById(R.id.niveau_reference);
-        //test = (TextView) findViewById(R.id.test_textview);
-        successRate = (TextView) findViewById(R.id.success_rate);
-        historiqueResultats = (Button)findViewById(R.id.historique_resultats);
-
-        lang  = (String) getIntent().getSerializableExtra("LANG");
 
         user = (User) getIntent().getSerializableExtra("KEY");
 
         String username = user.getUsername();
         String age = user.getAge();
-        String genre = user.getGenre();
 
         if(age.equals("- 40 ans")){
             age = getResources().getString(R.string.moins_40);
-        }
-        else if(age.equals("40 - 60 ans")){
+        }else if(age.equals("40 - 60 ans")){
             age = getResources().getString(R.string.entre_40_60);
-        }
-        else if(age.equals("+ 60 ans")){
+        } else if(age.equals("+ 60 ans")){
             age = getResources().getString(R.string.plus_60);
         }
 
-        if(genre.equals("Homme")){
-            genre = getResources().getString(R.string.male);
-        }else if(genre.equals("Femme")){
-            genre = getResources().getString(R.string.female);
-        }
-
-        if(lang.equals("ar")){
-            title.setText(age + " | " + username);
-        }else {
-            title.setText(username + " | " + age);
-
-        }
-        //Setting the toolbar as the ActionBar
-        toolbar.setNavigationIcon(R.drawable.logo_white_32);
-        //toolbar.setNavigationIcon(R.drawable.back_white);
-        //Setting the toolbar as the ActionBar
-        setSupportActionBar(toolbar);
-
-        getSupportActionBar().setTitle(" ");
-        //getSupportActionBar().setLogo(R.drawable.logo_white_32);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        if(lang.equals("ar"))
+            ((TextView) findViewById(R.id.toolbar_title)).setText(age + " | " + username);
+        else
+            ((TextView) findViewById(R.id.toolbar_title)).setText(username + " | " + age);
 
 
-        passerTest.setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.niveau_reference).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //go to the Reference page
@@ -99,7 +48,7 @@ public class TestFirstActivity extends AppCompatActivity {
             }
         });
 
-        historiqueResultats.setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.historique_resultats).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //go to the History Results page
@@ -113,84 +62,11 @@ public class TestFirstActivity extends AppCompatActivity {
                 finish();
             }
         });
-
     }
 
     @Override
-    public void onConfigurationChanged(Configuration newConfig) {
-        super.onConfigurationChanged(newConfig);
-        Configuration config = new Configuration(newConfig);
-        config.locale = new Locale(lang);
-        getBaseContext().getResources().updateConfiguration(config, getResources().getDisplayMetrics());
-    }
-    //Conflicts between language and orientation solved.
-    public void setLocale(String lang) {
-
-        Configuration conf = getResources().getConfiguration();
-        conf.locale = new Locale(lang);
-        getResources().updateConfiguration(conf, getResources().getDisplayMetrics());
-
-    }
-
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        //Language selection
-        if (id == R.id.Language) {
-            startActivity(new Intent(getApplicationContext(), ChooseLang.class));
-            finish();
-            return true;
-        }
-
-        //Map Activity selection
-        if (id == R.id.action_map) {
-            Intent intent = new Intent(getApplicationContext(), MapActivity.class);
-            intent.putExtra("LANG", lang);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(intent);
-            //finish();
-            return true;
-        }
-
-
-        //Advice Activity selection
-        if (id == R.id.action_advice) {
-            Intent intent = new Intent(getApplicationContext(), AdvicesActivity.class);
-            intent.putExtra("LANG", lang);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(intent);
-            //finish();
-            return true;
-        }
-
-        //Credits Activity selection
-        if (id == R.id.action_credits) {
-            Intent intent = new Intent(getApplicationContext(), CreditsActivity.class);
-            intent.putExtra("LANG", lang);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(intent);
-            //finish();
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
+    protected int getLayoutResource() {
+        return R.layout.activity_first_test;
     }
 
 }

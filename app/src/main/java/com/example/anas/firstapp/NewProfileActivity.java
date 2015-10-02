@@ -1,24 +1,12 @@
 package com.example.anas.firstapp;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.res.Configuration;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.Gravity;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.EditText;
-import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.RelativeLayout;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,32 +18,14 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
-import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
-/**
- * Created by Anas on 26/7/15.
- */
-public class NewProfileActivity extends AppCompatActivity {
-    private Toolbar toolbar;
-    private TextView title;
 
-    private EditText pseudonyme;
 
-    private RadioGroup radioAge;
-    private RadioGroup radioGenre;
-
-    private Button creer;
-    private Button inscrit;
-
-    private String lang;
+public class NewProfileActivity extends BaseActivity {
 
     private String username;
     private String age;
@@ -64,74 +34,51 @@ public class NewProfileActivity extends AppCompatActivity {
     private User user;
 
     /*url to get the json data*/
-    private static String url = "http://wakeuppilot.herokuapp.com/players.json";
-
-    /*Logs JSON Array*/
-    private JSONObject data = null;
-    private JSONObject player = null;
-    private JSONArray array = null;
+    private static final String url = "http://wakeuppilot.herokuapp.com/players.json";
 
     /*JSON Node names*/
+
     /*Common JSON keys*/
-    private static String TAG_ID = "id";
-    private static String TAG_DATE = "created_at";
+    //private static String TAG_ID = "id";
+    //private static String TAG_DATE = "created_at";
     /*Game JSON keys*/
-    private static String TAG_BALL_TOUCHED = "ball_touched";
-    private static String TAG_TOTAL_TOUCHES = "total_touches";
-    private static String TAG_FIRST_TIME = "first_time";
-    private static String TAG_PLAYER_ID = "player_id";
+    //private static String TAG_BALL_TOUCHED = "ball_touched";
+    //private static String TAG_TOTAL_TOUCHES = "total_touches";
+    //private static String TAG_FIRST_TIME = "first_time";
+    //private static String TAG_PLAYER_ID = "player_id";
     /*Player JSON keys*/
     private static String TAG_USERNAME = "username";
     private static String TAG_GENRE = "genre";
     private static String TAG_AGE = "age";
 
-    Context context;
-
-
     //Create a database where to store the data
-     DatabaseHandler db = DatabaseHandler.getInstance(this);
+    DatabaseHandler db = DatabaseHandler.getInstance(this);
 
     private List<User> users;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_new_profile);
 
-        //Attaching the layout elements to the java object
-        toolbar = (Toolbar) findViewById(R.id.tool_bar);
-        title = (TextView) findViewById(R.id.toolbar_title);
-        pseudonyme = (EditText) findViewById(R.id.pseudonyme);
-
-        creer = (Button) findViewById(R.id.creer);
-        inscrit = (Button)findViewById(R.id.inscrit);
-
-        radioAge = (RadioGroup) findViewById(R.id.radioAge);
-        radioGenre = (RadioGroup) findViewById(R.id.radioGenre);
+        ((TextView) findViewById(R.id.toolbar_title)).setText(R.string.toolbar_nouveau_profile);
 
 
-
-        username = pseudonyme.getText().toString();
 
         checkRadio();
 
-        lang  = (String) getIntent().getSerializableExtra("LANG");
-
-        creer.setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.creer).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 boolean condition = true;
-                username = pseudonyme.getText().toString().trim();
-
+                username = ((EditText) findViewById(R.id.pseudonyme)).getText().toString().trim();
                 users = db.findAllUsers();
 
-                for(User u: users){
-                    if(username.equals(u.getUsername())){
+                for (User u : users) {
+                    if (username.equals(u.getUsername())) {
                         Toast.makeText(getApplicationContext(), "Ce nom existe deja", Toast.LENGTH_LONG).show();
                         condition = false;
                         break;
                     }
-
                 }
 
                 if (username.length() == 0) {
@@ -154,13 +101,11 @@ public class NewProfileActivity extends AppCompatActivity {
                     setLocale(lang);
                     startActivity(intent);
                     finish();
-
                 }
-
             }
         });
 
-        inscrit.setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.inscrit).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 username = "";
@@ -177,15 +122,11 @@ public class NewProfileActivity extends AppCompatActivity {
             }
         });
 
-        title.setText(R.string.toolbar_nouveau_profile);
+    }
 
-        toolbar.setNavigationIcon(R.drawable.logo_white_32);
-        //Setting the toolbar as the ActionBar
-        setSupportActionBar(toolbar);
-
-        getSupportActionBar().setTitle(" ");
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
-
+    @Override
+    protected int getLayoutResource() {
+        return R.layout.activity_new_profile;
     }
 
     public void checkRadio(){
@@ -193,7 +134,7 @@ public class NewProfileActivity extends AppCompatActivity {
         genre = "Homme";
         age = "- 40 ans";
 
-        radioGenre.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+        ((RadioGroup)findViewById(R.id.radioGenre)).setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
 
@@ -205,7 +146,7 @@ public class NewProfileActivity extends AppCompatActivity {
             }
         });
 
-        radioAge.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+        ((RadioGroup)findViewById(R.id.radioAge)).setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 if (checkedId == R.id.radio_40) {
@@ -223,20 +164,6 @@ public class NewProfileActivity extends AppCompatActivity {
     /*TODO TRACKING USERS CLASS*/
     private class SendData extends AsyncTask<String, Void, String> {
 
-        /**
-         * Override this method to perform a computation on a background thread. The
-         * specified parameters are the parameters passed to {@link #execute}
-         * by the caller of this task.
-         * <p>
-         * This method can call {@link #publishProgress} to publish updates
-         * on the UI thread.
-         *
-         * @param params The parameters of the task.
-         * @return A result, defined by the subclass of this task.
-         * @see #onPreExecute()
-         * @see #onPostExecute
-         * @see #publishProgress
-         */
         @Override
         protected String doInBackground(String... params) {
 
@@ -255,12 +182,12 @@ public class NewProfileActivity extends AppCompatActivity {
                     connection.connect();
 
                     //creating the array
-                    array = new JSONArray();
+                    JSONArray array = new JSONArray();
 
 
                     if(username.length() != 0){
                         //creating the json object to send the data
-                        data = new JSONObject();
+                        JSONObject data = new JSONObject();
 
                         try {
                             data.put(TAG_USERNAME, username);
@@ -303,7 +230,7 @@ public class NewProfileActivity extends AppCompatActivity {
                         }
                     }
                     //the main json object that contains the array that we will send
-                    player = new JSONObject();
+                    JSONObject player = new JSONObject();
 
                     try {
                         player.put("player", array);
@@ -311,7 +238,7 @@ public class NewProfileActivity extends AppCompatActivity {
                         e.printStackTrace();
                     }
 
-                    Log.d("BENZINO", "JSON Object : "+player.toString());
+                    Log.d("BENZINO", "JSON Object : "+ player.toString());
 
                     //sending data & specifying the encoding utf-8
                     OutputStream os = connection.getOutputStream();
@@ -351,87 +278,7 @@ public class NewProfileActivity extends AppCompatActivity {
                     Log.d("BENZINO", "Error connecting to Host", e);
                 }
             }
-
             return null;
         }
-
     }
-
-    @Override
-    public void onConfigurationChanged(Configuration newConfig) {
-        super.onConfigurationChanged(newConfig);
-        Configuration config = new Configuration(newConfig);
-        config.locale = new Locale(lang);
-        getBaseContext().getResources().updateConfiguration(config, getResources().getDisplayMetrics());
-    }
-
-    //Conflicts between language and orientation solved.
-    public void setLocale(String lang) {
-
-        Configuration conf = getResources().getConfiguration();
-        conf.locale = new Locale(lang);
-        getResources().updateConfiguration(conf, getResources().getDisplayMetrics());
-
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        //Language selection
-        if (id == R.id.Language) {
-            startActivity(new Intent(getApplicationContext(), ChooseLang.class));
-            finish();
-            return true;
-        }
-
-        //Map Activity selection
-        if (id == R.id.action_map) {
-            Intent intent = new Intent(getApplicationContext(), MapActivity.class);
-            intent.putExtra("LANG", lang);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(intent);
-            //finish();
-            return true;
-        }
-
-        //Advice Activity selection
-        if (id == R.id.action_advice) {
-            Intent intent = new Intent(getApplicationContext(), AdvicesActivity.class);
-            intent.putExtra("LANG", lang);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(intent);
-            //finish();
-            return true;
-        }
-
-        //Credits Activity selection
-        if (id == R.id.action_credits) {
-            Intent intent = new Intent(getApplicationContext(), CreditsActivity.class);
-            intent.putExtra("LANG", lang);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(intent);
-            //finish();
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
-
-
 }

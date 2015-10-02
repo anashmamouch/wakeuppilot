@@ -1,6 +1,6 @@
 package com.example.anas.firstapp.test;
 
-import android.app.Activity;
+
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -12,13 +12,10 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.os.AsyncTask;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.Surface;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
-import android.view.View;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.example.anas.firstapp.AfterReferenceActivity;
 import com.example.anas.firstapp.DatabaseHandler;
@@ -43,9 +40,6 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Random;
 
-/**
- * Created by Anas on 30/7/15.
- */
 public class AnimationView extends SurfaceView implements SurfaceHolder.Callback{
 
     /**
@@ -73,7 +67,6 @@ public class AnimationView extends SurfaceView implements SurfaceHolder.Callback
     private float circleRadius;
 
     private Paint circlePaint;
-    private Paint textPaint;
     private Paint timePaint;
 
     private boolean touching = false;
@@ -84,10 +77,6 @@ public class AnimationView extends SurfaceView implements SurfaceHolder.Callback
     private int touched = 0;
     private int touch = 0;
     private Loop loop;
-
-    private EditText usernameEditText;
-
-
 
     /*url to get the json data*/
     private static String url = "http://wakeuppilot.herokuapp.com/games.json";
@@ -130,7 +119,7 @@ public class AnimationView extends SurfaceView implements SurfaceHolder.Callback
         circlePaint.setColor(Color.RED);
         circlePaint.setAntiAlias(true);
 
-        textPaint = new Paint();
+        Paint textPaint = new Paint();
         textPaint.setColor(Color.BLACK);
         textPaint.setTextSize(16);
 
@@ -255,7 +244,7 @@ public class AnimationView extends SurfaceView implements SurfaceHolder.Callback
 
         touched++;
     }
-
+    /**
     public void decreaseSpeed(float count){
         if(vx > 0)
             vx -=count;
@@ -272,6 +261,7 @@ public class AnimationView extends SurfaceView implements SurfaceHolder.Callback
 
     }
 
+     **/
 
 
     public void changePosition(){
@@ -660,6 +650,5 @@ public class AnimationView extends SurfaceView implements SurfaceHolder.Callback
                 return null;
             }
         }
-
 
 }

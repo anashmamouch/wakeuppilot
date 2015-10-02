@@ -1,21 +1,12 @@
 package com.example.anas.firstapp;
 
 import android.content.Context;
-import android.content.Intent;
-import android.content.res.Configuration;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -38,18 +29,8 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.List;
-import java.util.Locale;
 
-
-public class MapActivity extends AppCompatActivity implements LocationListener{
-
-    private Toolbar toolbar;
-    private TextView title;
-
-    private String lang;
-
-
+public class MapActivity extends BaseActivity implements LocationListener{
     //the map
     private GoogleMap map;
 
@@ -70,57 +51,27 @@ public class MapActivity extends AppCompatActivity implements LocationListener{
 
     //instance variables for Marker icon drawable
     private int userIcon;
-    private int foodIcon;
-    private int shopIcon;
     private int drinkIcon;
-    private int otherIcon;
 
     private boolean updateFinished = true;
-    private String SERVER_KEY = "AIzaSyBYWwUbgLnzlWG_VwEjc7OzymQ2vFiK_ho";
     private String BROWSER_KEY = "AIzaSyCh-k2YCfbPnKYpK2aqMureow1OP4RFCpk";
     
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_map);
 
-        //Attaching the layout to the toolbar object
-        toolbar = (Toolbar) findViewById(R.id.tool_bar);
-        title = (TextView) findViewById(R.id.toolbar_title);
-
-        lang  = (String) getIntent().getSerializableExtra("LANG");
-
-        if(lang.equals("ar")){
-
-        }
-        else if(lang.equals("fr")){
-
-        }
-        else if(lang.equals("en")){
-
-        }
-        title.setText(R.string.toolbar_carte);
-
-        toolbar.setNavigationIcon(R.drawable.logo_white_32);
-        //Setting the toolbar as the ActionBar
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setTitle(" ");
-        //getSupportActionBar().setLogo(R.drawable.logo_white_32);
-        getSupportActionBar().setDisplayShowHomeEnabled(true);
+        ((TextView) findViewById(R.id.toolbar_title)).setText(R.string.toolbar_carte);
 
         //get drawable IDs
         userIcon = R.drawable.marker_orange;
-        foodIcon = R.drawable.marker_teal;
-        shopIcon = R.drawable.marker_yellow;
         drinkIcon = R.drawable.marker_teal;
-        otherIcon = R.drawable.marker_orange;
 
         //find out if we already have it
-        if(map==null){
+        if(map==null) {
             //get the map
-            map = ((SupportMapFragment)getSupportFragmentManager().findFragmentById(R.id.map)).getMap();
+            map = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map)).getMap();
             //check in case map/ Google Play services not available
-            if(map!=null){
+            if (map != null) {
                 //ok - proceed
                 //map.setMapType(GoogleMap.MAP_TYPE_HYBRID);
                 //create marker array
@@ -128,28 +79,19 @@ public class MapActivity extends AppCompatActivity implements LocationListener{
 
                 map.setMyLocationEnabled(true);
 
-                locationManager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
+                locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
                 locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 30000, 100, this);
                 //update location
                 updatePlaces();
             }
-
         }
-        /**
-        //get the map
-        map = ((SupportMapFragment)getSupportFragmentManager().findFragmentById(R.id.map)).getMap();
-
-        //create the marker array
-        placeMarkers = new Marker[MAX_PLACES];
-
-        map.setMyLocationEnabled(true);
-
-        locationManager = (LocationManager)getSystemService(Context.LOCATION_SERVICE);
-        locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER, 30000, 100, this);
-        updatePlaces();
-         **/
-
     }
+
+    @Override
+    protected int getLayoutResource() {
+        return R.layout.activity_map;
+    }
+
     //method to update user location
     private void updatePlaces(){
         Log.d("BENZINO MAP", "MAP LOCATION MANAGER : " + locationManager.toString());
@@ -193,9 +135,7 @@ public class MapActivity extends AppCompatActivity implements LocationListener{
 
             //execute query
             new GetPlaces().execute(placesSearchStr);
-
         }
-
 
     }
 
@@ -295,7 +235,7 @@ public class MapActivity extends AppCompatActivity implements LocationListener{
                     //String placeName = "";
                     String placeName = "Station de gas";
                     String vicinity = "";
-                    int currentIcon = otherIcon;
+                    int currentIcon = userIcon;
                     try{
                         //attempt to retrieve place data values
                         missingValue = false;
@@ -313,22 +253,10 @@ public class MapActivity extends AppCompatActivity implements LocationListener{
                         for(int t = 0; t < types.length(); t++){
                             String type = types.get(t).toString();
                             //using particular icons for each location
-                            if(type.contains("food")){
-                                Log.d("BENZINO", "FOOD");
-                                currentIcon = foodIcon;
-                                break;
-                            }else if(type.contains("bar")){
-                                Log.d("BENZINO", "BAR");
-                                currentIcon = otherIcon;
-                                break;
-                            }else if(type.contains("gas_station")){
+                            if(type.contains("gas_station")){
                                 Log.d("BENZINO", "GAS");
                                 Log.d("GAS", "PLACE GAS : " + placeObject.toString());
                                 currentIcon = drinkIcon;
-                                break;
-                            }else if(type.contains("stadium")){
-                                Log.d("BENZINO", "STAD");
-                                currentIcon = shopIcon;
                                 break;
                             }
                         }
@@ -347,8 +275,7 @@ public class MapActivity extends AppCompatActivity implements LocationListener{
                             .position(placeLatLng)
                             .title(placeName)
                             .icon(BitmapDescriptorFactory.fromResource(currentIcon))
-                            .snippet(vicinity)
-                    ;
+                            .snippet(vicinity);
 
                     /**
                      if(missingValue)
@@ -416,82 +343,4 @@ public class MapActivity extends AppCompatActivity implements LocationListener{
         }
     }
 
-    @Override
-    public void onConfigurationChanged(Configuration newConfig) {
-        super.onConfigurationChanged(newConfig);
-        Configuration config = new Configuration(newConfig);
-        config.locale = new Locale(lang);
-        getBaseContext().getResources().updateConfiguration(config, getResources().getDisplayMetrics());
-    }
-
-    //Conflicts between language and orientation solved.
-    public void setLocale(String lang) {
-
-        Configuration conf = getResources().getConfiguration();
-        conf.locale = new Locale(lang);
-        getResources().updateConfiguration(conf, getResources().getDisplayMetrics());
-
-    }
-
-
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        //Language selection
-        if (id == R.id.Language) {
-            startActivity(new Intent(getApplicationContext(), ChooseLang.class));
-            finish();
-            return true;
-        }
-
-        //Map Activity selection
-        if (id == R.id.action_map) {
-            Intent intent = new Intent(getApplicationContext(), MapActivity.class);
-            intent.putExtra("LANG", lang);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(intent);
-            finish();
-            return true;
-        }
-
-
-        //Advice Activity selection
-        if (id == R.id.action_advice) {
-            Intent intent = new Intent(getApplicationContext(), AdvicesActivity.class);
-            intent.putExtra("LANG", lang);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(intent);
-            finish();
-            return true;
-        }
-
-        //Credits Activity selection
-        if (id == R.id.action_credits) {
-            Intent intent = new Intent(getApplicationContext(), CreditsActivity.class);
-            intent.putExtra("LANG", lang);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(intent);
-            finish();
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
 }

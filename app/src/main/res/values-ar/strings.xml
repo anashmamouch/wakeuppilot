@@ -33,7 +33,8 @@
     <string name="credits">لقد تم تصميم هذا التطبيق من طرف أنس حماموش، خريج المعهد الوطني للبريد و المواصلات، في إطار مشروع السيارة المغربية الذكية و تحت إشراف السوفت سنتر.</string>
     <string name="partenaires">الفريق</string>
     <string name="retour_conseils">الرجوع إلى النصائح</string>
-
+    <string name="pas_conseils">لا يوجد أي نصائح</string>
+    <string name="verifier_internet">المرجو الإتصال بشبكة الأنترنت</string>
 
     <string name="supprimer_profile">حذف البروفايل</string>
     <string name="sure_supprimer_profile">هل تريدون حذف هذا البروفايل ؟</string>

@@ -2,17 +2,14 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-
     tools:context=".ReferenceActivity">
 
     <include
         android:id="@+id/tool_bar"
-        layout="@layout/tool_bar"
-        ></include>
+        layout="@layout/tool_bar"/>
 
     <TextView
         android:id="@+id/intro_niveau_reference"
@@ -21,10 +18,10 @@
         android:gravity="center_horizontal"
         android:textSize="18dp"
         android:textAlignment="center"
+        android:padding="8dp"
         android:text= "@string/intro_niveau_reference"
         android:layout_marginTop="24dp"
-        android:layout_marginBottom="24dp"
-        />
+        android:layout_marginBottom="8dp"/>
 
     <TextView
         android:id="@+id/duree_niveau_reference"
@@ -34,24 +31,19 @@
         android:textSize="24dp"
         android:textAlignment="center"
         android:text= "@string/duree_niveau_reference"
-        android:layout_marginTop="24dp"
-        android:layout_marginBottom="24dp"
-        android:textStyle="italic"
-        />
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="16dp"
+        android:textStyle="italic"/>
 
 
     <TextView
-
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-
         android:textSize="20dp"
-
         android:layout_marginLeft="24dp"
         android:layout_marginRight="24dp"
-
         android:text= "@string/pour_passer_test"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="16dp"
         android:layout_marginBottom="8dp" />
 
     <TextView
@@ -60,9 +52,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:textSize="16dp"
-
         android:text= "@string/list_niveau_reference" />
-
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -80,11 +70,9 @@
         android:textColor="#fff"
         android:textAllCaps="false"
         android:background="@color/ColorPrimaryDark"
-
         android:layout_marginLeft="24dp"
         android:layout_marginRight="24dp"
         android:layout_marginBottom="16dp"/>
-
 
     </LinearLayout>
 

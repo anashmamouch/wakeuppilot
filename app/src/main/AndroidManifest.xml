@@ -38,7 +38,6 @@
         android:icon="@mipmap/icon"
         android:label="@string/app_name"
 
-
         android:theme="@style/AppTheme" >
 
         <!-- Specifies the Android API Key, which is obtained from Google API Console -->
@@ -71,9 +70,9 @@
         <activity
             android:name=".WelcomeActivity"
             android:configChanges="locale|orientation|screenSize"
-            android:label="@string/app_name"
-            android:launchMode="singleTop">
+            android:label="@string/app_name">
         </activity>
+
 
         <!-- New Profile activity -->
         <activity
