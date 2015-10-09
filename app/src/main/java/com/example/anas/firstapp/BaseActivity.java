@@ -1,13 +1,17 @@
 package com.example.anas.firstapp;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
+
 
 import java.util.Locale;
 
@@ -26,14 +30,59 @@ public abstract class BaseActivity extends AppCompatActivity {
         toolbar = (Toolbar) findViewById(R.id.tool_bar);
 
         toolbar.setNavigationIcon(R.drawable.logo_white_32);
+
         //Setting the toolbar as the ActionBar
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle(" ");
+
         //getSupportActionBar().setLogo(R.drawable.logo_white_32);
+        getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayShowHomeEnabled(true);
+        //getSupportActionBar().setDisplayShowCustomEnabled(true);
+    }
+
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+           showDialog();
+
+            //moveTaskToBack(false);
+
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 
     protected abstract int getLayoutResource();
+
+    public void showDialog() {
+
+        AlertDialog alert = new AlertDialog.Builder(this)
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setTitle(getResources().getString(R.string.quitter_application))
+                .setMessage(getResources().getString(R.string.sure_vouloir_quitter))
+                .setPositiveButton(getResources().getString(R.string.oui), new DialogInterface.OnClickListener()
+                {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                        moveTaskToBack(true);
+                        //getParent().finish();
+                        finish();
+                    }
+
+                })
+                .setNegativeButton(getResources().getString(R.string.non), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+
+                    }
+                })
+                .show();
+        alert.setCanceledOnTouchOutside(false);
+    }
 
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
@@ -65,8 +114,14 @@ public abstract class BaseActivity extends AppCompatActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+
+        if(id == android.R.id.home){
+            Intent intent = new Intent(getApplicationContext(), WelcomeActivity.class);
+            intent.putExtra("LANG", lang);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+            startActivity(intent);
+            finish();
             return true;
         }
 
@@ -84,7 +139,7 @@ public abstract class BaseActivity extends AppCompatActivity {
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
             intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
             startActivity(intent);
-            //finish();
+            finish();
             return true;
         }
 
@@ -95,7 +150,18 @@ public abstract class BaseActivity extends AppCompatActivity {
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
             intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
             startActivity(intent);
-            //finish();
+            finish();
+            return true;
+        }
+
+        //Relax video Activity selection
+        if (id == R.id.action_video) {
+            Intent intent = new Intent(getApplicationContext(), RelaxVideoActivity.class);
+            intent.putExtra("LANG", lang);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+            startActivity(intent);
+            finish();
             return true;
         }
 
@@ -106,10 +172,10 @@ public abstract class BaseActivity extends AppCompatActivity {
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
             intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
             startActivity(intent);
-            //finish();
+            finish();
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
+
 }

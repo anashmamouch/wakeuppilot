@@ -1,6 +1,7 @@
 package com.example.anas.firstapp.test;
 
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -15,7 +16,6 @@ import android.util.Log;
 import android.view.Surface;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
-import android.widget.EditText;
 
 import com.example.anas.firstapp.AfterReferenceActivity;
 import com.example.anas.firstapp.DatabaseHandler;
@@ -24,6 +24,7 @@ import com.example.anas.firstapp.R;
 import com.example.anas.firstapp.Test;
 import com.example.anas.firstapp.TestFirstActivity;
 import com.example.anas.firstapp.TestNewActivity;
+import com.example.anas.firstapp.TutorialActivity;
 import com.example.anas.firstapp.User;
 
 import org.json.JSONException;
@@ -370,6 +371,7 @@ public class AnimationView extends SurfaceView implements SurfaceHolder.Callback
 
     }
 
+
     public void alertDialog(final User user, final Context context, final String lang){
 
         final DatabaseHandler db = DatabaseHandler.getInstance(context);
@@ -377,7 +379,9 @@ public class AnimationView extends SurfaceView implements SurfaceHolder.Callback
 
         String touchezBall = getResources().getString(R.string.dialog_touchez_balle);
         String fois = getResources().getString(R.string.dialog_fois);
-            /*
+
+
+        /*
          * Alert Dialog
          * */
 
@@ -456,12 +460,14 @@ public class AnimationView extends SurfaceView implements SurfaceHolder.Callback
                                     Intent intent = new Intent(context, AfterReferenceActivity.class);
                                     intent.putExtra("KEY", user);
                                     intent.putExtra("LANG", lang);
+                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                                    intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
                                     setLocale(lang);
                                     context.startActivity(intent);
-                                    //((Activity) context).finish();
-                                    //Interupting the Game Loop
 
                                     loop.interrupt();
+
+                                    ((Activity)context).finish();
                                     //Dismisses the dialog box
                                     dialog.dismiss();
 
@@ -477,18 +483,21 @@ public class AnimationView extends SurfaceView implements SurfaceHolder.Callback
                                     Intent intent = new Intent(context, HistoryResultsActivity.class);
                                     intent.putExtra("KEY", user);
                                     intent.putExtra("LANG", lang);
+                                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                                    intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
                                     setLocale(lang);
                                     context.startActivity(intent);
-                                    //((Activity) context).finish();
+
                                     //Interupting the Game Loop
                                     loop.interrupt();
+                                    ((Activity) context).finish();
                                     //Dismisses the dialog box
                                     dialog.dismiss();
-                                }
+
+                            }
 
                             //sending the data to the url
                             new SendData().execute(url);
-
 
                         }
                     })
@@ -503,7 +512,7 @@ public class AnimationView extends SurfaceView implements SurfaceHolder.Callback
      * Finish Alert Dialog
      * */
         //if the user touched the ball less than 3 times
-        if (time ==30 && touched <= 5){
+        else if (time ==30 && touched <= 5){
 
             AlertDialog alert = new AlertDialog.Builder(context)
                     .setTitle(R.string.dialog_title)
@@ -527,30 +536,37 @@ public class AnimationView extends SurfaceView implements SurfaceHolder.Callback
                                 Intent intent = new Intent(context, TestFirstActivity.class);
                                 intent.putExtra("KEY", user);
                                 intent.putExtra("LANG", lang);
+                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                                intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
                                 setLocale(lang);
                                 context.startActivity(intent);
-                                //((Activity) context).finish();
+
                                 loop.interrupt();
+                                ((Activity) context).finish();
                                 dialog.dismiss();
                             }else{
                                 // go back to the profile page
                                 Intent intent = new Intent(context, TestNewActivity.class);
                                 intent.putExtra("KEY", user);
                                 intent.putExtra("LANG", lang);
+                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                                intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
                                 setLocale(lang);
                                 context.startActivity(intent);
-                                //((Activity) context).finish();
+
                                 loop.interrupt();
+                                ((Activity) context).finish();
                                 dialog.dismiss();
 
                             }
-
                         }
                     })
                     .setIcon(android.R.drawable.ic_dialog_alert)
                     .show();
 
             alert.setCanceledOnTouchOutside(false);
+
+        }else{
 
         }
     }

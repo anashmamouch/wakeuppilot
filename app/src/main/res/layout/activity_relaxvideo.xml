@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include
+        android:id="@+id/tool_bar"
+        layout="@layout/tool_bar"/>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent">
+
+        <VideoView
+            android:id="@+id/video"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_above="@+id/passer_test"/>
+
+        <Button
+            android:id="@+id/passer_test"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/dialog_refaire_test"
+            android:textSize="14dp"
+            android:textColor="#fff"
+            android:textAllCaps="false"
+            android:background="@color/ColorPrimaryDark"
+
+            android:layout_alignParentBottom="true"
+
+            android:layout_marginTop="16dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginRight="24dp"
+            android:layout_marginBottom="24dp"/>
+
+
+    </RelativeLayout>
+
+
+</LinearLayout>

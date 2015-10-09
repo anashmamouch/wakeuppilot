@@ -16,6 +16,8 @@ public class SingleAdviceActivity extends BaseActivity {
         ((TextView) findViewById(R.id.body_label)).setText(((String) getIntent().getSerializableExtra("body")));
         ((TextView) findViewById(R.id.date_label)).setText(((String) getIntent().getSerializableExtra("created_at")));
 
+
+
         findViewById(R.id.retour_conseils).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

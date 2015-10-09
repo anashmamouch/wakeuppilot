@@ -3,11 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".WelcomeActivity">
 
-    <item
-        android:id="@+id/action_settings"
-        android:title="@string/action_settings"
-        android:orderInCategory="100"
-        app:showAsAction="never" />
 
     <item
         android:id="@+id/Language"
@@ -24,6 +19,12 @@
     <item
         android:id="@+id/action_advice"
         android:title="@string/toolbar_conseils"
+        android:orderInCategory="100"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_video"
+        android:title="@string/toolbar_relaxation"
         android:orderInCategory="100"
         app:showAsAction="never" />
 

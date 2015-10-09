@@ -43,8 +43,13 @@
     <string name="pas_conseils">Pas de Conseils pour le moment!</string>
     <string name="verifier_internet">Veuillez verifier votre connexion internet</string>
 
+    <string name="relaxation"></string>
+
     <string name="supprimer_profile">Supprimer profile</string>
     <string name="sure_supprimer_profile">Etes vous sure de supprimer ce profile</string>
+
+    <string name="quitter_application">"Quitter l'application"</string>
+    <string name="sure_vouloir_quitter">"Etes vous sure de vouloir quitter l'application?"</string>
 
     <string name="oui">Oui</string>
     <string name="non">Non</string>
@@ -61,6 +66,7 @@
     <string name="toolbar_nouveau_profile">NOUVEAU PROFILE</string>
     <string name="toolbar_historique_resultats">HISTORIQUE DES RESULTATS</string>
     <string name="toolbar_niveau_reference">NIVEAU DE REFERENCE</string>
+    <string name="toolbar_relaxation">Relaxation guidée</string>
     <string name="toolbar_conseils">Conseils</string>
     <string name="toolbar_credits">Crédits</string>
 
@@ -71,7 +77,7 @@
     <string name="dialog_fois">fois</string>
     <string name="dialog_refaire_test">Refaire le test</string>
     <string name="dialog_retourner_profile">Retourner au profile</string>
-    <string name="dialog_enregistrer_score">Enregistrer votre score</string>
+    <string name="dialog_enregistrer_score">Enregistrer score</string>
     <string name="dialog_score_minimum">"Vous n'avez pas dépasser le score minimum \n Voulez-vous "</string>
 
     <string name="veuillez_patientez">Veuillez patienter ...</string>
@@ -111,7 +117,7 @@
     <string name="radio_arabic">العربية</string>
     <string name="radio_french">Français</string>
     <string name="radio_english">English</string>
-
+    <string name="toolbar_video">Relax video</string>
 
 
 </resources>

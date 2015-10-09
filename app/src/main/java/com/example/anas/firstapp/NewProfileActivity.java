@@ -62,8 +62,6 @@ public class NewProfileActivity extends BaseActivity {
 
         ((TextView) findViewById(R.id.toolbar_title)).setText(R.string.toolbar_nouveau_profile);
 
-
-
         checkRadio();
 
         findViewById(R.id.creer).setOnClickListener(new View.OnClickListener() {

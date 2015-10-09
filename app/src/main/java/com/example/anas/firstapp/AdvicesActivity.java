@@ -86,7 +86,7 @@ public class AdvicesActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 //go to the new profile page
-                Intent intent = new Intent(getApplicationContext(), NewProfileActivity.class);
+                Intent intent = new Intent(getApplicationContext(), ProfilesActivity.class);
                 intent.putExtra("LANG", lang);
                 setLocale(lang);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -211,8 +211,8 @@ public class AdvicesActivity extends BaseActivity {
                     bodys = new String [1];
                     dates = new String[1];
 
-                    titles[0] = "Pas de données !";
-                    bodys[0] = "Verifier que vous etes connecte a internet";
+                    titles[0] = getResources().getString(R.string.pas_conseils);
+                    bodys[0] = getResources().getString(R.string.verifier_internet);
                     dates[0] = " ";
                     Log.d("BENZINO", "Error Logs JSON : ", e);
                 }

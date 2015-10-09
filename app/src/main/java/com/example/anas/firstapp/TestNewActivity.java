@@ -35,7 +35,9 @@ public class TestNewActivity extends BaseActivity{
         if(total !=0)
             scoreReference = tests.get((total - 1)).getBallTouched();
 
-        success(scoreReference, total);
+        //success(scoreReference, total);
+
+        score(scoreReference);
 
         String username = user.getUsername();
         String age = user.getAge();
@@ -56,9 +58,8 @@ public class TestNewActivity extends BaseActivity{
             ((TextView) findViewById(R.id.toolbar_title)).setText(username + " | " + age);
         }
 
-        /**Starting DecoView
-         *
-         *
+        /**
+         * Starting DecoView
          */
 
         DecoView decoView = (DecoView) findViewById(R.id.dynamicArcView);
@@ -100,29 +101,28 @@ public class TestNewActivity extends BaseActivity{
          .setDelay(5000)
          .build());
          **/
-        decoView.addEvent(new DecoEvent.Builder(success(scoreReference, total))
+        decoView.addEvent(new DecoEvent.Builder(score(scoreReference))
                 .setIndex(series1Index)
 
                 .setDelay(3000)
                 .build());
 
-        /**Ending DecoView
-         *
-         *
+        /**
+         * Ending DecoView
          */
 
         findViewById(R.id.passer_test).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 //go to the test
                 Intent intent = new Intent(getApplicationContext(), GameActivity.class);
                 intent.putExtra("KEY", user);
                 intent.putExtra("LANG", lang);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
                 setLocale(lang);
                 startActivity(intent);
                 finish();
-
             }
         });
 
@@ -131,6 +131,8 @@ public class TestNewActivity extends BaseActivity{
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), ProfilesActivity.class);
                 intent.putExtra("LANG", lang);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
                 setLocale(lang);
                 startActivity(intent);
                 finish();
@@ -142,11 +144,11 @@ public class TestNewActivity extends BaseActivity{
             public void onClick(View v) {
                 //go to the History Results page
                 Intent intent = new Intent(getApplicationContext(), HistoryResultsActivity.class);
-                Log.d("BENZINO", "creating the intent");
                 intent.putExtra("KEY", user);
                 intent.putExtra("LANG", lang);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
                 setLocale(lang);
-                Log.d("BENZINO", "starting the intent");
                 startActivity(intent);
                 finish();
             }
@@ -157,6 +159,7 @@ public class TestNewActivity extends BaseActivity{
         return R.layout.activity_new_test;
     }
 
+    //Global score
     public  float success(int scoreReference, int total){
         int[] scores;
 
@@ -165,31 +168,27 @@ public class TestNewActivity extends BaseActivity{
         float somme = 0;
 
         for(int i=0; i<total; i++){
-            Log.d("BENZINO", "inside for loop tests :::::::::::>> "+ tests.get(i).toString());
+
             if(tests.get(i).getFirstTime()){
-                //scoreReference = tests.get(i).getBallTouched();
+
             }else{
                 sum = tests.get(i).getBallTouched();
-                Log.d("BENZINO", "inside for loop tests :::::::::::>> "+ i +" - "+ sum);
-
-                //Log.d("ANAS", "somme pour test"sum);
-                //if(scoreReference !=0)
                 somme += sum/(float)scoreReference;
-
-                Log.d("BENZINO", "inside for loop tests :::::::::::>> SOMME "+ somme);
             }
         }
         if(last > 0){
             somme = somme/last;
-            Log.d("BENZINO", "SCORE REFERENCE INSIDE IF  :::::::::::>>>>>>>>>>> "+ somme);
         }
-
-        else
+        else{
             somme = 1;
-
-        Log.d("BENZINO", "SOMME :::::::::::>>>>>>>>>>> "+ somme);
-
+        }
         return somme*100;
     }
 
+    //Score du dernier test
+    public float score(int scoreReference){
+        float somme ;
+        somme = tests.get(0).getBallTouched()/(float)scoreReference;
+        return somme*100;
+    }
 }

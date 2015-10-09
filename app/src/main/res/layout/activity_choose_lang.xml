@@ -1,17 +1,12 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:alpha=".9"
     android:background="@drawable/dark_background_image_wakeuppilot"
-
     tools:context=".ChooseLang">
-
-
-
 
     <ImageView
         android:layout_width="match_parent"
@@ -29,11 +24,9 @@
         android:orientation="horizontal">
 
         <RadioButton
-
             android:id="@+id/radio_arabic"
             android:button="@null"
             android:drawableTop="@mipmap/ma"
-
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:checked="true"
@@ -43,11 +36,9 @@
             android:textColor="#FFF"
             android:text="@string/radio_arabic"
             android:layout_weight=".3"
-            android:gravity="center"
-            />
+            android:gravity="center"/>
 
         <RadioButton
-
             android:id="@+id/radio_french"
             android:button="@null"
             android:drawableTop="@mipmap/fr"
@@ -59,9 +50,7 @@
             android:textSize="14dp"
             android:textStyle="bold"
             android:textColor="#FFF"
-            android:text="@string/radio_french"
-
-            />
+            android:text="@string/radio_french"/>
 
         <RadioButton
             android:id="@+id/radio_english"
@@ -75,29 +64,35 @@
             android:textSize="14dp"
             android:textStyle="bold"
             android:textColor="#FFF"
-            android:text="@string/radio_english"
-            />
+            android:text="@string/radio_english"/>
     </RadioGroup>
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="0dip"
-    android:layout_weight=".3"
-    android:gravity="center"
-    android:background="#FFF">
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingRight="10dp"
-        android:paddingLeft="10dp"
-        android:src="@drawable/soft_center"/>
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:paddingRight="10dp"
-        android:paddingLeft="10dp"
-        android:src="@drawable/cfaomotors"/>
-</LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dip"
+        android:layout_weight=".4"
+        android:gravity="center"
+        android:padding="10dp"
+        android:background="#FFF">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/soft_center"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/inpt"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:src="@drawable/cfaomotors"/>
+    </LinearLayout>
+
 </LinearLayout>
 
 

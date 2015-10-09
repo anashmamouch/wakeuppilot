@@ -42,6 +42,9 @@
     <string name="oui">نعم</string>
     <string name="non">لا</string>
 
+    <string name="quitter_application">غلق التطبيق</string>
+    <string name="sure_vouloir_quitter">هل تريدون غلق التطبيبق؟</string>
+
     <!--Toast strings -->
     <string name="toast_entrer_pseudonyme">"المرجو تحديد إسمكم"</string>
     <string name="toast_depasser_pseudonyme">"المرجو أن لا تزيدوا عن 24 حرفا في الإسم"</string>
@@ -55,6 +58,7 @@
     <string name="toolbar_historique_resultats">قائمة نتائجكم</string>
     <string name="toolbar_niveau_reference">المستوى المرجعي</string>
     <string name="toolbar_conseils">نصائح</string>
+    <string name="toolbar_relaxation">حصة الإسترخاء</string>
     <string name="toolbar_credits">الفريق</string>
 
     <!--Alert Dialog strings-->

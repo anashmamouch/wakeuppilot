@@ -42,6 +42,9 @@
     <string name="oui">Yes</string>
     <string name="non">No</string>
 
+    <string name="quitter_application">Close application</string>
+    <string name="sure_vouloir_quitter">Are you sure to close the application?</string>
+
     <!--Toast strings -->
     <string name="toast_entrer_pseudonyme">"Please enter a username"</string>
     <string name="toast_depasser_pseudonyme">"Your username should not be more than 24 characters"</string>
@@ -55,6 +58,7 @@
     <string name="toolbar_historique_resultats">HISTORY OF RESULTS</string>
     <string name="toolbar_niveau_reference">REFERENCE LEVEL</string>
     <string name="toolbar_conseils">Advices</string>
+    <string name="toolbar_relaxation">Guided relaxation</string>
     <string name="toolbar_credits">Credits</string>
 
 

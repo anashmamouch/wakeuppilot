@@ -69,7 +69,6 @@ public class Loop extends Thread {
                             view.updatePhysics();
                             //view.alertDialog();
                             view.onDraw(canvas);
-
                             view.postInvalidate();
                             //Log.d("ANAS", "****************SYNCHRONIZED POST INVALIDATE");
                         }

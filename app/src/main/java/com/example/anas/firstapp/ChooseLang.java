@@ -10,7 +10,6 @@ import java.util.Locale;
 
 public class ChooseLang extends AppCompatActivity{
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,9 +24,7 @@ public class ChooseLang extends AppCompatActivity{
 
                 if(checkedId == R.id.radio_arabic) {
                     setLocale("ar");
-
                 } else if(checkedId == R.id.radio_french) {
-
                     setLocale("fr");
                 } else {
                     setLocale("en");

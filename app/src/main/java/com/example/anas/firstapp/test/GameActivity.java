@@ -1,12 +1,16 @@
 package com.example.anas.firstapp.test;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.media.MediaPlayer;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
@@ -14,11 +18,15 @@ import android.view.WindowManager;
 
 import com.example.anas.firstapp.R;
 import com.example.anas.firstapp.Test;
+import com.example.anas.firstapp.TestFirstActivity;
+import com.example.anas.firstapp.TestNewActivity;
+import com.example.anas.firstapp.TutorialActivity;
 import com.example.anas.firstapp.User;
 
 import java.util.Locale;
 
 public class GameActivity extends Activity{
+
 
     private AnimationView view;
     private Test test;
@@ -40,7 +48,6 @@ public class GameActivity extends Activity{
     private Thread thread;
 
     /*TODO OnBackPressed */
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,12 +82,12 @@ public class GameActivity extends Activity{
                             @Override
                             public void run() {
                                 view.incrementTime(1);
-                                //Log.d("ANAS", "****************************************INSIDE THE TIME RUN VIEW");
 
                                 if(view.getTime() %10 == 0){
                                     Log.d("ANAS", "TIME: " + view.getTime() + " seconds...");
                                     Log.d("ANAS", "--------Ball Touched: " + view.getTouched() + "times-------");
                                 }
+
 
                                 view.alertDialog(user, GameActivity.this, lang);
                             }
@@ -116,7 +123,7 @@ public class GameActivity extends Activity{
                             //sound
                             soundTouched.start();
 
-                        }else{
+                        } else {
                             soundMissed.start();
                         }
 
@@ -163,30 +170,51 @@ public class GameActivity extends Activity{
         thread.start();
     }
 
+
+
     @Override
     protected void onPause() {
-
+        super.onPause();
         thread.interrupt();
-        view.getLoop();
+        view.getLoop().interrupt();
 
         view.surfaceDestroyed(view.getHolder());
-
-        super.onPause();
-        //setContentView(null);
-        finish();
 
         Log.d("ANAS", "IS THE LOOP ALIVE  " + view.getLoop().isAlive());
         Log.d("ANAS", "IS THE TIME ALIVE  " + thread.isAlive());
         Log.d("ANAS", "THREAD STATUS: " + thread.getState());
         Log.d("ANAS", "LOOP STATUS: " + view.getLoop().getState());
-
     }
 
+    public boolean retour = false;
+
     @Override
-    public void onBackPressed() {
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
 
-        super.onBackPressed();
+            thread.interrupt();
+            view.getLoop().interrupt();
 
+            view.surfaceDestroyed(view.getHolder());
+
+            Intent intent = new Intent(GameActivity.this, TutorialActivity.class);
+
+            intent.putExtra("KEY", user);
+            intent.putExtra("LANG", lang);
+            retour = true;
+            intent.putExtra("RETOUR", retour);
+
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+
+            Log.d("ANAS", "--------------------->>>>>>PRESSED BACK BUTTON OH YEAAAHH<<<<<<<------------------");
+
+            startActivity(intent);
+            finish();
+
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
     /*TODO FIX BUG WHEN CHANGING ORIENTATION BALL CROSSES THE EDGES */
     @Override

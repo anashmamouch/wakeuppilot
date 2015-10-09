@@ -1,49 +1,20 @@
 package com.example.anas.firstapp;
 
-import android.annotation.TargetApi;
+
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Typeface;
-import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 
-import java.io.BufferedInputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-
-
-/**
- * Created by Anas on 23/7/15.
- */
 public class SplashScreen extends Activity {
-    /** Duration of wait */
+    /** Duration of wait in ms*/
     private static int SPLASH_TIME_OUT = 3000;
-    private ImageView splashImg;
-    private TextView splashText;
-
-    /** Called when the activity is first created. */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_splash);
 
-
-            splashImg = (ImageView) findViewById(R.id.splash_image);
-            //splashText = (TextView) findViewById(R.id.splash_text);
-
-            Typeface font = Typeface.createFromAsset(getApplicationContext().getAssets(), "lobster.ttf");
-            //splashText.setTypeface(font);
              /*
              * New Handler to start the Menu-Activity
              * and close this Splash-Screen after some seconds.
@@ -57,12 +28,8 @@ public class SplashScreen extends Activity {
                 @Override
                 public void run() {
                     startActivity(new Intent(SplashScreen.this, ChooseLang.class));
-
-                    //close this activity
                     finish();
                 }
             }, SPLASH_TIME_OUT);
     }
-
-
 }
