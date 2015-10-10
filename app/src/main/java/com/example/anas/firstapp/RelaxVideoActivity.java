@@ -1,8 +1,5 @@
 package com.example.anas.firstapp;
 
-
-
-import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
@@ -32,15 +29,9 @@ public class RelaxVideoActivity extends BaseActivity {
         findViewById(R.id.passer_test).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), ProfilesActivity.class);
-                intent.putExtra("LANG", lang);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-                startActivity(intent);
-                finish();
+                goToActivity(ProfilesActivity.class);
             }
         });
-
 
     }
 

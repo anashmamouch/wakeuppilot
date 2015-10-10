@@ -8,38 +8,48 @@
     android:orientation="vertical"
     tools:context=".TutorialActivity">
 
-    <include
-        android:id="@+id/tool_bar"
-        layout="@layout/tool_bar"
-        ></include>
-
-    <TextView
-        android:id="@+id/tutorial"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:paddingRight="10dp"
-        android:paddingLeft="10dp"
-        android:textSize="18dp"
-        android:textAlignment="center"
-        android:text= "@string/tutorial"
-        android:layout_marginTop="52dp"
-        android:layout_marginBottom="24dp"
-        />
-
-    <ImageView
-        android:id="@+id/tutorial_image"
-        android:layout_width="56dp"
-        android:layout_height="72dp"
-        android:adjustViewBounds="true"
-        android:scaleType="centerCrop"
-        android:layout_gravity="center"
-        android:background="@drawable/press_button_red"/>
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dip"
         android:layout_weight="1"
+        android:orientation="vertical">
+
+        <include
+            android:id="@+id/tool_bar"
+            layout="@layout/tool_bar"
+            ></include>
+
+        <TextView
+            android:id="@+id/tutorial"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:paddingRight="10dp"
+            android:paddingLeft="10dp"
+            android:textSize="18dp"
+            android:textAlignment="center"
+            android:text= "@string/tutorial"
+            android:layout_marginTop="52dp"
+            android:layout_marginBottom="24dp"
+            />
+
+        <ImageView
+            android:id="@+id/tutorial_image"
+            android:layout_width="56dp"
+            android:layout_height="72dp"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
+            android:layout_gravity="center"
+            android:background="@drawable/press_button_red"/>
+
+
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:gravity="center|bottom"
         android:orientation="vertical" >
 

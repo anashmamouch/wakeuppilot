@@ -32,7 +32,6 @@ public class TestFirstActivity extends BaseActivity {
         else
             ((TextView) findViewById(R.id.toolbar_title)).setText(username + " | " + age);
 
-
         findViewById(R.id.niveau_reference).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -48,18 +47,11 @@ public class TestFirstActivity extends BaseActivity {
             }
         });
 
-        findViewById(R.id.historique_resultats).setOnClickListener(new View.OnClickListener() {
+        findViewById(R.id.retour_list_profiles).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //go to the History Results page
-                Intent intent = new Intent(getApplicationContext(), HistoryResultsActivity.class);
-                Log.d("BENZINO", "creating the intent");
-                intent.putExtra("KEY", user);
-                intent.putExtra("LANG", lang);
-                setLocale(lang);
-                Log.d("BENZINO", "starting the intent");
-                startActivity(intent);
-                finish();
+                goToActivity(ProfilesActivity.class);
             }
         });
     }

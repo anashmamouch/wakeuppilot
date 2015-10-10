@@ -7,38 +7,44 @@
     android:orientation="vertical"
     tools:context=".WelcomeActivity">
 
-    <include
-        android:id="@+id/tool_bar"
-        layout="@layout/tool_bar"/>
-
-    <ImageView
-        android:id="@+id/logo_welcome"
-        android:adjustViewBounds="true"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:src="@drawable/logo_teal_welcome"
-        android:padding="10dp"
-        android:maxHeight="150dp"
-        android:maxWidth="150dp"
-        android:antialias="true"
-
-        />
-
-
-    <TextView
-        android:text="@string/description_welcome"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:textSize="16dp"
-        android:padding="24dp"
-        android:textAlignment="center"/>
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dip"
         android:layout_weight="1"
+        android:orientation="vertical">
+
+        <include
+            android:id="@+id/tool_bar"
+            layout="@layout/tool_bar"/>
+
+        <ImageView
+            android:id="@+id/logo_welcome"
+            android:adjustViewBounds="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:src="@drawable/logo_teal_welcome"
+            android:padding="10dp"
+            android:maxHeight="150dp"
+            android:maxWidth="150dp"
+            android:antialias="true"/>
+
+        <TextView
+            android:text="@string/description_welcome"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:textSize="16dp"
+            android:padding="24dp"
+            android:textAlignment="center"/>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
         android:gravity="center|bottom"
         android:orientation="vertical" >
 
@@ -52,6 +58,7 @@
             android:textAllCaps="false"
             android:background="@color/ColorPrimaryDark"
 
+            android:layout_marginTop="16dp"
             android:layout_marginLeft="24dp"
             android:layout_marginRight="24dp"
             android:layout_marginBottom="24dp"/>

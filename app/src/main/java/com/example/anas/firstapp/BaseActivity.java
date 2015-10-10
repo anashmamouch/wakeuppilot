@@ -100,6 +100,16 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     }
 
+    public void goToActivity(Class activity){
+        Intent intent = new Intent(getApplicationContext(), activity);
+        intent.putExtra("LANG", lang);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+        setLocale(lang);
+        startActivity(intent);
+        finish();
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -116,12 +126,7 @@ public abstract class BaseActivity extends AppCompatActivity {
 
 
         if(id == android.R.id.home){
-            Intent intent = new Intent(getApplicationContext(), WelcomeActivity.class);
-            intent.putExtra("LANG", lang);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-            intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-            startActivity(intent);
-            finish();
+            goToActivity(WelcomeActivity.class);
             return true;
         }
 
@@ -134,48 +139,29 @@ public abstract class BaseActivity extends AppCompatActivity {
 
         //Map Activity selection
         if (id == R.id.action_map) {
-            Intent intent = new Intent(getApplicationContext(), MapActivity.class);
-            intent.putExtra("LANG", lang);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-            intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-            startActivity(intent);
-            finish();
+            goToActivity(MapActivity.class);
             return true;
         }
 
         //Advice Activity selection
         if (id == R.id.action_advice) {
-            Intent intent = new Intent(getApplicationContext(), AdvicesActivity.class);
-            intent.putExtra("LANG", lang);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-            intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-            startActivity(intent);
-            finish();
+            goToActivity(AdvicesActivity.class);
             return true;
         }
 
         //Relax video Activity selection
         if (id == R.id.action_video) {
-            Intent intent = new Intent(getApplicationContext(), RelaxVideoActivity.class);
-            intent.putExtra("LANG", lang);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-            intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-            startActivity(intent);
-            finish();
+            goToActivity(RelaxVideoActivity.class);
             return true;
         }
 
         //Credits Activity selection
         if (id == R.id.action_credits) {
-            Intent intent = new Intent(getApplicationContext(), CreditsActivity.class);
-            intent.putExtra("LANG", lang);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-            intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-            startActivity(intent);
-            finish();
+            goToActivity(CreditsActivity.class);
             return true;
         }
         return super.onOptionsItemSelected(item);
     }
+
 
 }

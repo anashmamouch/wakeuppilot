@@ -1,6 +1,5 @@
 package com.example.anas.firstapp;
 
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -94,11 +93,7 @@ public class NewProfileActivity extends BaseActivity {
                     new SendData().execute(url);
 
                     //go to the list of profiles page
-                    Intent intent = new Intent(getApplicationContext(), ProfilesActivity.class);
-                    intent.putExtra("LANG", lang);
-                    setLocale(lang);
-                    startActivity(intent);
-                    finish();
+                    goToActivity(ProfilesActivity.class);
                 }
             }
         });
@@ -112,11 +107,7 @@ public class NewProfileActivity extends BaseActivity {
                 //send the data to the website wakeuppilot.herokuapp.com
                 new SendData().execute(url);
 
-                Intent intent = new Intent(getApplicationContext(), ProfilesActivity.class);
-                intent.putExtra("LANG", lang);
-                setLocale(lang);
-                startActivity(intent);
-                finish();
+                goToActivity(ProfilesActivity.class);
             }
         });
 

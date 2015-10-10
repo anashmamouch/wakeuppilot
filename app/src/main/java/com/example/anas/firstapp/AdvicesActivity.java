@@ -85,14 +85,7 @@ public class AdvicesActivity extends BaseActivity {
         findViewById(R.id.retour_profile).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //go to the new profile page
-                Intent intent = new Intent(getApplicationContext(), ProfilesActivity.class);
-                intent.putExtra("LANG", lang);
-                setLocale(lang);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-                startActivity(intent);
-                finish();
+                goToActivity(ProfilesActivity.class);
             }
         });
 
