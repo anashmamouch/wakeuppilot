@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dip"
         android:layout_weight="1"
-        android:gravity="center_vertical">
+        android:gravity="center">
 
         <VideoView
             android:id="@+id/video"
