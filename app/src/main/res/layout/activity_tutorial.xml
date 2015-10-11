@@ -52,7 +52,7 @@
             android:textAllCaps="false"
             android:background="@color/ColorPrimaryDark"
 
-            android:layout_gravity="bottom"
+            android:layout_gravity="center|bottom"
 
             android:layout_marginLeft="24dp"
             android:layout_marginRight="24dp"
