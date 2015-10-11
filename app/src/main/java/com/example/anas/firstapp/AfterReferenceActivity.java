@@ -20,12 +20,7 @@ public class AfterReferenceActivity extends BaseActivity {
         findViewById(R.id.retour_profile).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(AfterReferenceActivity.this, TestNewActivity.class);
-                intent.putExtra("KEY", user);
-                intent.putExtra("LANG", lang);
-                setLocale(lang);
-                startActivity(intent);
-                finish();
+                goToActivity(TestNewActivity.class, user);
             }
         });
     }

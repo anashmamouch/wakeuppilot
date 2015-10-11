@@ -22,8 +22,6 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
 
-
-
 public class NewProfileActivity extends BaseActivity {
 
     private String username;
@@ -93,7 +91,7 @@ public class NewProfileActivity extends BaseActivity {
                     new SendData().execute(url);
 
                     //go to the list of profiles page
-                    goToActivity(ProfilesActivity.class);
+                    goToActivity(ProfilesActivity.class, null);
                 }
             }
         });
@@ -107,7 +105,7 @@ public class NewProfileActivity extends BaseActivity {
                 //send the data to the website wakeuppilot.herokuapp.com
                 new SendData().execute(url);
 
-                goToActivity(ProfilesActivity.class);
+                goToActivity(ProfilesActivity.class, null);
             }
         });
 

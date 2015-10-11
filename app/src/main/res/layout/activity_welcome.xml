@@ -40,15 +40,7 @@
 
     </LinearLayout>
 
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-
-        android:gravity="center|bottom"
-        android:orientation="vertical" >
-
-        <Button
+      <Button
             android:id="@+id/nouveau_profile"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -57,12 +49,11 @@
             android:textColor="#fff"
             android:textAllCaps="false"
             android:background="@color/ColorPrimaryDark"
+            android:layout_gravity="bottom"
 
             android:layout_marginTop="16dp"
             android:layout_marginLeft="24dp"
             android:layout_marginRight="24dp"
             android:layout_marginBottom="24dp"/>
-
-    </LinearLayout>
 
 </LinearLayout>

@@ -85,7 +85,7 @@ public class AdvicesActivity extends BaseActivity {
         findViewById(R.id.retour_profile).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goToActivity(ProfilesActivity.class);
+                goToActivity(ProfilesActivity.class, null);
             }
         });
 

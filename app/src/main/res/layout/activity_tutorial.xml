@@ -16,8 +16,7 @@
 
         <include
             android:id="@+id/tool_bar"
-            layout="@layout/tool_bar"
-            ></include>
+            layout="@layout/tool_bar"/>
 
         <TextView
             android:id="@+id/tutorial"
@@ -30,8 +29,7 @@
             android:textAlignment="center"
             android:text= "@string/tutorial"
             android:layout_marginTop="52dp"
-            android:layout_marginBottom="24dp"
-            />
+            android:layout_marginBottom="24dp"/>
 
         <ImageView
             android:id="@+id/tutorial_image"
@@ -42,16 +40,7 @@
             android:layout_gravity="center"
             android:background="@drawable/press_button_red"/>
 
-
     </LinearLayout>
-
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center|bottom"
-        android:orientation="vertical" >
 
         <Button
             android:id="@+id/jai_compris_button"
@@ -63,11 +52,10 @@
             android:textAllCaps="false"
             android:background="@color/ColorPrimaryDark"
 
+            android:layout_gravity="bottom"
+
             android:layout_marginLeft="24dp"
             android:layout_marginRight="24dp"
             android:layout_marginBottom="16dp"/>
-
-
-    </LinearLayout>
 
 </LinearLayout>

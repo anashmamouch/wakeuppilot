@@ -9,8 +9,7 @@
 
     <include
         android:id="@+id/tool_bar"
-        layout="@layout/tool_bar"
-        ></include>
+        layout="@layout/tool_bar"/>
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -87,8 +86,6 @@
             android:layout_marginRight="24dp"
             android:layout_marginBottom="16dp"/>
 
-
-
         <Button
             android:id="@+id/historique_resultats"
             android:layout_width="fill_parent"
@@ -102,8 +99,6 @@
             android:layout_marginLeft="24dp"
             android:layout_marginRight="24dp"
             android:layout_marginBottom="24dp"/>
-
-
     </LinearLayout>
 
 </LinearLayout>

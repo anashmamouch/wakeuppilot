@@ -1,6 +1,5 @@
 package com.example.anas.firstapp;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -43,23 +42,9 @@ public class HistoryResultsActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 if (!tests.isEmpty()) {
-                    //go to the new profile page
-                    Intent intent = new Intent(HistoryResultsActivity.this, TestNewActivity.class);
-                    intent.putExtra("KEY", user);
-                    intent.putExtra("LANG", lang);
-                    setLocale(lang);
-                    startActivity(intent);
-                    finish();
-
+                    goToActivity(TestNewActivity.class, user);
                 } else {
-                    //go to the new reference page
-                    Intent intent = new Intent(HistoryResultsActivity.this, TestFirstActivity.class);
-                    intent.putExtra("KEY", user);
-                    intent.putExtra("LANG", lang);
-                    setLocale(lang);
-                    startActivity(intent);
-                    finish();
-
+                    goToActivity(TestFirstActivity.class, user);
                 }
             }
         });

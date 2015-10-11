@@ -29,7 +29,7 @@ public class RelaxVideoActivity extends BaseActivity {
         findViewById(R.id.passer_test).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goToActivity(ProfilesActivity.class);
+                goToActivity(ProfilesActivity.class, null);
             }
         });
 

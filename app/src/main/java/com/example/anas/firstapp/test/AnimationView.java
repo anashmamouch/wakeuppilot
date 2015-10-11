@@ -12,7 +12,9 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.os.AsyncTask;
+import android.util.DisplayMetrics;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.Surface;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
@@ -115,24 +117,27 @@ public class AnimationView extends SurfaceView implements SurfaceHolder.Callback
         getHolder().addCallback(this);
         getHolder().setKeepScreenOn(true);
 
-        circleRadius = 30;
+        //float px  = 30F;
+        //DisplayMetrics metrics = getResources().getDisplayMetrics();
+        //float dp = px / (metrics.densityDpi / 160f);
+
+        circleRadius = TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 30, getResources().getDisplayMetrics());
         circlePaint = new Paint();
         circlePaint.setColor(Color.RED);
         circlePaint.setAntiAlias(true);
 
-        Paint textPaint = new Paint();
-        textPaint.setColor(Color.BLACK);
-        textPaint.setTextSize(16);
+        float textSize =  TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 30, getResources().getDisplayMetrics());
 
         timePaint = new Paint();
-        timePaint.setColor(Color.BLUE);
+        timePaint.setColor(getResources().getColor(R.color.ColorPrimaryDark));
         timePaint.setTextAlign(Paint.Align.CENTER);
-        timePaint.setTextSize(22);
+        timePaint.setTextSize(textSize);
         timePaint.setAntiAlias(true);
 
         vx = 2;
         vy = 2;
     }
+
 
     /**
      *
@@ -290,7 +295,7 @@ public class AnimationView extends SurfaceView implements SurfaceHolder.Callback
     protected void onDraw(Canvas canvas) {
         canvas.drawColor(Color.WHITE);
 
-        canvas.drawText(" " + time, width / 2, 30, timePaint);
+        canvas.drawText(" " + time, width / 2, circleRadius, timePaint);
         //canvas.drawText("Touched: "+touching, 0, 50, textPaint);
         //canvas.drawText("POSITION X = " + x + "; Y = " + y , 0, 70, textPaint);
         //canvas.drawText("VELOCITY VX = "+String.format("%.2f",vx)+"; VY = "+String.format("%.2f", vy)+"",0, 90, textPaint);

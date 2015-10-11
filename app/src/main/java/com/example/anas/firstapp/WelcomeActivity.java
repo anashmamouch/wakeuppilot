@@ -28,7 +28,7 @@ public class WelcomeActivity extends BaseActivity{
         findViewById(R.id.nouveau_profile).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goToActivity(NewProfileActivity.class);
+                goToActivity(NewProfileActivity.class, null);
             }
         });
     }

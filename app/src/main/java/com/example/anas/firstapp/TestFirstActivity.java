@@ -35,23 +35,14 @@ public class TestFirstActivity extends BaseActivity {
         findViewById(R.id.niveau_reference).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //go to the Reference page
-                Intent intent = new Intent(getApplicationContext(), ReferenceActivity.class);
-                Log.d("BENZINO", "creating the intent");
-                intent.putExtra("KEY", user);
-                intent.putExtra("LANG", lang);
-                setLocale(lang);
-                Log.d("BENZINO", "starting the intent");
-                startActivity(intent);
-                finish();
+                goToActivity(ReferenceActivity.class, user);
             }
         });
 
         findViewById(R.id.retour_list_profiles).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //go to the History Results page
-                goToActivity(ProfilesActivity.class);
+                goToActivity(ProfilesActivity.class, null);
             }
         });
     }

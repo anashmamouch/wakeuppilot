@@ -1,9 +1,7 @@
 package com.example.anas.firstapp;
 
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -114,43 +112,21 @@ public class TestNewActivity extends BaseActivity{
         findViewById(R.id.passer_test).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //go to the test
-                Intent intent = new Intent(getApplicationContext(), GameActivity.class);
-                intent.putExtra("KEY", user);
-                intent.putExtra("LANG", lang);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-                setLocale(lang);
-                startActivity(intent);
-                finish();
+                goToActivity(GameActivity.class, user);
             }
         });
 
         findViewById(R.id.retour_list_profiles).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), ProfilesActivity.class);
-                intent.putExtra("LANG", lang);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-                setLocale(lang);
-                startActivity(intent);
-                finish();
+                goToActivity(ProfilesActivity.class, null);
             }
         });
 
         findViewById(R.id.historique_resultats).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //go to the History Results page
-                Intent intent = new Intent(getApplicationContext(), HistoryResultsActivity.class);
-                intent.putExtra("KEY", user);
-                intent.putExtra("LANG", lang);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-                setLocale(lang);
-                startActivity(intent);
-                finish();
+                goToActivity(HistoryResultsActivity.class, user);
             }
         });
     }

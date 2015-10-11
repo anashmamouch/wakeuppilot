@@ -28,15 +28,7 @@ public class TutorialActivity extends BaseActivity {
         findViewById(R.id.jai_compris_button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //go to the test
-                Intent intent = new Intent(getApplicationContext(), GameActivity.class);
-                intent.putExtra("KEY", user);
-                intent.putExtra("LANG", lang);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
-                setLocale(lang);
-                startActivity(intent);
-                finish();
+                goToActivity(GameActivity.class, user);
             }
         });
     }

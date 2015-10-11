@@ -15,8 +15,7 @@
 
         <include
             android:id="@+id/tool_bar"
-            layout="@layout/tool_bar"
-            ></include>
+            layout="@layout/tool_bar"/>
 
         <TextView
             android:id="@+id/text_niveau_reference"
@@ -51,12 +50,6 @@
         </LinearLayout>
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center|bottom"
-        android:orientation="vertical" >
-
         <Button
             android:id="@+id/niveau_reference"
             android:layout_width="fill_parent"
@@ -86,7 +79,5 @@
             android:layout_marginRight="24dp"
             android:layout_marginBottom="24dp"/>
 
-
-    </LinearLayout>
 
 </LinearLayout>

@@ -136,7 +136,6 @@ public class MapActivity extends BaseActivity implements LocationListener{
             //execute query
             new GetPlaces().execute(placesSearchStr);
         }
-
     }
 
     //Async task classes to fetch the places

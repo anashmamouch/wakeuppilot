@@ -17,7 +17,6 @@ import java.util.List;
 
 public class ProfilesActivity extends BaseActivity {
 
-
     private DatabaseHandler dbHelper;
 
     private List<User> users;
@@ -34,12 +33,7 @@ public class ProfilesActivity extends BaseActivity {
         findViewById(R.id.nouveau_profile).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //go to the new profile page
-                Intent intent = new Intent(getApplicationContext(), NewProfileActivity.class);
-                intent.putExtra("LANG", lang);
-                setLocale(lang);
-                startActivity(intent);
-                finish();
+                goToActivity(NewProfileActivity.class, null);
             }
         });
 
@@ -61,31 +55,18 @@ public class ProfilesActivity extends BaseActivity {
         ((ListView)findViewById(R.id.listView_profiles)).setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                // Toast.makeText(getApplicationContext(), names[position], Toast.LENGTH_LONG).show();
-                user = users.get(position);
 
+                user = users.get(position);
                 tests = dbHelper.findTestByUser(user.getId());
 
                 //If the user already passed the test
                 if (!tests.isEmpty()) {
-                    Intent intent = new Intent(getApplicationContext(), TestNewActivity.class);
-                    intent.putExtra("KEY", user);
-                    intent.putExtra("LANG", lang);
-                    setLocale(lang);
-                    startActivity(intent);
-                    finish();
+                    goToActivity(TestNewActivity.class, user);
                 } else {
-                    Intent intent = new Intent(getApplicationContext(), TestFirstActivity.class);
-                    intent.putExtra("KEY", user);
-                    intent.putExtra("LANG", lang);
-                    setLocale(lang);
-                    startActivity(intent);
-                    finish();
+                    goToActivity(TestFirstActivity.class, user);
                 }
-
             }
         });
-
     }
 
     @Override
@@ -165,17 +146,12 @@ public class ProfilesActivity extends BaseActivity {
                                public void onClick(DialogInterface dialog, int which) {
                                    dbHandler.deleteUser(dbHandler.findUserByName(usernameString));
 
-                                   Intent intent = getIntent();
-                                   intent.putExtra("LANG", lang);
-                                   setLocale(lang);
-                                   finish();
-                                   startActivity(intent);
+                                   goToActivity(ProfilesActivity.class, null);
                                    dialog.dismiss();
                                }
                            })
                            .setIcon(android.R.drawable.ic_dialog_alert)
                            .show();
-
                    alert.setCanceledOnTouchOutside(false);
                }
            });

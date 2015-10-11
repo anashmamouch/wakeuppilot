@@ -100,9 +100,14 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     }
 
-    public void goToActivity(Class activity){
+    public void goToActivity(Class activity, User user){
         Intent intent = new Intent(getApplicationContext(), activity);
         intent.putExtra("LANG", lang);
+
+        if(user != null){
+            intent.putExtra("KEY", user);
+        }
+
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
         setLocale(lang);
@@ -126,7 +131,7 @@ public abstract class BaseActivity extends AppCompatActivity {
 
 
         if(id == android.R.id.home){
-            goToActivity(WelcomeActivity.class);
+            goToActivity(WelcomeActivity.class, null);
             return true;
         }
 
@@ -139,25 +144,25 @@ public abstract class BaseActivity extends AppCompatActivity {
 
         //Map Activity selection
         if (id == R.id.action_map) {
-            goToActivity(MapActivity.class);
+            goToActivity(MapActivity.class, null);
             return true;
         }
 
         //Advice Activity selection
         if (id == R.id.action_advice) {
-            goToActivity(AdvicesActivity.class);
+            goToActivity(AdvicesActivity.class, null);
             return true;
         }
 
         //Relax video Activity selection
         if (id == R.id.action_video) {
-            goToActivity(RelaxVideoActivity.class);
+            goToActivity(RelaxVideoActivity.class, null);
             return true;
         }
 
         //Credits Activity selection
         if (id == R.id.action_credits) {
-            goToActivity(CreditsActivity.class);
+            goToActivity(CreditsActivity.class, null);
             return true;
         }
         return super.onOptionsItemSelected(item);
