@@ -29,6 +29,11 @@
     <string name="pour_passer_test">To take the test make sure you are:</string>
     <string name="jai_compris_button">"I understand"</string>
     <string name="retour_profile">Back to your profile</string>
+    <string name="alarm">Alarm</string>
+    <string name="alarm_description">It is recommended to take a break after every 2 hours of driving \n This Alarm will trigger if you drive more than 2 hours without stopping</string>
+    <string name="driving_time">Driving time</string>
+    <string name="start_alarm">Start</string>
+    <string name="stop_alarm">Stop</string>
     <string name="carte">Map</string>
     <string name="credits">This mobile application has been developed by M. Anas HMAMOUCH, INPT graduate engineer; as part of a project dedicated to the  "Chevrolet Moroccan Smart Cart" , for CFAO Motors Morocco, under the umbrella of the Moroccan Soft Center.</string>
     <string name="partenaires">Dream Team</string>

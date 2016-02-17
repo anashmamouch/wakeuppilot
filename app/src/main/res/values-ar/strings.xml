@@ -31,6 +31,12 @@
     <string name="jai_compris_button">"لقد فهمت"</string>
     <string name="retour_profile">الرجوع إلى البروفايل</string>
     <string name="credits">لقد تم تصميم هذا التطبيق من طرف أنس حماموش، خريج المعهد الوطني للبريد و المواصلات، في إطار مشروع السيارة المغربية الذكية و تحت إشراف السوفت سنتر.</string>
+    <string name="alarm">منبه</string>
+    <string name="alarm_description">من المستحسن أخد قسط من الراحة بعد ساعتين من القيادة
+إضغطوا على الزر "إبدأ" لكي يرن المنبه إذا تجاوزتم المدة المحددة للقيادة</string>
+    <string name="driving_time">مدة القيادة</string>
+    <string name="start_alarm">إبدأ</string>
+    <string name="stop_alarm">أوقف</string>
     <string name="partenaires">الفريق</string>
     <string name="retour_conseils">الرجوع إلى النصائح</string>
     <string name="pas_conseils">لا يوجد أي نصائح</string>

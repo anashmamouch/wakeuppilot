@@ -29,6 +29,10 @@
     <string name="creer_nouveau_profile">Créer un nouveau profile</string>
     <string name="pour_passer_test">Pour passer ce test vous devez etre:</string>
     <string name="jai_compris_button">"J'ai compris"</string>
+    <string name="alarm">Alarme</string>
+    <string name="driving_time">Durée de conduite</string>
+    <string name="start_alarm">Démarrer</string>
+    <string name="stop_alarm">Arrêter</string>
     <string name="retour_profile">Retour au profile</string>
     <string name="carte">Carte</string>
     <string name="credits">Application mobile développée, par Anas HMAMOUCH, ingénieur lauréat de l’INPT, dans le cadre d’un projet dédié à la ‘’Chevrolet Moroccan Smart Cart’’ initié par le Soft Centre pour le compte de CFAO Motors Maroc.</string>

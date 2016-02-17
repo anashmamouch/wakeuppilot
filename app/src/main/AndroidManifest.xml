@@ -173,6 +173,20 @@
             android:configChanges="locale|orientation|screenSize"
             android:label="@string/app_name">
         </activity>
+
+        <!-- Alarm activity -->
+        <activity
+            android:name=".AlarmActivity"
+            android:configChanges="locale|orientation|screenSize"
+            android:label="@string/app_name">
+        </activity>
+
+        <receiver
+            android:name=".AlarmActivity$AlarmReceiver"
+            android:enabled="true"
+            android:exported="true" >
+        </receiver>
+
     </application>
 
 </manifest>

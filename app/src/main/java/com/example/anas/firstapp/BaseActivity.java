@@ -160,6 +160,12 @@ public abstract class BaseActivity extends AppCompatActivity {
             return true;
         }
 
+        //Alarm Activity selection
+        if (id == R.id.action_alarm) {
+            goToActivity(AlarmActivity.class, null);
+            return true;
+        }
+
         //Credits Activity selection
         if (id == R.id.action_credits) {
             goToActivity(CreditsActivity.class, null);

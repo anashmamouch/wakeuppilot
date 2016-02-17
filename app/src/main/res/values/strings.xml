@@ -32,6 +32,11 @@
     <string name="pour_passer_test">Pour passer ce test vous devez etre:</string>
     <string name="jai_compris_button">"J'ai compris"</string>
     <string name="retour_profile">Retour au profile</string>
+    <string name="alarm">Alarme</string>
+    <string name="alarm_description">Il est conseillé de se reposer après 2 heures de conduite \n Cette Alarme se déclenchera si vous dépassez 2 heures de conduite sans prendre de pause.</string>
+    <string name="driving_time">Durée de conduite</string>
+    <string name="start_alarm">Start</string>
+    <string name="stop_alarm">Stop</string>
     <string name="credits">Application mobile développée, par Anas HMAMOUCH, ingénieur lauréat de l’INPT, dans le cadre d’un projet dédié à la ‘’Chevrolet Moroccan Smart Cart’’ initié par le Soft Centre pour le compte de CFAO Motors Maroc.</string>
     <string name="partenaires">Partenaires</string>
     <string name="dream_team">Soft Centre : www.softcentre.ma
